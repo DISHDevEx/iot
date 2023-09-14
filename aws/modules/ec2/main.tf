@@ -17,7 +17,3 @@ resource "aws_instance" "ec2" {
     Name  = var.instance_names[count.index]
   }
 }
-#Output
-output "instance-id-and-public-ip" {
-  value = zipmap(aws_instance.ec2[*].id, aws_instance.ec2[*].public_ip)
-}
