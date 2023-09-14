@@ -16,7 +16,7 @@ variable "instance_type" {
   type    = string
   default = "t2.micro"
 }
-variable "instance_name" {
+variable "instance_names" {
   type    = list(string)
   default = null
 }

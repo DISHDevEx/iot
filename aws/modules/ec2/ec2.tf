@@ -19,5 +19,5 @@ resource "aws_instance" "ec2" {
 }
 #Output
 output "instance-id-and-public-ip" {
-  value = zipmap(aws_instance.my-ec2[*].id, aws_instance.my-ec2[*].public_ip)
+  value = zipmap(aws_instance.ec2[*].id, aws_instance.ec2[*].public_ip)
 }
