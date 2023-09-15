@@ -18,3 +18,8 @@ crash.*.log
 
 # .ppk files
 *.ppk
+
+# Terraform plan files
+*plan*
+*PLAN*
+*Plan*
