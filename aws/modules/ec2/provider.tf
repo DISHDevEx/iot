@@ -15,9 +15,9 @@ terraform {
 #Providers
 provider "aws" {
   region     = var.aws_region
-  access_key = data.hcp_vault_secrets_app.application.secrets.aws_access_key
-  secret_key = data.hcp_vault_secrets_app.application.secrets.aws_secret_key
-  token      = data.hcp_vault_secrets_app.application.secrets.aws_session_token
+  access_key = coalesce(var.aws_access_key, data.hcp_vault_secrets_app.application.secrets.aws_access_key)
+  secret_key = coalesce(var.aws_secret_key, data.hcp_vault_secrets_app.application.secrets.aws_secret_key)
+  token      = coalesce(var.aws_session_token, data.hcp_vault_secrets_app.application.secrets.aws_session_token)
 }
 provider "hcp" {
   #We are using Hashicorp Vault for managing secrets related to this module
