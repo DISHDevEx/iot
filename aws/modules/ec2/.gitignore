@@ -17,15 +17,15 @@
 **/crash.*.log
 
 # .pem files
-*.pem
+**/*.pem
 
 # .ppk files
-*.ppk
+**/*.ppk
 
 # Terraform plan files
-*plan*
-*PLAN*
-*Plan*
+**/*plan*
+**/*PLAN*
+**/*Plan*
 
 # Zip files
 **/*.zip
