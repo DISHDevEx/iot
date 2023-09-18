@@ -26,6 +26,12 @@ provider "aws" {
   token      = coalesce(var.aws_session_token, data.hcp_vault_secrets_app.application.secrets.aws_session_token)
 }
 provider "hcp" {
-  #We are using Hashicorp Vault(Cloud Platform) for managing secrets related to this module
-  #Before using this module,please ensure that Hashicorp Vault CLI is installed and respective credentials are configured in the system environment variables
+  /*
+  Before using this module,please ensure that Hashicorp Vault CLI is installed and respective credentials are configured in the system environment variables.
+  For example in a linux system, you can set the environment variables in the terminal as show below.
+  export TF_VAR_HCP_CLIENT_ID=xxxxxxxxxxxxxxxx
+  export TF_VAR_HCP_CLIENT_SECRET=xxxxxxxxxxxxxxxx
+  */
+  client_id     = var.HCP_CLIENT_ID
+  client_secret = var.HCP_CLIENT_SECRET
 }

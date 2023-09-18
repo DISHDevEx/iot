@@ -60,3 +60,13 @@ variable "hashicorp_vault_app_name" {
   default   = null
   sensitive = true
 }
+variable "HCP_CLIENT_ID" {
+  type      = string
+  default   = null
+  sensitive = true
+}
+variable "HCP_CLIENT_SECRET" {
+  type      = string
+  default   = null
+  sensitive = true
+}
