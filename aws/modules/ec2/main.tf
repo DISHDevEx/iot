@@ -1,12 +1,11 @@
 /*
-#EC2 Module - This module can be used to create multiple EC2 instances of same instance type in AWS cloud
-We are using Hashicorp Vault for managing secrets related to this module
+EC2 Module - This module can be used to create multiple EC2 instances of same instance type in AWS cloud
+We are using Hashicorp Vault(Cloud Platform) for managing secrets related to this module.
 Before using this module,please ensure that Hashicorp Vault CLI is installed and respective credentials are configured in the system environment variables
 */
 #Resources
 resource "aws_instance" "ec2" {
-  #The coalesce function will check if the first parameter is null or not,
-  #If the first parameter is null then it will assign the second parameter value
+  #The coalesce function will check if the first parameter is null or not, and if the first parameter is null then it will assign the second parameter value
   count                = var.instance_count
   ami                  = var.ami_id
   instance_type        = var.instance_type
