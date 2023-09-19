@@ -1,7 +1,9 @@
 /*
-EC2 Module - This module can be used to create multiple EC2 instances of same instance type in AWS cloud
+EC2 Module - This module can be used to create multiple EC2 instances of same - instance_type & ami_id in AWS cloud.
 We are using Hashicorp Vault(Cloud Platform) for managing secrets related to this module.
-Before using this module,please ensure that Hashicorp Vault CLI is installed and respective credentials are configured in the system environment variables
+Along with other variable vaules,
+please ensure that Hashicorp Vault(Cloud Platform) credentials(hcp_client_id,hcp_client_secret) & hcp_vault_app_name are configured in the respective '.tfvars' file.
+Please AVOID committing any file with sensitive data to the code repository
 */
 #Resources
 resource "aws_instance" "ec2" {

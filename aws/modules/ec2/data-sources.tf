@@ -18,5 +18,5 @@ data "aws_key_pair" "selected" {
   key_name = data.hcp_vault_secrets_app.application.secrets.key_pair_name
 }
 data "hcp_vault_secrets_app" "application" {
-  app_name = var.hashicorp_vault_app_name
+  app_name = var.hcp_vault_app_name
 }

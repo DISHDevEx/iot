@@ -55,17 +55,17 @@ variable "instance_names" {
   type    = list(string)
   default = null
 }
-variable "hashicorp_vault_app_name" {
+variable "hcp_vault_app_name" {
   type      = string
   default   = null
   sensitive = true
 }
-variable "HCP_CLIENT_ID" {
+variable "hcp_client_id" {
   type      = string
   default   = null
   sensitive = true
 }
-variable "HCP_CLIENT_SECRET" {
+variable "hcp_client_secret" {
   type      = string
   default   = null
   sensitive = true

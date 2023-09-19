@@ -1,7 +1,9 @@
 /*
-Providers for ec2 Module - This module can be used to create multiple EC2 instances of same instance type in AWS cloud.
+Providers for ec2 Module - This module can be used to create multiple EC2 instances of same - instance_type & ami_id in AWS cloud.
 We are using Hashicorp Vault(Cloud Platform) for managing secrets related to this module.
-Before using this module,please ensure that Hashicorp Vault CLI is installed and respective credentials are configured in the system environment variables.
+Along with other variable vaules,
+please ensure that Hashicorp Vault(Cloud Platform) credentials(hcp_client_id,hcp_client_secret) & hcp_vault_app_name are configured in the respective '.tfvars' file.
+Please AVOID committing any file with sensitive data to the code repository
 */
 #Terraform required providers
 terraform {
@@ -26,12 +28,6 @@ provider "aws" {
   token      = coalesce(var.aws_session_token, data.hcp_vault_secrets_app.application.secrets.aws_session_token)
 }
 provider "hcp" {
-  /*
-  Before using this module,please ensure that Hashicorp Vault CLI is installed and respective credentials are configured in the system environment variables.
-  For example in a linux system, you can set the environment variables in the terminal as show below.
-  export TF_VAR_HCP_CLIENT_ID=xxxxxxxxxxxxxxxx
-  export TF_VAR_HCP_CLIENT_SECRET=xxxxxxxxxxxxxxxx
-  */
-  client_id     = var.HCP_CLIENT_ID
-  client_secret = var.HCP_CLIENT_SECRET
+  client_id     = var.hcp_client_id
+  client_secret = var.hcp_client_secret
 }
