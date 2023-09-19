@@ -1,72 +1,87 @@
 #Variables
 #
 variable "aws_access_key" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "AWS access key"
+  type        = string
+  default     = null
+  sensitive   = true
 }
 variable "aws_secret_key" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "AWS secret key"
+  type        = string
+  default     = null
+  sensitive   = true
 }
 variable "aws_session_token" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "AWS session token"
+  type        = string
+  default     = null
+  sensitive   = true
 }
 variable "aws_region" {
-  type    = string
-  default = "us-east-1"
+  description = "AWS region name"
+  type        = string
+  default     = "us-east-1"
 }
 variable "instance_count" {
-  type    = number
-  default = 1
+  description = "Number of EC2 instances"
+  type        = number
+  default     = 1
 }
 variable "ami_id" {
-  type    = string
-  default = "ami-0a89b4f85b0b6f49c"
+  description = "Amazon Machine Image(AMI) Id"
+  type        = string
+  default     = "ami-0a89b4f85b0b6f49c"
 }
 variable "instance_type" {
-  type    = string
-  default = "t2.micro"
+  description = "EC2 instance type"
+  type        = string
+  default     = "t2.micro"
 }
 variable "aws_iam_role" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "IAM role for EC2 instance"
+  type        = string
+  default     = null
+  sensitive   = true
 }
 variable "key_pair_name" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "Keypair for EC2 instance"
+  type        = string
+  default     = null
+  sensitive   = true
 }
 variable "subnet_id" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "Subnet for EC2 instance"
+  type        = string
+  default     = null
+  sensitive   = true
 }
 variable "vpc_security_group_ids" {
-  type      = list(string)
-  default   = null
-  sensitive = true
+  description = "Security group for EC2 instance"
+  type        = list(string)
+  default     = null
+  sensitive   = true
 }
 variable "instance_names" {
-  type    = list(string)
-  default = null
+  description = "Names for EC2 instances"
+  type        = list(string)
+  default     = null
 }
 variable "hcp_client_id" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "HashiCorp cloud platform client id"
+  type        = string
+  default     = null
+  sensitive   = true
 }
 variable "hcp_client_secret" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "HashiCorp cloud platform client secret"
+  type        = string
+  default     = null
+  sensitive   = true
 }
 variable "hcp_vault_app_name" {
-  type      = string
-  default   = null
-  sensitive = true
+  description = "HashiCorp cloud platform - Vault application name"
+  type        = string
+  default     = null
+  sensitive   = true
 }
