@@ -1,6 +1,6 @@
 /*
 EC2 Module - This module can be used to create multiple EC2 instances of same - instance_type & ami_id in AWS cloud.
-We are using Hashicorp Vault(Cloud Platform) for managing secrets related to this module.
+We are using Hashicorp Vault(Cloud Platform) for secrets management.
 Along with other variable vaules,
 please ensure that Hashicorp Vault(Cloud Platform) credentials(hcp_client_id,hcp_client_secret) & hcp_vault_app_name are configured in the respective '.tfvars' file.
 Please AVOID committing any file with sensitive data to the code repository
