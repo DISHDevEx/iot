@@ -55,17 +55,17 @@ variable "instance_names" {
   type    = list(string)
   default = null
 }
-variable "hcp_vault_app_name" {
-  type      = string
-  default   = null
-  sensitive = true
-}
 variable "hcp_client_id" {
   type      = string
   default   = null
   sensitive = true
 }
 variable "hcp_client_secret" {
+  type      = string
+  default   = null
+  sensitive = true
+}
+variable "hcp_vault_app_name" {
   type      = string
   default   = null
   sensitive = true
