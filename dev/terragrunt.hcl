@@ -6,6 +6,8 @@ terraform {
       "-var-file=variables-dev.tfvars"
     ]
   }
+
+  # source = "git::https://github.com/DISHDevEx/iot.git"
 }
 
 generate "provider" {
