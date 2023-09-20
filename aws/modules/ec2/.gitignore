@@ -1,0 +1,34 @@
+# Local .terraform directories
+**/.terraform/*
+
+# Terraform lockfile
+**/.terraform.lock.hcl
+
+# .tfstate files
+**/*.tfstate
+**/*.tfstate.*
+
+# .tfvars files
+**/*.tfvars
+**/*.tfvars.json
+
+# Crash log files
+**/crash.log
+**/crash.*.log
+
+# .pem files
+**/*.pem
+
+# .ppk files
+**/*.ppk
+
+# Terraform plan files
+**/*plan*
+**/*PLAN*
+**/*Plan*
+
+# Zip files
+**/*.zip
+
+# Terragrunt cache 
+**/.terragrunt-cache/*
