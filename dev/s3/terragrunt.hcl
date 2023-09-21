@@ -7,7 +7,7 @@ terraform {
 }
 
 inputs = {
-  bucket = "test-terragrunt-mp-us-east-1"
+  bucket = "test-terragrunt-mp-taas-us-east-1"
 
   attach_public_policy    = true
   block_public_acls       = true
