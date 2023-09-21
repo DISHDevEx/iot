@@ -44,19 +44,19 @@ variable "aws_iam_role" {
   default     = null
   sensitive   = true
 }
-variable "key_pair_name" {
+variable "ec2_key_pair_name" {
   description = "Keypair for EC2 instance"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "subnet_id" {
+variable "aws_subnet_id" {
   description = "Subnet for EC2 instance"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "vpc_security_group_ids" {
+variable "aws_vpc_security_group_ids" {
   description = "Security group for EC2 instance"
   type        = list(string)
   default     = null
@@ -67,20 +67,20 @@ variable "instance_names" {
   type        = list(string)
   default     = null
 }
-variable "hcp_client_id" {
-  description = "HashiCorp cloud platform client id"
+variable "vault_address" {
+  description = "HashiCorp Vault address"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "hcp_client_secret" {
-  description = "HashiCorp cloud platform client secret"
+variable "vault_token" {
+  description = "HashiCorp Vault token"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "hcp_vault_app_name" {
-  description = "HashiCorp cloud platform - Vault application name"
+variable "vault_secrets_path" {
+  description = "Secrets path in Hashicorp Vault"
   type        = string
   default     = null
   sensitive   = true
