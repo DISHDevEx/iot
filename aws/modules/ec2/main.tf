@@ -1,9 +1,5 @@
-/*
-EC2 Module - This module can be used to create multiple EC2 instances of same - instance_type & ami_id in AWS cloud.
-If you are interested in using HashiCorp Vault for secrets management, along with other variable vaules, please ensure that HashiCorp Vault variables(address,token) are configured in the respective '.tfvars' file.
-Else you can use the module directly in the 'terragrunt.hcl' file with required inputs.
-Please AVOID committing any file with sensitive data to the code repository.
-*/
+#--------With HashiCorp Vault block - Start----------------------
+#Please note to comment out this whole this block if you DONT want to use this module with HashiCorp Vault for secrets management
 #Resources
 resource "aws_instance" "ec2" {
   #The coalesce function will check if the first parameter is null or not, and if the first parameter is null then it will assign the second parameter value
@@ -28,3 +24,25 @@ locals {
   data_source_subnet_id         = data.aws_subnet.selected.id
   data_source_security_group_id = data.aws_security_group.selected.id
 }
+#--------With HashiCorp Vault block - End----------------------
+
+##-----------------------------------------------------------------
+
+#--------Without HashiCorp Vault block - Start----------------------
+#Please note to comment out this whole block if you WANT to use this module with HashiCorp Vault for secrets management
+#Resources
+resource "aws_instance" "ec2" {
+  count                = var.instance_count
+  ami                  = var.ami_id
+  instance_type        = var.instance_type
+  monitoring           = true
+  iam_instance_profile = var.iam_role
+  key_name             = var.key_pair_name
+  subnet_id            = var.subnet_id
+  vpc_security_group_ids = var.vpc_security_group_ids
+  #The count.index helps to assign respective instance names as per the respective variable value in the .tfvars file
+  tags = {
+    Name = var.instance_names[count.index]
+  }
+}
+#--------Without HashiCorp Vault block - End----------------------
