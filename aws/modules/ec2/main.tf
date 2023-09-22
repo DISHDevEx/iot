@@ -32,13 +32,13 @@ locals {
 #Please note to comment out this whole block if you WANT to use this module with HashiCorp Vault for secrets management
 #Resources
 resource "aws_instance" "ec2" {
-  count                = var.instance_count
-  ami                  = var.ami_id
-  instance_type        = var.instance_type
-  monitoring           = true
-  iam_instance_profile = var.iam_role
-  key_name             = var.key_pair_name
-  subnet_id            = var.subnet_id
+  count                  = var.instance_count
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  monitoring             = true
+  iam_instance_profile   = var.iam_role
+  key_name               = var.key_pair_name
+  subnet_id              = var.subnet_id
   vpc_security_group_ids = var.vpc_security_group_ids
   #The count.index helps to assign respective instance names as per the respective variable value in the .tfvars file
   tags = {
