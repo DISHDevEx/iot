@@ -38,25 +38,25 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
-variable "aws_iam_role" {
+variable "iam_role" {
   description = "IAM role for EC2 instance"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "ec2_key_pair_name" {
+variable "key_pair_name" {
   description = "Keypair for EC2 instance"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "aws_subnet_id" {
+variable "subnet_id" {
   description = "Subnet for EC2 instance"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "aws_vpc_security_group_ids" {
+variable "vpc_security_group_ids" {
   description = "Security group for EC2 instance"
   type        = list(string)
   default     = null
