@@ -11,8 +11,11 @@ Note: If you are interested in using HashiCorp Vault for secrets management, the
 If you are interested in using HashiCorp Vault for secrets management, along with other variable vaules, please ensure that HashiCorp Vault variables(address,token, secrets path) are configured in the respective '.tfvars' file. Also, ensure to include the 'data-sources.tf' file in the directory. 
 If you are not interested in using HashiCorp Vault for secrets management, you can skip the 'data-sources.tf' file and use the module directly in the 'terragrunt.hcl' file with required inputs.
 Please ensure that count of 'instance_count' and 'instance_names' variable values are matching.
+
 #For example, 
+
 instance_count = 2
+
 instance_name = ["First instance name","Second instance name"]
 ### Inputs - With HashiCorp Vault:
 #Example
