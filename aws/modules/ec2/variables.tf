@@ -38,7 +38,7 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
-variable "aws_iam_role" {
+variable "iam_role" {
   description = "IAM role for EC2 instance"
   type        = string
   default     = null
@@ -67,20 +67,20 @@ variable "instance_names" {
   type        = list(string)
   default     = null
 }
-variable "hcp_client_id" {
-  description = "HashiCorp cloud platform client id"
+variable "vault_address" {
+  description = "HashiCorp Vault address"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "hcp_client_secret" {
-  description = "HashiCorp cloud platform client secret"
+variable "vault_token" {
+  description = "HashiCorp Vault token"
   type        = string
   default     = null
   sensitive   = true
 }
-variable "hcp_vault_app_name" {
-  description = "HashiCorp cloud platform - Vault application name"
+variable "vault_secrets_path" {
+  description = "Secrets path in Hashicorp Vault"
   type        = string
   default     = null
   sensitive   = true
