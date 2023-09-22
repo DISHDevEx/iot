@@ -12,7 +12,6 @@ If you are interested in using HashiCorp Vault for secrets management, then plea
 1. Include the 'data-sources.tf' file form respective module directory
 2. Comment out the 'Without HashiCorp Vault block' in the 'main.tf' file
 3. Define inputs in the 'terragrunt.hcl' file as shown below
- along with other variable vaules, please ensure that HashiCorp Vault variables(address,token,secrets path) are configured in the inputs as shown below. Also, ensure to include the 'data-sources.tf' file in the respective module directory and comment out the 'Without HashiCorp Vault block' in the 'main.tf' file. 
 
 If you are NOT interested in using HashiCorp Vault for secrets management, then please follow below steps:
 1. Remove the 'data-sources.tf' file form respective module directory
