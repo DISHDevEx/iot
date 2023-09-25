@@ -15,7 +15,12 @@ variable "assume_role_policy"{
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "ec2.amazonaws.com"
+        "Service": [
+                    "glue.amazonaws.com",
+                    "lambda.amazonaws.com",
+                    "ec2.amazonaws.com",
+                    "ssm.amazonaws.com"
+                ]
       },
       "Action": "sts:AssumeRole"
     }
@@ -38,7 +43,7 @@ variable "create_role" {
 
 variable "role_arn" {
   type        = string
-  default     = ""
+  default     = "arn:aws:iam::064047601590:role/dpi-radcom-be-glue-prometheus-us-east-1-role"
   description = "(Optional) The ARN of the IAM role associated with this job."
 }
 
