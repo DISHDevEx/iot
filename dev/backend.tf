@@ -4,7 +4,7 @@ terraform {
     bucket         = "tfstate-dish-mp-sbx"
     dynamodb_table = "tfstatelock-dish-mp-sbx"
     encrypt        = true
-    key            = "./terraform.tfstate"
+    key            = "terraform.tfstate"
     region         = "us-east-1"
   }
 }
