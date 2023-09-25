@@ -32,3 +32,10 @@
 
 # Ignore 
 **/.terragrunt-cache/*
+
+# Ignore
+**/backend.tf
+**/provider.tf
+
+# Ignore
+**/config.hcl
