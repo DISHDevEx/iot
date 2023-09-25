@@ -61,7 +61,6 @@ resource "aws_glue_job" "IOT_glue_job" {
     "--enable-metrics" = var.enable_metrics ? "" : null
     "--enable-continuous-cloudwatch-log" = var.enable_continuous_cloudwatch_log
     "--enable-continuous-log-filter" = var.enable_continuous_log_filter
-    "--continuous-log-logGroup" = join("", aws_cloudwatch_log_group.log_group.*.name)
     "--continuous-log-logStreamPrefix" = var.continuous_log_stream_prefix
     "--continuous-log-conversionPattern" = var.continuous_log_conversion_pattern
     "--enable-spark-ui" = var.enable_spark_ui
