@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "security_group_name" {
   description = "Name for the security group"
   type        = string
-  default = "sample_security_group"
+  default = "iot_security_group_template"
 }
 
 variable "security_group_description" {

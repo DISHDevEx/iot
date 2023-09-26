@@ -1,5 +1,5 @@
 #Create AWS Security Group
-resource "aws_security_group" "sample_security_group" {
+resource "aws_security_group" "iot_security_group_template" {
   name        = var.security_group_name
   description = var.security_group_description
 
