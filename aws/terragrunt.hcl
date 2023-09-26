@@ -1,3 +1,6 @@
+/*
+This file can be used to create EC2 instances in desired AWS account using the 'ec2' Terraform module.
+*/
 #Terraform source
 terraform {
   source = "./modules//ec2"
