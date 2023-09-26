@@ -40,7 +40,8 @@ instance_name = ["First instance name","Second instance name"]
 5. vault_address      = "xxxxxxxxxx"
 6. vault_token        = "xxxxxxxxxx"
 7. vault_secrets_path = "xxxxxxxxxx"
-Note: Here the variable vaules of iam_role, key_pair_name, subnet_id, vpc_security_group_ids will be passed directly from HashiCorp Vault
+
+**Note:** Here the variable vaules of iam_role, key_pair_name, subnet_id, vpc_security_group_ids will be passed directly from HashiCorp Vault
 ### Inputs - Without HashiCorp Vault:
 #Example
 1. instance_count         = 2
