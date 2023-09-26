@@ -1,5 +1,3 @@
-# lambda_function/outputs.tf
-
 output "lambda_function_name" {
   description = "The name of the created Lambda function."
   value       = aws_lambda_function.iot_lambda_template.function_name
