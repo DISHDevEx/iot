@@ -10,6 +10,13 @@ resource "aws_instance" "ec2" {
   subnet_id            = coalesce(var.subnet_id, local.data_source_subnet_id)
   #We can assign multiple security groups and this can be configured in 'data-sources.tf' file
   vpc_security_group_ids = coalesce(var.vpc_security_group_ids, [local.data_source_security_group_ids])
+  #Root Block Device configuration
+  root_block_device {    
+    volume_type = var.root_volume_type
+    volume_size = var.root_volume_size
+    encrypted = var.root_volume_encrypted
+    delete_on_termination = var.root_volume_termination
+  }
   #The count.index helps to assign respective instance names as per the respective variable value in the .tfvars file
   tags = {
     Name = var.instance_names[count.index]
