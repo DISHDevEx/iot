@@ -9,3 +9,9 @@ variable "sns_topic_name" {
   type        = string
   default     = "iot_sns"
 }
+
+variable "protocol" {
+  description = "Any AWS service or an edpoint to send"
+  type        = string
+  default     = "email"
+}
