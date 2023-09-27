@@ -22,7 +22,7 @@ variable "instance_type" {
 variable "root_volume_type" {
   description = "EC2 - Root volume type"
   type        = string
-  default     = "gp2"  
+  default     = "gp2"
 }
 variable "root_volume_size" {
   description = "EC2 - Root volume size in GiB"
@@ -32,12 +32,12 @@ variable "root_volume_size" {
 variable "root_volume_encrypted" {
   description = "Boolean value to opt-in/opt-out root volume encryption during EC2 creation"
   type        = bool
-  default     = true 
+  default     = true
 }
 variable "root_volume_termination" {
   description = "Boolean value to opt-in/opt-out root volume termination during EC2 termination"
   type        = bool
-  default     = true 
+  default     = true
 }
 variable "iam_role" {
   description = "IAM role for EC2 instance"

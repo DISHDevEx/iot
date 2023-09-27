@@ -24,13 +24,24 @@ EOF
 
 #Backend
 remote_state {
-  backend = "local"
+  backend  = "s3"
   generate = {
     path      = "backend.tf"
-    if_exists = "overwrite"
+    if_exists = "overwrite_terragrunt"
   }
-
   config = {
-    path = "${get_terragrunt_dir()}/local_backend/terraform.tfstate"
+    /*
+    As we are assign the variable values directly in this 'config' block, the 'get_env()' function is used to assign the values.
+    Before using the 'get_env()' function, we should ensure to set the environment variables in the CLI as shown below
+    Example:
+    export TF_VAR_aws_region=xxxxxx
+    export TF_VAR_bucket=xxxxxx
+    export TF_VAR_dynamo_db_table=xxxxxx
+    */
+    bucket         = get_env("TF_VAR_bucket")
+    key            = "${path_relative_to_include()}/ec2/terraform.tfstate"
+    region         = get_env("TF_VAR_aws_region")
+    encrypt        = true
+    dynamodb_table = get_env("TF_VAR_dynamo_db_table")
   }
 }
