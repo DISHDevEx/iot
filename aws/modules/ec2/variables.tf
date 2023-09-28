@@ -1,9 +1,4 @@
 #Variables
-variable "aws_region" {
-  description = "AWS region name"
-  type        = string
-  default     = "us-east-1"
-}
 variable "instance_count" {
   description = "Number of EC2 instances"
   type        = number
@@ -68,21 +63,4 @@ variable "instance_names" {
   type        = list(string)
   default     = null
 }
-variable "vault_address" {
-  description = "HashiCorp Vault address"
-  type        = string
-  default     = null
-  sensitive   = true
-}
-variable "vault_token" {
-  description = "HashiCorp Vault token"
-  type        = string
-  default     = null
-  sensitive   = true
-}
-variable "vault_secrets_path" {
-  description = "Secrets path in Hashicorp Vault"
-  type        = string
-  default     = null
-  sensitive   = true
-}
+
