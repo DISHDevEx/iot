@@ -3,7 +3,7 @@ This file can be used to create EC2 instances in desired AWS account using the '
 */
 #Terraform source
 terraform {
-  source = "./terraform_template.tf"
+  source = "./root.tf"
 }
 
 #Providers
