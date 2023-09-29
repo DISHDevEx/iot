@@ -1,5 +1,5 @@
 /*
-This file can be used to create EC2 instances in desired AWS account using the 'ec2' Terraform module.
+Terragrunt configuration for root module
 */
 #Terraform source
 terraform {
