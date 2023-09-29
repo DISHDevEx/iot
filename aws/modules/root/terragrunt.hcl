@@ -14,10 +14,16 @@ generate "provider" {
 provider "aws" {
   region = var.aws_region
 }
+provider "vault" {
+  address         = var.vault_address
+  skip_tls_verify = true
+  token           = var.vault_token
+}
 EOF
 }
 
 #Backend
+#Local backend
 remote_state {
   backend = "local"
   generate = {
