@@ -12,7 +12,7 @@ generate "provider" {
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
 EOF
 }
@@ -24,7 +24,6 @@ remote_state {
     path      = "backend.tf"
     if_exists = "overwrite"
   }
-
   config = {
     path = "${get_terragrunt_dir()}/local_backend/terraform.tfstate"
   }
