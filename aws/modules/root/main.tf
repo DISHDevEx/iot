@@ -20,7 +20,7 @@ locals {
 }
 #EC2 module with HashiCorp Vault
 module "ec2_instance" {
-  source                  = "/home/ec2-user/iot/aws/modules/ec2"
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2?ref=sriharsha/ec2-with-vault"
   for_each = { for index, config in local.resource_configurations : index => config }
   instance_count          = each.value.instance_count
   ami_id                  = each.value.ami_id
