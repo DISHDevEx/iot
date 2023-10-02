@@ -18,6 +18,6 @@ resource "aws_instance" "ec2" {
   }
   #The count.index helps to assign respective instance names as per the respective variable value in the .tfvars file
   tags = {
-    Name = var.instance_names[count.index]
+    Name = "iot_${var.instance_names[count.index]}"
   }
 }
