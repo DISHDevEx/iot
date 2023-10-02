@@ -1,21 +1,21 @@
 #Variables for root module
 variable "aws_region" {
-  description = "AWS region for resources management"
+  description = "AWS region name"
   type        = string
   default     = "us-east-1"
 }
 variable "aws_access_key" {
-  description = "AWS region for resources management"
+  description = "AWS account access key"
   type        = string
   default     = null
 }
 variable "aws_secret_key" {
-  description = "AWS region for resources management"
+  description = "AWS account secret key"
   type        = string
   default     = null
 }
 variable "aws_session_token" {
-  description = "AWS region for resources management"
+  description = "AWS account session token"
   type        = string
   default     = null
 }
