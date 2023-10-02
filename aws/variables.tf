@@ -4,6 +4,21 @@ variable "aws_region" {
   type        = string
   default     = "us-east-1"
 }
+variable "aws_access_key" {
+  description = "AWS region for resources management"
+  type        = string
+  default     = null
+}
+variable "aws_secret_key" {
+  description = "AWS region for resources management"
+  type        = string
+  default     = null
+}
+variable "aws_session_token" {
+  description = "AWS region for resources management"
+  type        = string
+  default     = null
+}
 variable "vault_address" {
   description = "Vault server address"
   type        = string
