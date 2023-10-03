@@ -21,9 +21,9 @@ generate "provider" {
   contents  = <<EOF
 provider "aws" {
   region     = var.aws_region
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
-  token      = var.aws_session_token
+  #The profile "account1" is used to pass the aws credentials from the 'credentials' file located in this path - '~/.aws/credentials'
+  #Before running this script, please ensure to configure your aws account credentails in above mentioned file accordingly.
+  profile    = "account1"
 }
 /*
 provider "vault" {
@@ -50,7 +50,7 @@ remote_state {
     Example:
     export TF_VAR_region=xxxxxx
     export TF_VAR_bucket=xxxxxx
-    export TF_VAR_dynamo_db_table=xxxxxx
+    export TF_VAR_dynamodb_table=xxxxxx
     */
     bucket         = get_env("TF_VAR_bucket")
     key            = "${path_relative_to_include()}/ec2/terraform.tfstate"
