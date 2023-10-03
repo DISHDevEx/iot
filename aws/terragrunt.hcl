@@ -1,5 +1,5 @@
 /*
-Terragrunt configuration for root module
+Terragrunt configuration for all modules.
 */
 #Terraform source
 terraform {
@@ -21,7 +21,7 @@ generate "provider" {
   contents  = <<EOF
 provider "aws" {
   region     = var.aws_region
-  #The profile "account1" is used to pass the aws credentials from the 'credentials' file located in this path - '~/.aws/credentials'
+  #The profile "account1" is used to pass the aws credentials from the 'credentials' file located in this path - '~/.aws/credentials'.
   #Before running this script, please ensure to configure your aws account credentails in above mentioned file accordingly.
   profile    = "account1"
 }

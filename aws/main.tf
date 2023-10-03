@@ -1,5 +1,5 @@
 /*
-Terraform configuration for root module - Includes configuration related to other modules as well.
+Terraform configuration for all modules.
 */
 #Locals - To create a resource with different configurations
 locals {
