@@ -38,14 +38,14 @@ terraform {
   }
 }
 provider "aws" {
-  region     = var.aws_region
-  profile    = var.profile
+  region     = get_env("TF_VAR_aws_region")
+  profile    = get_env("TF_VAR_profile")
 }
 /*
 provider "vault" {
-  address         = var.vault_address
+  address         = get_env("TF_VAR_vault_address")
   skip_tls_verify = true
-  token           = var.vault_token
+  token           = get_env("TF_VAR_vault_token")
 }
 */
 EOF
@@ -68,7 +68,7 @@ remote_state {
     export TF_VAR_dynamo_db_table=xxxxxx
     */
     bucket         = get_env("TF_VAR_bucket_name")
-    key            = "${path_relative_to_include()}/DishTaasAdminDev/us-east-1/terraform.tfstate"
+    key            = get_env("TF_VAR_bucket_key")
     region         = get_env("TF_VAR_aws_region")
     encrypt        = true
     dynamodb_table = get_env("TF_VAR_dynamodb_table_name")
