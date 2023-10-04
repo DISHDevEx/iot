@@ -27,7 +27,7 @@ variable "ingress_port" {
 
 variable "ingress_protocol" {
   description = "Ingress Protocol"
-  type        = number
+  type        = string
   default = "tcp"
 }
 
