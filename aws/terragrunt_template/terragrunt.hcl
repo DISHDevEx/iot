@@ -9,8 +9,9 @@ terraform {
 #Providers
 /*
 For the following provider variables, values can be assigned through 'terraform.tfvars' file or they can be via Hashicorp Vault data source.
-#Via 'terraform.tfvars' file:
-Example: access_key="xxxxxxxxx" in 'terraform.tfvars' file which should be available in same directory.
+#Via 'terraform.tfvars' file: 
+Example:
+Declare the variable in the provider block as 'access_key= var.aws_access_key' and provide input as 'aws_access_key="xxxxxx"' in 'terraform.tfvars' file which should be available in same directory.
 #Assignment via Vault:
 Example: access_key = data.vault_generic_secret.getsecrets.data["access_key"] #This works only if you had pre-configured this value in your vault instance.
 #Passing AWS account credentails using profile 
