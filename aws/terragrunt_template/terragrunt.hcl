@@ -63,9 +63,10 @@ remote_state {
     As we can't assign the variable values directly in this 'config' block, the 'get_env()' function is used to assign the values.
     Before using the 'get_env()' function, we should ensure to set the environment variables in the CLI as shown below
     Example:
-    export TF_VAR_region=xxxxxx
-    export TF_VAR_bucket=xxxxxx
-    export TF_VAR_dynamo_db_table=xxxxxx
+    export TF_VAR_profile=xxxxxxxxxx
+    export TF_VAR_bucket_name=xxxxxxxxxx
+    export TF_VAR_bucket_key=xxxxxxxxxxx
+    export TF_VAR_dynamodb_table_name=xxxxxxxxx
     */
     bucket         = get_env("TF_VAR_bucket_name")
     key            = get_env("TF_VAR_bucket_key")
