@@ -73,5 +73,6 @@ remote_state {
     region         = get_env("TF_VAR_region")
     encrypt        = true
     dynamodb_table = get_env("TF_VAR_dynamodb_table")
+    profile        = "DishTaasAdminDev"
   }
 }

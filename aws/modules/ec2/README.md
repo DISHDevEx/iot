@@ -54,9 +54,10 @@ instance_name = ["First instance name","Second instance name"]
 8. vpc_security_group_ids = ["xxxxxxxxxx"]
 ## Execution
 To deploy the resources in cloud environment as per the configuration in 'terragrunt.hcl' file, use the following Terragrunt CLI commands:
-1. terragrunt plan
-2. terragrunt apply
-3. terragrunt output
+1. terragrunt init
+2. terragrunt plan
+3. terragrunt apply
+4. terragrunt output
 ## Destruction
 To destroy the resources in cloud environment, use the following Terragrunt CLI commands:
 1. terragrunt destroy
