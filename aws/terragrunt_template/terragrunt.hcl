@@ -9,8 +9,8 @@ terraform {
 #Providers
 /*
 For the following provider variables, values can be assigned through 'terraform.tfvars' file or they can be via Hashicorp Vault data source.
-#Via environment variables or 'terraform.tfvars' file:
-Example: Provide respective account access key via environment variables in CLI like: access_key=xxxxxxxxx or with 'terraform.tfvars' file which should be available in same directory.
+#Via 'terraform.tfvars' file:
+Example: access_key="xxxxxxxxx" in 'terraform.tfvars' file which should be available in same directory.
 #Assignment via Vault:
 Example: access_key = data.vault_generic_secret.getsecrets.data["access_key"] #This works only if you had pre-configured this value in your vault instance.
 #Passing AWS account credentails using profile 
@@ -38,15 +38,14 @@ terraform {
   }
 }
 provider "aws" {
-  region     = "us-east-1"
-  profile    = "DishTaasAdminDev"
+  region     = var.aws_region
+  profile    = var.profile
 }
 /*
 provider "vault" {
-  address         = get_env("TF_VAR_vault_address")
+  address         = var.vault_address
   skip_tls_verify = true
-  token           = get_env("TF_VAR_vault_token")
-}
+  token           = var.vault_token
 */
 EOF
 }
