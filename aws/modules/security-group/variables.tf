@@ -7,13 +7,17 @@ variable "aws_region" {
 variable "security_group_name" {
   description = "Name for the security group"
   type        = string
-  default = "iot_security_group_template"
+}
+
+variable "security_group_prefix" {
+  description = "Prefix to be added to the resource name"
+  default     = "iot-"
 }
 
 variable "security_group_description" {
   description = "Description for the security group"
   type        = string
-  default = "Sample Security Group"
+  default     = "Sample Security Group"
 }
 
 ###########
@@ -22,19 +26,26 @@ variable "security_group_description" {
 variable "ingress_port" {
   description = "Port to control Inbound traffic"
   type        = number
-  default = 443
+  sensitive   = true
 }
 
 variable "ingress_protocol" {
   description = "Ingress Protocol"
   type        = string
-  default = "tcp"
+  sensitive   = true
 }
 
 variable "ingress_cidr_blocks" {
   description = "IPv4 address range in CIDR format to use on all ingress rules"
   type        = list(string)
-  default = ["0.0.0.0/0"]
+  sensitive   = true
+}
+
+variable "ingress_source_security_group_id" {
+  description = "The existing security group id that the new security group wants to refer as source "
+  type        = list(string)
+  default     = null
+  sensitive   = true
 }
 
 ##########
@@ -44,18 +55,24 @@ variable "ingress_cidr_blocks" {
 variable "egress_port" {
   description = "Port to control Outbound traffic"
   type        = number
-  default = 0
+  sensitive   = true
 }
 
 variable "egress_protocol" {
   description = "Egress protocol"
-  type        = number
-  default = "-1"
+  sensitive   = true
 }
 
 variable "egress_cidr_blocks" {
   description = "IPv4 address range in CIDR format to use on all ingress rules"
   type        = list(string)
-  default = ["0.0.0.0/0"]
+  sensitive   = true
+}
+
+variable "egress_destination_security_group_id" {
+  description = "The existing security group id that the new security group wants to refer as destination "
+  type        = list(string)
+  default     = null
+  sensitive   = true
 }
 
