@@ -13,23 +13,23 @@
 
 #resources for IAM Role
 
-resource "aws_iam_role" "IOT_role" {
-  name = var.name
+# resource "aws_iam_role" "IOT_role" {
+#   name = var.name
 
-  assume_role_policy = var.assume_role_policy
-}
+#   assume_role_policy = var.assume_role_policy
+# }
 
 
-resource "aws_iam_role_policy_attachment" "IOT_attachment" {
-  role       = aws_iam_role.IOT_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
-}
+# resource "aws_iam_role_policy_attachment" "IOT_attachment" {
+#   role       = aws_iam_role.IOT_role.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+# }
 
 
 # Resources for Glue
 resource "aws_glue_job" "IOT_glue_job" {
   name = "IOTgluejob"
-  role_arn = var.create_role ? join("", aws_iam_role.IOT_role.*.arn) : var.role_arn
+  role_arn = var.role_arn
   connections = var.connections 
   description = var.description
   glue_version = var.glue_version
