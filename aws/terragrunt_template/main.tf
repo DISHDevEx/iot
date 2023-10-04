@@ -1,8 +1,9 @@
 /*
 Terraform configuration for all modules.
 */
-#Locals - To create a resource with different configurations
+#Locals
 locals {
+  #To create a EC2 resource with different configurations
   ec2_configurations = [
     {
       instance_count = 2
@@ -18,6 +19,7 @@ locals {
     }
   ]
 }
+
 #EC2 module with HashiCorp Vault
 module "ec2_instance" {
   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2?ref=sriharsha/ec2-with-vault"
@@ -38,8 +40,32 @@ module "ec2_instance" {
   Example: iam_role = data.vault_generic_secret.getsecrets.data["iam_role"] #This works only if you had pre-configured this value in your vault instance.
   Note: Please don't commit any file with sensitive information to code repository or publicly accessible location.
   */
-  iam_role                = data.vault_generic_secret.getsecrets.data["iam_role"]
-  key_pair_name           = data.vault_generic_secret.getsecrets.data["key_pair_name"]
-  subnet_id               = data.vault_generic_secret.getsecrets.data["subnet_id"]
-  vpc_security_group_ids  = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
+  iam_role               = data.vault_generic_secret.getsecrets.data["iam_role"]
+  key_pair_name          = data.vault_generic_secret.getsecrets.data["key_pair_name"]
+  subnet_id              = data.vault_generic_secret.getsecrets.data["subnet_id"]
+  vpc_security_group_ids = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 }
+
+#Glue module without HashiCorp Vault
+module "glue_job" {
+  source = "git@github.com:DISHDevEx/iot.git//aws/modules/glue"
+}
+
+#Lambda Function module without HashiCorp Vault
+# module "lambda_function" {
+#   source        = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#   function_name = "iot_sample_lambda"
+#   filepath      = "Enter zip file path"
+#   handler       = "index.handler"
+#   runtime       = "python3.8"
+#   role_arn      = "xxxxxxxxxxxx"
+# }
+
+#Security Group module without HashiCorp Vault
+# module "security-group" {
+#   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group""
+#   security_group_name        = "Enter security group name"
+#   security_group_description = "Enter description for the security group"
+#   ingress_port               = xxxx
+#   ingress_cidr_blocks        = ["xxxxxxxxx"]
+# }

@@ -12,18 +12,34 @@ For the following provider variables, values can be assigned through 'terraform.
 #Via 'terraform.tfvars' file:
 Example: access_key = "xxxxxxxxx" #Provide respective account access key in 'terraform.tfvars' file which should be available in same directory.
 #Assignment via Vault:
-Example: access_key = data.vault_generic_secret.getsecrets.data["access_key"] #This works only if you had pre-configured this value in your vault instance
+Example: access_key = data.vault_generic_secret.getsecrets.data["access_key"] #This works only if you had pre-configured this value in your vault instance.
+#Passing AWS account credentails using profile 
+The profile "DishTaasAdminDev" is used to pass the aws credentials from the 'credentials' file located in this path - '~/.aws/credentials'.
+Before running this script, please ensure to configure your aws account credentails in above mentioned file accordingly.
 Note: Please don't commit any file with sensitive information to code repository or publicly accessible location.
 */
 generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
+terraform {
+  required_version = ">= 1.5.7"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+/*    
+    vault = {
+      source  = "hashicorp/vault"
+      version = "~> 3.20.1"
+    }
+*/    
+  }
+}
 provider "aws" {
   region     = var.aws_region
-  #The profile "account1" is used to pass the aws credentials from the 'credentials' file located in this path - '~/.aws/credentials'.
-  #Before running this script, please ensure to configure your aws account credentails in above mentioned file accordingly.
-  profile    = "account1"
+  profile    = "DishTaasAdminDev"
 }
 /*
 provider "vault" {
@@ -53,7 +69,7 @@ remote_state {
     export TF_VAR_dynamodb_table=xxxxxx
     */
     bucket         = get_env("TF_VAR_bucket")
-    key            = "${path_relative_to_include()}/ec2/terraform.tfstate"
+    key            = "${path_relative_to_include()}/DishTaasAdminDev/us-east-1/terraform.tfstate"
     region         = get_env("TF_VAR_region")
     encrypt        = true
     dynamodb_table = get_env("TF_VAR_dynamodb_table")
