@@ -38,8 +38,8 @@ terraform {
   }
 }
 provider "aws" {
-  region     = get_env("TF_VAR_aws_region")
-  profile    = get_env("TF_VAR_profile")
+  region     = "us-east-1"
+  profile    = "DishTaasAdminDev"
 }
 /*
 provider "vault" {
@@ -69,7 +69,7 @@ remote_state {
     */
     bucket         = get_env("TF_VAR_bucket_name")
     key            = get_env("TF_VAR_bucket_key")
-    region         = get_env("TF_VAR_aws_region")
+    region         = "us-east-1"
     encrypt        = true
     dynamodb_table = get_env("TF_VAR_dynamodb_table_name")
     profile        = get_env("TF_VAR_profile")
