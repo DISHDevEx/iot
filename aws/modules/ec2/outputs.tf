@@ -1,4 +1,5 @@
 #Outputs
 output "instance_id" {
-  value = aws_instance.ec2[*].id
+  description = "ID of the EC2 instance"
+  value       = aws_instance.ec2[*].id
 }
