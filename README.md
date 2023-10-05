@@ -8,10 +8,9 @@ Inorder to use the Terraform modules with Terragrunt, you need to configure your
 3. Create your 'terragrunt.hcl' file with required provider, modules and inputs.
 ## Execution
 To deploy the resources in cloud environment as per the configuration in 'terragrunt.hcl' file, use the following Terragrunt CLI commands:
-1. terragrunt init
-2. terragrunt plan
-3. terragrunt apply
-4. terragrunt output
+1. terragrunt plan
+2. terragrunt apply
+3. terragrunt output
 ## Destruction
 To destroy the resources in cloud environment, use the following Terragrunt CLI commands:
 1. terragrunt destroy
