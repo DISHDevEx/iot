@@ -2,7 +2,7 @@
 output "instance_name_and_id" {
   description = "ID of the EC2 instance"
   value = {
-    name = aws_instance.ec2[*].tags.name
+    name = aws_instance.ec2[*].tags.Name,
     id   = aws_instance.ec2[*].id
   }
 }
