@@ -1,5 +1,8 @@
 #Outputs
-output "instance_id" {
+output "instance_name_and_id" {
   description = "ID of the EC2 instance"
-  value       = aws_instance.ec2[*].id
+  value = {
+    name = aws_instance.ec2[*].tags.name
+    id   = aws_instance.ec2[*].id
+  }
 }
