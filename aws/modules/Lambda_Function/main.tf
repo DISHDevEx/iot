@@ -9,7 +9,7 @@ data "aws_caller_identity" "current" {
 
 # Create Lambda Function
 resource "aws_lambda_function" "iot_lambda_template" {
-  filename         = "index.py.zip"
+  filename         = var.filepath
   function_name    = "${var.resource_prefix}${var.lambda_function_name}"
   role             = var.flag_use_existing_role ? var.existing_role_arn : aws_iam_role.lambda_execution_role[0].arn
   handler          = var.handler
