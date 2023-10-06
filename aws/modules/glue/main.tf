@@ -28,7 +28,7 @@
 
 # Resources for Glue
 resource "aws_glue_job" "IOT_glue_job" {
-  name = "IOTgluejob"
+  name = var.name
   role_arn = var.role_arn
   connections = var.connections 
   description = var.description
