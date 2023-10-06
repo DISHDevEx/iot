@@ -9,7 +9,7 @@ data "aws_caller_identity" "current" {
 
 # Create Lambda Function
 resource "aws_lambda_function" "iot_lambda_template" {
-  filename         = var.filepath
+  filename         = "index.py.zip"
   function_name    = "${var.resource_prefix}${var.lambda_function_name}"
   role             = var.flag_use_existing_role ? var.existing_role_arn : aws_iam_role.lambda_execution_role[0].arn
   handler          = var.handler
@@ -50,5 +50,12 @@ resource "aws_iam_role" "lambda_execution_role" {
   ]
 }
 EOF
+}
+
+#Attach IAM Policy to IAM role
+resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
+  count       = var.policy_count * (var.flag_use_existing_role ? 0 : 1)
+  role        = aws_iam_role.lambda_execution_role[0].name
+  policy_arn  = var.existing_iam_policy_arns[count.index]
 }
 

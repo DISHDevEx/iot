@@ -27,10 +27,22 @@ variable "existing_role_arn" {
   default     = null
 }
 
+variable "policy_count" {
+  description = "Number of policies to attach to the IAM role"
+  type        = number
+  #default     = null
+}
+
 variable "lambda_role_name" {
   description = "Name of the Lambda Role name."
   type        = string
   default     = null
+}
+
+variable "existing_iam_policy_arns" {
+  description = "The ARN of an existing IAM policy to be attached to the Lambda execution role."
+  type        = list(string)
+  default     = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"]
 }
 
 variable "handler" {
