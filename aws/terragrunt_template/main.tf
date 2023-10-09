@@ -33,7 +33,7 @@ Terraform configuration for all modules.
 #   root_volume_termination = true
 #   instance_names          = each.value.instance_names
 #   /*
-#   For the following variables, values can be assigned directly or they can be via Hashicorp data source.
+#   For the following variables, values can be assigned directly or they can be assigned via HashiCorp Vault data source.
 #   #Direct assignment:
 #   Example: iam_role = "xxxxxxxxxxx" #Provide respective IAM role name.
 #   #Assignment via Vault:
