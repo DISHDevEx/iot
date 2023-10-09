@@ -28,7 +28,9 @@
 
 # Resources for Glue
 resource "aws_glue_job" "IOT_glue_job" {
-  name = var.name
+  count = length(var.job_names)
+  name = format("iot_%s", var.job_names[count.index])
+  # name = var.name
   role_arn = var.role_arn
   connections = var.connections 
   description = var.description
