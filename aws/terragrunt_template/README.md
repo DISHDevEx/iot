@@ -16,14 +16,18 @@ terragrunt_template
     └── variables.tf
 ```
 4. Create a 'terraform.tfvars' file in the same directory with following inputs - This helps the Terragrunt to pickup the input values directly from the 'terraform.tfvars' file
+
 aws_region         = "xxxxxx"
 profile            = "xxxxxx" #Profile name as defined in '~/.aws/credentials' file
 #Below vault inputs are required only if you want to pass the input values from HashiCorp Vault
 vault_address      = "xxxxxx" 
 vault_token        = "xxxxxx"
 vault_secrets_path = "xxxxxx"
+
+Note: 
 Please DONT commit this 'terraform.tfvars' file into any repository or in any publicly accessible location.
-Note: If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets - iam_role, key_pair_name, subnet_id, vpc_security_group_ids. Please ensure to create the secrets as per the respective data type defined in 'variables.tf' file.
+If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets - iam_role, key_pair_name, subnet_id, vpc_security_group_ids.
+Please ensure to create the secrets as per the respective data type defined in 'variables.tf' file.
 5. Set environment variables required for S3 backend initialization in Terragrunt.
 
 ## Module Inputs
