@@ -35,26 +35,15 @@ If you are interested in using HashiCorp Vault for secrets management, then plea
 
 Please ensure to create the secrets as per the respective data type defined in 'variables.tf' file.
 
-5. Set environment variables required for S3 backend initialization in Terragrunt.
+5. Set environment variables required for S3 backend initialization in Terragrunt. To set these environment variables, you can run the following command in a linux CLI.
+   #Command: source ./set-env-vars.sh 
 
 ## Module Inputs
 If you are interested in using HashiCorp Vault for secrets management, then please follow below steps:
 1. Uncomment the vault datasource defined in 'data-sources.tf' file
 2. Uncomment the vault provider defined in 'terragrunt.hcl' file
-3. Update the modules as required in 'main.tf' file
-4. Update the outputs as required in 'outputs.tf' file
-
-If you are NOT interested in using HashiCorp Vault for secrets management, then please follow below steps:
-1. Update the modules as required in 'main.tf' file
-Note: Please ensure to define proper configuration for the modules as required. 
-Example: For 'ec2' module, please ensure that count of 'instance_count' and 'instance_names' variable values are matching.
-#For example, 
-
-instance_count = 2
-
-instance_name = ["First instance name","Second instance name"]
-
-2. Update the outputs as required in 'outputs.tf' file
+3. Update the outputs as required in 'outputs.tf' file
+4. Update the modules as required in 'main.tf' file with inputs as shown in below example
 
 ### Module Inputs - With HashiCorp Vault:
 #Example for 'ec2' module
@@ -72,6 +61,19 @@ instance_name = ["First instance name","Second instance name"]
 12. vpc_security_group_ids = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 
 **Note:** Here the variable vaules of iam_role, key_pair_name, subnet_id, vpc_security_group_ids will be passed directly from HashiCorp Vault
+
+If you are NOT interested in using HashiCorp Vault for secrets management, then please follow below steps:
+1. Update the modules as required in 'main.tf' file
+   Note: Please ensure to define proper configuration for the modules as required. 
+
+   Example: For 'ec2' module, please ensure that count of 'instance_count' and 'instance_names' variable values are matching.
+   instance_count = 2
+
+   instance_name = ["First instance name","Second instance name"]
+
+2. Update the outputs as required in 'outputs.tf' file
+3. Update the modules as required in 'main.tf' file with inputs as shown in below example
+
 ### Module Inputs - Without HashiCorp Vault:
 #Example for 'ec2' module
 1. instance_count          = 2
