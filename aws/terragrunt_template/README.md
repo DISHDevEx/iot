@@ -18,10 +18,15 @@ terragrunt_template
 4. Create a 'terraform.tfvars' file in the same directory with following inputs - This helps the Terragrunt to pickup the input values directly from the 'terraform.tfvars' file
 
 aws_region         = "xxxxxx"
+
 profile            = "xxxxxx" #Profile name as defined in '~/.aws/credentials' file
+
 #Below vault inputs are required only if you want to pass the input values from HashiCorp Vault
+
 vault_address      = "xxxxxx" 
+
 vault_token        = "xxxxxx"
+
 vault_secrets_path = "xxxxxx"
 
 Note: 
