@@ -43,9 +43,9 @@ instance_name = ["First instance name","Second instance name"]
 7. root_volume_termination = true
 8. instance_names          = ["Dev1_Env","Dev2_Env"]
 9. iam_role                = data.vault_generic_secret.getsecrets.data["iam_role"]
-10.key_pair_name           = data.vault_generic_secret.getsecrets.data["key_pair_name"]
-11.subnet_id               = data.vault_generic_secret.getsecrets.data["subnet_id"]
-12.vpc_security_group_ids  = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
+10. key_pair_name           = data.vault_generic_secret.getsecrets.data["key_pair_name"]
+11. subnet_id               = data.vault_generic_secret.getsecrets.data["subnet_id"]
+12. vpc_security_group_ids  = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 
 **Note:** Here the variable vaules of iam_role, key_pair_name, subnet_id, vpc_security_group_ids will be passed directly from HashiCorp Vault
 ### Inputs - Without HashiCorp Vault:
