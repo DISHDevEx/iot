@@ -48,8 +48,10 @@ Terraform configuration for all modules.
 
 #Glue module without HashiCorp Vault
 module "glue_job" {
-  source    = "git@github.com:DISHDevEx/iot.git//aws/modules/glue"
-  job_names = ["xxxxxx"]
+  source          = "git@github.com:DISHDevEx/iot.git//aws/modules/glue"
+  job_names       = ["xxxxxx"]
+  role_arn        = "xxxxxxxx"
+  script_location = "xxxxxxxx"
 }
 
 #Lambda Function module without HashiCorp Vault
