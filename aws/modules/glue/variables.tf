@@ -4,7 +4,7 @@ variable "aws_region" {
 }
 variable "name"{
   type    = string
-  default = "IOTrole"
+  default = "IOTgluejob"
 }
 variable "assume_role_policy"{
   type    = string
