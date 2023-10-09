@@ -44,12 +44,12 @@ If you are interested in using HashiCorp Vault for secrets management, then plea
 1. Uncomment the vault datasource defined in 'data-sources.tf' file
 2. Uncomment the vault provider defined in 'terragrunt.hcl' file
 3. Update the outputs as required in 'outputs.tf' file
-4. Update the modules as required in 'main.tf' file with required inputs
+4. Update the 'main.tf' file with required modules and respective inputs
 
 If you are NOT interested in using HashiCorp Vault for secrets management, then please follow below steps:
 1. Update the modules as required in 'main.tf' file
 2. Update the outputs as required in 'outputs.tf' file
-3. Update the modules as required in 'main.tf' file with required inputs
+3. Update the 'main.tf' file with required modules and respective inputs
 
 ## Execution
 To deploy the resources in cloud environment as per the configuration in 'terragrunt.hcl' file, use the following Terragrunt CLI commands:
