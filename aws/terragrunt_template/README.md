@@ -5,7 +5,7 @@ This template can be used to create different types of AWS resources with desire
 Inorder to use the Terraform modules with Terragrunt, you need to configure your system with following prerequisites.
 1. Install Terraform.
 2. Install Terragrunt.
-3. Copy all files from this folder - 'https://github.com/DISHDevEx/iot/tree/main/aws/terragrunt_template' to your local directory as per following directory structure
+3. Copy all files from this [folder](https://github.com/DISHDevEx/iot/tree/main/aws/terragrunt_template) to your local directory as per following directory structure,
 ```
 terragrunt_template
     ├── data-sources.tf
