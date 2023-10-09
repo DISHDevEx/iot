@@ -1,4 +1,4 @@
-# Terragrunt Tempalte
+# Terragrunt Template
 ## Introduction
 This template can be used to create different types of AWS resources with desired configuration.
 ## Prerequisites
@@ -61,10 +61,11 @@ If you are interested in using HashiCorp Vault for secrets management, then plea
 11. subnet_id              = data.vault_generic_secret.getsecrets.data["subnet_id"]
 12. vpc_security_group_ids = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 
-**Note:** Here the variable vaules of iam_role, key_pair_name, subnet_id, vpc_security_group_ids will be passed directly from HashiCorp Vault
+**Note:** Here the variable vaules of iam_role, key_pair_name, subnet_id, vpc_security_group_ids will be passed directly from HashiCorp Vault.
 
 If you are NOT interested in using HashiCorp Vault for secrets management, then please follow below steps:
 1. Update the modules as required in 'main.tf' file
+
    Note: Please ensure to define proper configuration for the modules as required. 
 
    Example: For 'ec2' module, please ensure that count of 'instance_count' and 'instance_names' variable values are matching.
