@@ -67,6 +67,7 @@ If you are NOT interested in using HashiCorp Vault for secrets management, then 
    Note: Please ensure to define proper configuration for the modules as required. 
 
    Example: For 'ec2' module, please ensure that count of 'instance_count' and 'instance_names' variable values are matching.
+   
    instance_count = 2
 
    instance_name = ["First instance name","Second instance name"]
