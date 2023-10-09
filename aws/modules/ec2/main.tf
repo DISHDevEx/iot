@@ -7,7 +7,7 @@ resource "aws_instance" "ec2" {
   iam_instance_profile = var.iam_role
   key_name             = var.key_pair_name
   subnet_id            = var.subnet_id
-  #We can assign multiple security groups and this can be configured in 'data-sources.tf' file
+  #We can assign multiple security groups to the instance by passing multiple values in the inputs like ["first secrurity group id", "second secrurity group id"]
   vpc_security_group_ids = var.vpc_security_group_ids
   #Root Block Device configuration
   root_block_device {
