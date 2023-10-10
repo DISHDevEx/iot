@@ -1,21 +1,21 @@
 output "lb_id" {
   description = "The ID and ARN of the load balancer we created"
-  value       = try(aws_lb.this[0].id, "")
+  value       = try(aws_lb.this.id, "")
 }
 
 output "lb_arn" {
   description = "The ID and ARN of the load balancer we created"
-  value       = try(aws_lb.this[0].arn, "")
+  value       = try(aws_lb.this.arn, "")
 }
 
 output "lb_dns_name" {
   description = "The DNS name of the load balancer"
-  value       = try(aws_lb.this[0].dns_name, "")
+  value       = try(aws_lb.this.dns_name, "")
 }
 
 output "lb_arn_suffix" {
   description = "ARN suffix of our load balancer - can be used with CloudWatch"
-  value       = try(aws_lb.this[0].arn_suffix, "")
+  value       = try(aws_lb.this.arn_suffix, "")
 }
 
 output "target_group_arns" {

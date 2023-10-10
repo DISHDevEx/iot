@@ -18,4 +18,6 @@ inputs = {
   security_groups = local.config_vars.vpc_security_group_ids
   subnets = local.config_vars.subnets
   target_groups = local.config_vars.target_groups
+  http_tcp_listeners = local.config_vars.http_tcp_listeners
+  http_tcp_listener_rules = local.config_vars.http_tcp_listener_rules
 }

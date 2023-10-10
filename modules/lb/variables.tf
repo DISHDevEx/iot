@@ -22,6 +22,36 @@ variable "enable_xff_client_port" {
   default     = true
 }
 
+variable "extra_ssl_certs" {
+  description = "A list of maps describing any extra SSL certificates to apply to the HTTPS listeners. Required key/values: certificate_arn, https_listener_index (the index of the listener within https_listeners which the cert applies toward)."
+  type        = list(map(string))
+  default     = []
+}
+
+variable "https_listeners" {
+  description = "A list of maps describing the HTTPS listeners for this ALB. Required key/values: port, certificate_arn. Optional key/values: ssl_policy (defaults to ELBSecurityPolicy-2016-08), target_group_index (defaults to https_listeners[count.index])"
+  type        = any
+  default     = []
+}
+
+variable "http_tcp_listeners" {
+  description = "A list of maps describing the HTTP listeners or TCP ports for this ALB. Required key/values: port, protocol. Optional key/values: target_group_index (defaults to http_tcp_listeners[count.index])"
+  type        = any
+  default     = []
+}
+
+variable "https_listener_rules" {
+  description = "A list of maps describing the Listener Rules for this ALB. Required key/values: actions, conditions. Optional key/values: priority, https_listener_index (default to https_listeners[count.index])"
+  type        = any
+  default     = []
+}
+
+variable "http_tcp_listener_rules" {
+  description = "A list of maps describing the Listener Rules for this ALB. Required key/values: actions, conditions. Optional key/values: priority, http_tcp_listener_index (default to http_tcp_listeners[count.index])"
+  type        = any
+  default     = []
+}
+
 variable "idle_timeout" {
   description = "The time in seconds that the connection is allowed to be idle."
   type        = number
@@ -32,6 +62,12 @@ variable "ip_address_type" {
   description = "The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 and dualstack."
   type        = string
   default     = "ipv4"
+}
+
+variable "listener_ssl_policy_default" {
+  description = "The security policy if using HTTPS externally on the load balancer. [See](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html)."
+  type        = string
+  default     = "ELBSecurityPolicy-2016-08"
 }
 
 variable "internal" {
@@ -65,7 +101,7 @@ variable "access_logs_prefix" {
 }
 
 variable "access_logs_enabled" {
-  description = "Prefix for access logs."
+  description = "Enabled access logs."
   type        = bool
   default     = false
 }
@@ -78,6 +114,36 @@ variable "subnets" {
 
 variable "tags" {
   description = "A map of tags to add to all resources"
+  type        = map(string)
+  default     = {}
+}
+
+variable "target_group_tags" {
+  description = "A map of tags to add to all target groups"
+  type        = map(string)
+  default     = {}
+}
+
+variable "https_listener_rules_tags" {
+  description = "A map of tags to add to all https listener rules"
+  type        = map(string)
+  default     = {}
+}
+
+variable "http_tcp_listener_rules_tags" {
+  description = "A map of tags to add to all http listener rules"
+  type        = map(string)
+  default     = {}
+}
+
+variable "https_listeners_tags" {
+  description = "A map of tags to add to all https listeners"
+  type        = map(string)
+  default     = {}
+}
+
+variable "http_tcp_listeners_tags" {
+  description = "A map of tags to add to all http listeners"
   type        = map(string)
   default     = {}
 }
