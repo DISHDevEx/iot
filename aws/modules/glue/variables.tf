@@ -2,34 +2,14 @@ variable "aws_region" {
   type    = string
   default = "us-east-1"
 }
+
 variable "job_names" {
   description = "Names of the Glue jobs"
   type        = list(string)
   default = ["Gluejob1","Gluejob2"]
 }
 
-variable "assume_role_policy"{
-  type    = string
-  default = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": [
-                    "glue.amazonaws.com",
-                    "lambda.amazonaws.com",
-                    "ec2.amazonaws.com",
-                    "ssm.amazonaws.com"
-                ]
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
-}
+
 
 variable "connections" {
   type        = list(string)
@@ -39,7 +19,7 @@ variable "connections" {
 
 variable "create_role" {
   type        = bool
-  default     = false
+  default     = true
   description = "(Optional) Create AWS IAM role associated with the job."
 }
 
