@@ -6,13 +6,6 @@ resource "aws_s3_bucket" "s3" {
   bucket = var.bucket_name
 }
 
-resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
-  bucket = aws_s3_bucket.s3.id #Here the 'id' attribute will provide the S3 bucket name
-  rule {
-    object_ownership = "BucketOwnerEnforced"
-  }
-}
-
 /*
 Note:
 While the versioning_configuration.status parameter supports Disabled, this value is only intended for creating or importing resources that correspond to unversioned S3 buckets.
