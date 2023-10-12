@@ -13,13 +13,6 @@ resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
   }
 }
 
-resource "aws_s3_bucket_acl" "bucket_acl" {
-  depends_on = [aws_s3_bucket_ownership_controls.bucket_ownership]
-
-  bucket = aws_s3_bucket.s3.id
-  acl    = "private"
-}
-
 /*
 Note:
 While the versioning_configuration.status parameter supports Disabled, this value is only intended for creating or importing resources that correspond to unversioned S3 buckets.
