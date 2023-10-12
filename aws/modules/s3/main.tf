@@ -11,14 +11,14 @@ Note:
 While the versioning_configuration.status parameter supports Disabled, this value is only intended for creating or importing resources that correspond to unversioned S3 buckets.
 Updating the value from Enabled or Suspended to Disabled will result in errors as the AWS S3 API does not support returning buckets to an unversioned state.
 */
-resource "aws_s3_bucket_versioning" "object_versioning" {
+resource "aws_s3_bucket_versioning" "bucket_versioning" {
   bucket = aws_s3_bucket.s3.id
   versioning_configuration {
-    status = var.object_versioning #Supported parameters: "Enabled" or "Suspended" or "Disabled"
+    status = var.bucket_versioning #Supported parameters: "Enabled" or "Suspended" or "Disabled"
   }
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "object_encryption" {
+resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encryption" {
   bucket = aws_s3_bucket.s3.id
 
   rule {
