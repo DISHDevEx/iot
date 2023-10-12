@@ -9,3 +9,8 @@ variable "bucket_versioning" {
   type        = string
   default     = "Enabled"
 }
+variable "bucket_policy_file_path" {
+  description = "S3 bucket policy file path"
+  type        = string
+  default     = null
+}
