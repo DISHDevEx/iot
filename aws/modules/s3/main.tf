@@ -29,7 +29,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encry
 
 resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
   bucket = aws_s3_bucket.s3.id
-  policy = sensitive(file(var.bucket_policy_file_path))
+  policy = file(var.bucket_policy_file_path)
 }
 
 /*
