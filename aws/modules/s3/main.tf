@@ -46,15 +46,15 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "object_encryption
 /*
 ### Module Inputs - With HashiCorp Vault:
 #Example for 's3' module
-1. bucket            = data.vault_generic_secret.getsecrets.data["s3_bucket_name"]
-2. region            = data.vault_generic_secret.getsecrets.data["aws_region"]
+1. bucket_name       = data.vault_generic_secret.getsecrets.data["s3_bucket_name"]
+2. aws_region        = data.vault_generic_secret.getsecrets.data["aws_region"]
 3. object_versioning = data.vault_generic_secret.getsecrets.data["aws_s3_object_versioning"]
 
 **Note:** Here the variable vaules of bucket, region and object_versioning will be passed directly from HashiCorp Vault.
 
 ### Module Inputs - Without HashiCorp Vault:
 #Example for 's3' module
-1. bucket            = "xxxxxx"
-2. region            = "xxxxxx"
+1. bucket_name       = "xxxxxx"
+2. aws_region        = "xxxxxx"
 3. object_versioning = "xxxxxx"
 */
