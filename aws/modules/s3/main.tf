@@ -4,7 +4,6 @@
 */
 resource "aws_s3_bucket" "s3" {
   bucket = var.bucket_name
-  region = var.aws_region
 }
 
 resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
