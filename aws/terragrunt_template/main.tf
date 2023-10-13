@@ -2,27 +2,23 @@
 Terraform configuration for all modules.
 */
 #Locals
-# locals {
-#   #To create a EC2 resource with different configurations
-#   ec2_configurations = [
-#     {
-#       instance_count = 2
-#       ami_id         = "ami-0a89b4f85b0b6f49c"
-#       instance_type  = "t2.micro"
-#       instance_names = ["Linux_Env1", "Linux_Env2"]
-#     },
-#     {
-#       instance_count = 2
-#       ami_id         = "ami-024c3652b28842b66"
-#       instance_type  = "t3.micro"
-#       instance_names = ["Ubuntu_Env1", "Ubuntu_Env2"]
-#     }
-#   ]
-# }
-
-#S3 bucket
 locals {
-  #To create a S3 resource with different configurations
+  #   #To create a EC2 resource with different configurations
+  #   ec2_configurations = [
+  #     {
+  #       instance_count = 2
+  #       ami_id         = "ami-0a89b4f85b0b6f49c"
+  #       instance_type  = "t2.micro"
+  #       instance_names = ["Linux_Env1", "Linux_Env2"]
+  #     },
+  #     {
+  #       instance_count = 2
+  #       ami_id         = "ami-024c3652b28842b66"
+  #       instance_type  = "t3.micro"
+  #       instance_names = ["Ubuntu_Env1", "Ubuntu_Env2"]
+  #     }
+  #   ]
+  #To create a S3 bucket resource with different configurations
   s3_configurations = [
     {
       bucket_name             = "sriharsha-bucket1"
