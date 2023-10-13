@@ -38,20 +38,23 @@ resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
 #Example for 's3' module
 1. bucket_name = data.vault_generic_secret.getsecrets.data["bucket_name"]
 2. bucket_versioning = data.vault_generic_secret.getsecrets.data["bucket_versioning"]
+#Set below variable value to 'true', when you want to create the S3 bucket by passing input to 'bucket_policy_file_path'
+3. passing_bucket_policy_file_path = false 
 #Note:
 # The 'bucket_policy_file_path' is a 'Optional' input.
-# So, use below variables only when you want to create the S3 bucket by passing input to 'bucket_policy_file_path'
-3. passing_bucket_policy_file_path = true
+# So, use below variable only when you want to create the S3 bucket by passing input to 'bucket_policy_file_path'
 4. bucket_policy_file_path = data.vault_generic_secret.getsecrets.data["bucket_policy_file_path"]
 
-**Note:** Here the variable vaules of bucket, region and object_versioning will be passed directly from HashiCorp Vault.
+**Note:** Here the variable vaules of bucket_name, bucket_versioning and bucket_policy_file_path will be passed directly from HashiCorp Vault.
 
 ### Module Inputs - Without HashiCorp Vault:
 #Example for 's3' module
 1. bucket_name = "xxxxxx"
 2. bucket_versioning = "xxxxxx"
+#Set below variable value to 'true', when you want to create the S3 bucket by passing input to 'bucket_policy_file_path'
+3. passing_bucket_policy_file_path = false 
+#Note:
 # The 'bucket_policy_file_path' is a 'Optional' input.
-# So, use below variables only when you want to create the S3 bucket by passing input to 'bucket_policy_file_path'
-3. passing_bucket_policy_file_path = true
+# So, use below variable only when you want to create the S3 bucket by passing input to 'bucket_policy_file_path'
 4. bucket_policy_file_path = "xxxxxx"
 */
