@@ -28,7 +28,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encry
 }
 #Note: 'bucket_policy_file_path' is a 'Optional' input
 resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
-  count  = var.passing_bucket_policy_file_path ? 1 : 0
+  count  = var.passing_bucket_policy_file_path == true ? 1 : 0
   bucket = aws_s3_bucket.s3.id
   policy = file(var.bucket_policy_file_path)
 }
