@@ -26,7 +26,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encry
     }
   }
 }
-
+#Note: 'bucket_policy_file_path' is a 'Optional' input
 resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
   bucket = aws_s3_bucket.s3.id
   policy = file(var.bucket_policy_file_path)
@@ -35,15 +35,17 @@ resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
 /*
 ### Module Inputs - With HashiCorp Vault:
 #Example for 's3' module
-1. bucket_name       = data.vault_generic_secret.getsecrets.data["s3_bucket_name"]
-2. aws_region        = data.vault_generic_secret.getsecrets.data["aws_region"]
-3. object_versioning = data.vault_generic_secret.getsecrets.data["aws_s3_object_versioning"]
+1. bucket_name             = data.vault_generic_secret.getsecrets.data["bucket_name"]
+2. bucket_versioning       = data.vault_generic_secret.getsecrets.data["bucket_versioning"]
+#Note: 'bucket_policy_file_path' is a 'Optional' input
+3. bucket_policy_file_path = data.vault_generic_secret.getsecrets.data["bucket_policy_file_path"]
 
 **Note:** Here the variable vaules of bucket, region and object_versioning will be passed directly from HashiCorp Vault.
 
 ### Module Inputs - Without HashiCorp Vault:
 #Example for 's3' module
-1. bucket_name       = "xxxxxx"
-2. aws_region        = "xxxxxx"
-3. object_versioning = "xxxxxx"
+1. bucket_name             = "xxxxxx"
+2. bucket_versioning       = "xxxxxx"
+#Note: 'bucket_policy_file_path' is a 'Optional' input
+3. bucket_policy_file_path = "xxxxxx"
 */
