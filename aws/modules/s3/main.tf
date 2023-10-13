@@ -26,9 +26,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encry
     }
   }
 }
-#Note: 'bucket_policy_file_path' is a 'Optional' input
+
 resource "aws_s3_bucket_policy" "bucket_policy" {
-  for_each = var.passing_bucket_policy_file_path ? { "enabled" = 1 } : { "disabled" = 0 }
   bucket = aws_s3_bucket.s3.id
   policy = file(var.bucket_policy_file_path)
 }
@@ -38,10 +37,9 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 #Example for 's3' module
 1. bucket_name = data.vault_generic_secret.getsecrets.data["bucket_name"]
 2. bucket_versioning = data.vault_generic_secret.getsecrets.data["bucket_versioning"]
-# The 'bucket_policy_file_path' is a 'Optional' input.
-# So, use below variables only when you want to create the S3 bucket by passing input to 'bucket_policy_file_path'
-3. passing_bucket_policy_file_path = true
-4. bucket_policy_file_path = data.vault_generic_secret.getsecrets.data["bucket_policy_file_path"]
+# The 'bucket_policy_file_path' has a default values as "${path.root}/s3-policy-default.json"
+# So, use below variables only when you want to create the S3 bucket by passing new input to 'bucket_policy_file_path'
+3. bucket_policy_file_path = data.vault_generic_secret.getsecrets.data["bucket_policy_file_path"]
 
 **Note:** Here the variable vaules of bucket_name, bucket_versioning and bucket_policy_file_path will be passed directly from HashiCorp Vault.
 
@@ -49,8 +47,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 #Example for 's3' module
 1. bucket_name = "xxxxxx"
 2. bucket_versioning = "xxxxxx"
-# The 'bucket_policy_file_path' is a 'Optional' input.
-# So, use below variables only when you want to create the S3 bucket by passing input to 'bucket_policy_file_path'
-3. passing_bucket_policy_file_path = true
-4. bucket_policy_file_path = "xxxxxx"
+# The 'bucket_policy_file_path' has a default values as "${path.root}/s3-policy-default.json"
+# So, use below variables only when you want to create the S3 bucket by passing new input to 'bucket_policy_file_path'
+3. bucket_policy_file_path = "xxxxxxxx"
 */

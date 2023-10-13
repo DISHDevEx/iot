@@ -21,14 +21,12 @@ locals {
   #To create a S3 bucket resource with different configurations
   s3_configurations = [
     {
-      bucket_name             = "sriharsha-bucket1"
-      bucket_versioning       = "Enabled"
-      bucket_policy_file_path = sensitive("/home/ec2-user/s3-policy-bucket1.json")
+      bucket_name       = "sriharsha-bucket1"
+      bucket_versioning = "Enabled"
     },
     {
-      bucket_name             = "sriharsha-bucket2"
-      bucket_versioning       = "Enabled"
-      bucket_policy_file_path = sensitive("/home/ec2-user/s3-policy-bucket2.json")
+      bucket_name       = "sriharsha-bucket2"
+      bucket_versioning = "Enabled"
     }
   ]
 }

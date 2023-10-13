@@ -9,13 +9,9 @@ variable "bucket_versioning" {
   type        = string
   default     = "Enabled"
 }
-#Note: 'bucket_policy_file_path' is a 'Optional' variable
-variable "passing_bucket_policy_file_path" {
-  description = "Set this variable value as 'true' to create the S3 bucket by passing bucket_policy_file_path, or false to skip it."
-  type        = bool
-  default     = false
-}
 variable "bucket_policy_file_path" {
   description = "S3 bucket policy file path"
   type        = string
+  default     = "${path.root}/s3-policy-default.json"
+  sensitive   = true
 }
