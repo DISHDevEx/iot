@@ -19,14 +19,17 @@ locals {
   #     }
   #   ]
   #To create a S3 bucket resource with different configurations
+  account_id = data.aws_caller_identity.current.account_id
   s3_configurations = [
     {
       bucket_name       = "sriharsha-bucket1"
       bucket_versioning = "Enabled"
+      aws_account_id    = "xxxxxxx"
     },
     {
       bucket_name       = "sriharsha-bucket2"
       bucket_versioning = "Enabled"
+      aws_account_id    = "xxxxxxx"
     }
   ]
 }
@@ -59,10 +62,11 @@ locals {
 
 #S3 module without HashiCorp Vault
 module "s3_bucket" {
-  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3?ref=sriharsha/s3"
-  for_each                = { for index, config in local.s3_configurations : index => config }
-  bucket_name             = each.value.bucket_name
-  bucket_versioning       = each.value.bucket_versioning
+  source            = "git@github.com:DISHDevEx/iot.git//aws/modules/s3?ref=sriharsha/s3"
+  for_each          = { for index, config in local.s3_configurations : index => config }
+  bucket_name       = each.value.bucket_name
+  bucket_versioning = each.value.bucket_versioning
+  aws_account_id    = each.value.aws_account_id
 }
 
 #Glue module without HashiCorp Vault

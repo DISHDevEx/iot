@@ -37,9 +37,10 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 #Example for 's3' module
 1. bucket_name = data.vault_generic_secret.getsecrets.data["bucket_name"]
 2. bucket_versioning = data.vault_generic_secret.getsecrets.data["bucket_versioning"]
+3. aws_account_id = data.vault_generic_secret.getsecrets.data["aws_account_id"]
 # The 'bucket_policy_file_path' has a default values as "./s3-policy-default.json"
 # So, use below variables only when you want to create the S3 bucket by passing new input to 'bucket_policy_file_path'
-3. bucket_policy_file_path = data.vault_generic_secret.getsecrets.data["bucket_policy_file_path"]
+4. bucket_policy_file_path = data.vault_generic_secret.getsecrets.data["bucket_policy_file_path"]
 
 **Note:** Here the variable vaules of bucket_name, bucket_versioning and bucket_policy_file_path will be passed directly from HashiCorp Vault.
 
@@ -47,7 +48,8 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 #Example for 's3' module
 1. bucket_name = "xxxxxx"
 2. bucket_versioning = "xxxxxx"
+3. aws_account_id = "xxxxxx"
 # The 'bucket_policy_file_path' has a default values as "./s3-policy-default.json"
 # So, use below variables only when you want to create the S3 bucket by passing new input to 'bucket_policy_file_path'
-3. bucket_policy_file_path = "xxxxxxxx"
+4. bucket_policy_file_path = "xxxxxxx"
 */

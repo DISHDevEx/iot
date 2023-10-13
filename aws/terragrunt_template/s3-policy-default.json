@@ -20,7 +20,7 @@
             "Sid": "RootAccess",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+                "AWS": "arn:aws:iam::${var.aws_account_id}:root"
             },
             "Action": "s3:*",
             "Resource": [
