@@ -19,7 +19,6 @@ locals {
   #     }
   #   ]
   #To create a S3 bucket resource with different configurations
-  account_id = data.aws_caller_identity.current.account_id
   s3_configurations = [
     {
       bucket_name       = "sriharsha-bucket1"
