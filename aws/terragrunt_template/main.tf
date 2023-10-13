@@ -23,12 +23,10 @@ locals {
     {
       bucket_name       = "sriharsha-bucket1"
       bucket_versioning = "Enabled"
-      aws_account_id    = "xxxxxxx"
     },
     {
       bucket_name       = "sriharsha-bucket2"
       bucket_versioning = "Enabled"
-      aws_account_id    = "xxxxxxx"
     }
   ]
 }
@@ -65,7 +63,6 @@ module "s3_bucket" {
   for_each          = { for index, config in local.s3_configurations : index => config }
   bucket_name       = each.value.bucket_name
   bucket_versioning = each.value.bucket_versioning
-  aws_account_id    = each.value.aws_account_id
 }
 
 #Glue module without HashiCorp Vault
