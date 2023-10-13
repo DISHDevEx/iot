@@ -13,5 +13,5 @@ variable "bucket_versioning" {
 variable "bucket_policy_file_path" {
   description = "S3 bucket policy file path"
   type        = string
-  default     = null
+  default     = "/"
 }
