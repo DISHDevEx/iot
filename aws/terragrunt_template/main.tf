@@ -63,7 +63,6 @@ module "s3_bucket" {
   for_each                = { for index, config in local.s3_configurations : index => config }
   bucket_name             = each.value.bucket_name
   bucket_versioning       = each.value.bucket_versioning
-  bucket_policy_file_path = each.value.bucket_policy_file_path
 }
 
 #Glue module without HashiCorp Vault
