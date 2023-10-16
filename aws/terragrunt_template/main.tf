@@ -27,7 +27,7 @@ locals {
     },
     {
       bucket_name             = "tg-test-bucket2"
-      bucket_versioning       = "Enabled"
+      bucket_versioning       = "Disabled"
       bucket_policy_file_path = "./s3-policy-bucket2.json"
     }
   ]
