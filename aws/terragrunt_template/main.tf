@@ -21,12 +21,14 @@ locals {
   #To create a S3 bucket resource with different configurations
   s3_configurations = [
     {
-      bucket_name       = "sriharsha-bucket1"
-      bucket_versioning = "Enabled"
+      bucket_name             = "sriharsha-bucket1"
+      bucket_versioning       = "Enabled"
+      bucket_policy_file_path = "./s3-policy-bucket1.json"
     },
     {
-      bucket_name       = "sriharsha-bucket2"
-      bucket_versioning = "Enabled"
+      bucket_name             = "sriharsha-bucket2"
+      bucket_versioning       = "Enabled"
+      bucket_policy_file_path = "./s3-policy-bucket2.json"
     }
   ]
 }
@@ -59,10 +61,11 @@ locals {
 
 #S3 module without HashiCorp Vault
 module "s3_bucket" {
-  source            = "git@github.com:DISHDevEx/iot.git//aws/modules/s3?ref=sriharsha/s3"
-  for_each          = { for index, config in local.s3_configurations : index => config }
-  bucket_name       = each.value.bucket_name
-  bucket_versioning = each.value.bucket_versioning
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3?ref=sriharsha/s3"
+  for_each                = { for index, config in local.s3_configurations : index => config }
+  bucket_name             = each.value.bucket_name
+  bucket_versioning       = each.value.bucket_versioning
+  bucket_policy_file_path = each.value.bucket_policy_file_path
 }
 
 #Glue module without HashiCorp Vault
