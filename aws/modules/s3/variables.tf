@@ -17,6 +17,6 @@ variable "aws_account_id" {
 variable "bucket_policy_file_path" {
   description = "S3 bucket policy file path"
   type        = string
-  default     = "./s3-bucket-policy.json"
+  default     = "git@github.com:DISHDevEx/iot.git//aws/modules/s3/default-s3-bucket-policy.json?ref=sriharsha/s3"
   sensitive   = true
 }
