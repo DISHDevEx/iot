@@ -21,12 +21,12 @@ locals {
   #To create a S3 bucket resource with different configurations
   s3_configurations = [
     {
-      bucket_name             = "sriharsha-bucket1"
+      bucket_name             = "tg-test-bucket1"
       bucket_versioning       = "Enabled"
       bucket_policy_file_path = "./s3-policy-bucket1.json"
     },
     {
-      bucket_name             = "sriharsha-bucket2"
+      bucket_name             = "tg-test-bucket2"
       bucket_versioning       = "Enabled"
       bucket_policy_file_path = "./s3-policy-bucket2.json"
     }
