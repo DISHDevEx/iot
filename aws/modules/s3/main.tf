@@ -41,6 +41,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 # Please ensure to update the 'bucket-name' and 'aws-account-id' values in the policy file accordingly:
   Example:
   Update this line "arn:aws:s3:::bucket-name" as "arn:aws:s3:::sriharsha-bucket1"
+  Update this line "arn:aws:s3:::bucket-name" as "arn:aws:s3:::sriharsha-bucket1/*"
   Update this line "AWS": "arn:aws:iam::aws-account-id:root" as "AWS": "arn:aws:iam::987654321232:root"
 # You can also update this default policy file content as requried.
 # If you want to create more than one S3 bucket, then ensure to pass respective bucket-policy files using 'bucket_policy_file_path' variable.
