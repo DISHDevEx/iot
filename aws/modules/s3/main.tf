@@ -12,14 +12,16 @@ While the versioning_configuration.status parameter supports Disabled, this valu
 Updating the value from Enabled or Suspended to Disabled will result in errors as the AWS S3 API does not support returning buckets to an unversioned state.
 */
 resource "aws_s3_bucket_versioning" "bucket_versioning" {
-  bucket = aws_s3_bucket.s3.id
+  depends_on = [aws_s3_bucket.s3]
+  bucket     = aws_s3_bucket.s3.id
   versioning_configuration {
     status = var.bucket_versioning #Supported parameters: "Enabled" or "Suspended" or "Disabled"
   }
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encryption" {
-  bucket = aws_s3_bucket.s3.id
+  depends_on = [aws_s3_bucket.s3]
+  bucket     = aws_s3_bucket.s3.id
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256" #Server-side encryption with Amazon S3 managed keys (SSE-S3)
@@ -28,8 +30,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encry
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
-  bucket = aws_s3_bucket.s3.id
-  policy = file(var.bucket_policy_file_path)
+  depends_on = [aws_s3_bucket.s3]
+  bucket     = aws_s3_bucket.s3.id
+  policy     = file(var.bucket_policy_file_path)
 }
 
 /*
