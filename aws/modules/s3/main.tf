@@ -3,7 +3,7 @@
 #S3 resouce configuration
 */
 resource "aws_s3_bucket" "s3" {
-  bucket = var.bucket_name
+  bucket = format("iot_%s", var.bucket_name)
 }
 
 /*
