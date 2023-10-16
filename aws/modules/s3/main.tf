@@ -37,19 +37,19 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 #Example for 's3' module
 1. bucket_name = data.vault_generic_secret.getsecrets.data["bucket_name"]
 2. bucket_versioning = data.vault_generic_secret.getsecrets.data["bucket_versioning"]
-# The 'bucket_policy_file_path' has a default values as "./s3-bucket-policy.json".
-# So, either ensure to create your s3 bucket policy file - "./s3-bucket-policy.json" in the current working directory or,
-# You can also override this default value with your desired file path.
-3. bucket_policy_file_path = data.vault_generic_secret.getsecrets.data["bucket_policy_file_path"]
+# The variable 'bucket_policy_file_path' has a default values as "./default-s3-bucket-policy.json" which should be available in the root 'terragrunt_template' folder.
+# Please ensure to update the aws account id in the json file - "Principal" section as follows:
+  Example: Update this line "AWS": "arn:aws:iam::xxxxxxxxxxxx:root" as "AWS": "arn:aws:iam::987654321232:root"
+# You can also update this default policy file content as requried.
 
-**Note:** Here the variable vaules of bucket_name, bucket_versioning and bucket_policy_file_path will be passed directly from HashiCorp Vault.
+**Note:** Here the variable vaules of bucket_name, bucket_versioning will be passed directly from HashiCorp Vault.
 
 ### Module Inputs - Without HashiCorp Vault:
 #Example for 's3' module
 1. bucket_name = "xxxxxx"
 2. bucket_versioning = "xxxxxx"
-# The 'bucket_policy_file_path' has a default values as "./s3-bucket-policy.json".
-# So, either ensure to create your s3 bucket policy file - "./s3-bucket-policy.json" in the current working directory or,
-# You can also override this default value with your desired file path.
-3. bucket_policy_file_path = "xxxxxxx"
+# The variable 'bucket_policy_file_path' has a default values as "./default-s3-bucket-policy.json" which should be available in the root 'terragrunt_template' folder.
+# Please ensure to update the aws account id in the json file - "Principal" section as follows:
+  Example: Update this line "AWS": "arn:aws:iam::xxxxxxxxxxxx:root" as "AWS": "arn:aws:iam::987654321232:root"
+# You can also update this default policy file content as requried.
 */
