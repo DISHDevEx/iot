@@ -9,6 +9,11 @@ variable "bucket_versioning" {
   type        = string
   default     = "Enabled"
 }
+variable "aws_account_id" {
+  description = "AWS account id to be used in the S3 bucket policy - Principal"
+  type        = number
+  default     = null
+}
 variable "bucket_policy_file_path" {
   description = "S3 bucket policy file path"
   type        = string
