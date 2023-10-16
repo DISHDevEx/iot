@@ -4,7 +4,7 @@ output "s3_bucket_name_and_properties" {
   value = {
     bucket_name            = aws_s3_bucket.s3.bucket
     bucket_region          = aws_s3_bucket.s3.region
-    bucket_versioning      = aws_s3_bucket_versioning.bucket_versioning.versioning_configuration
-    server_side_encryption = aws_s3_bucket_server_side_encryption_configuration.server_side_encryption.rule
+    bucket_versioning      = data.aws_s3_bucket.s3_data.versioning[0].status
+    server_side_encryption = data.aws_s3_bucket.s3_data.server_side_encryption_configuration[0].rule[0].apply_server_side_encryption_by_default[0].sse_algorithm
   }
 }
