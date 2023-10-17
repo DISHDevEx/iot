@@ -27,8 +27,10 @@ locals {
       bucket_policy_file_path = "./s3-policy-bucket1.json"
     },
     {
-      bucket_name       = "tg-test-bucket2"
-      bucket_versioning = "Disabled"
+      bucket_name             = "tg-test-bucket2"
+      bucket_versioning       = "Disabled"
+      pass_bucket_policy_file = 0
+      bucket_policy_file_path = null
     }
   ]
 }
@@ -65,6 +67,7 @@ module "s3_bucket" {
   for_each                = { for index, config in local.s3_configurations : index => config }
   bucket_name             = each.value.bucket_name
   bucket_versioning       = each.value.bucket_versioning
+  pass_bucket_policy_file = each.value.pass_bucket_policy_file
   bucket_policy_file_path = each.value.bucket_policy_file_path
 }
 
