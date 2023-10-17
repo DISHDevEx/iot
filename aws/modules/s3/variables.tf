@@ -10,7 +10,7 @@ variable "bucket_versioning" {
   default     = "Enabled"
 }
 variable "pass_bucket_policy_file" {
-  description = "Set this value to true, if your want to pass bucket policy - json file, else set this value to false."
+  description = "If your want to pass bucket policy(json file), set this value to true. Else set this value to false."
   type        = bool
   default     = false
 }
