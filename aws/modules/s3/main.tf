@@ -3,6 +3,8 @@
 #S3 resouce configuration
 */
 resource "aws_s3_bucket" "s3" {
+  #The bucket name will be appended with 'iot-', to identify the resouces created with this module
+  #Example: if you pass the bucket name as 'tg-test-bucket' then it will be updated as 'iot-tg-test-bucket'
   bucket = format("iot-%s", var.bucket_name)
 }
 
