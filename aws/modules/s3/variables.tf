@@ -9,9 +9,14 @@ variable "bucket_versioning" {
   type        = string
   default     = "Enabled"
 }
+variable "pass_bucket_policy_file" {
+  description = "Set this value to 1, if your want to pass bucket policy - json file."
+  type        = number
+  default     = 0
+}
 variable "bucket_policy_file_path" {
   description = "S3 bucket policy file path"
   type        = string
-  default     = "./default-s3-bucket-policy.json"
+  default     = null
   sensitive   = true
 }

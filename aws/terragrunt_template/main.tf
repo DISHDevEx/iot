@@ -23,12 +23,12 @@ locals {
     {
       bucket_name             = "tg-test-bucket1"
       bucket_versioning       = "Enabled"
+      pass_bucket_policy_file = 1
       bucket_policy_file_path = "./s3-policy-bucket1.json"
     },
     {
-      bucket_name             = "tg-test-bucket2"
-      bucket_versioning       = "Disabled"
-      bucket_policy_file_path = "./s3-policy-bucket2.json"
+      bucket_name       = "tg-test-bucket2"
+      bucket_versioning = "Disabled"
     }
   ]
 }
