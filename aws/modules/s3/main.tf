@@ -2,6 +2,10 @@
 #Resources
 #S3 resouce configuration
 */
+locals {
+  bucket_policy_count = var.pass_bucket_policy_file == true ? 1 : 0
+}
+
 resource "aws_s3_bucket" "s3" {
   #The bucket name will be appended with 'iot-', to identify the resouces created with this module
   #Example: if you pass the bucket name as 'tg-test-bucket' then it will be updated as 'iot-tg-test-bucket'
@@ -32,7 +36,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encry
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
-  count      = var.pass_bucket_policy_file
+  count      = local.bucket_policy_count
   depends_on = [aws_s3_bucket.s3]
   bucket     = aws_s3_bucket.s3.id
   policy     = file(var.bucket_policy_file_path)
@@ -55,7 +59,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 1. bucket_name = "xxxxxxxxx"
 2. bucket_versioning = "xxxxxxx"
 # If you want to pass any custom bucket policy - json file, then include below variables as well.
-3. pass_bucket_policy_file = 1
+3. pass_bucket_policy_file = true
 4. bucket_policy_file_path = "xxxxxxx"
 # If you want to create more than one S3 bucket with policy file, then ensure to pass respective bucket-policy files using 'bucket_policy_file_path' variable.
 */
