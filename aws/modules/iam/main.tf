@@ -3,7 +3,7 @@
 resource "aws_iam_role" "IOT_role" {
   name = var.iam_role_name
   assume_role_policy = var.assume_role_policy
-  permissions_boundary = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
+  permissions_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
 }
 
 resource "aws_iam_role_policy" "glue_and_ec2_inline_policy" {
