@@ -37,7 +37,7 @@ Please DONT commit this 'terraform.tfvars' file into any repository or in any pu
 
 If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets.
 
-Please ensure to create the secrets as per the respective data type defined in respective modules 'variables.tf' file.
+Please ensure to create the secrets as per the respective data type defined in the respective module - 'variables.tf' file.
 
 5. Set environment variables required for S3 backend initialization in Terragrunt. To set these environment variables, you can run the following command in a linux CLI.
    
