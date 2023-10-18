@@ -7,13 +7,15 @@ Inorder to use the Terraform modules with Terragrunt, you need to configure your
 2. Install Terragrunt.
 3. Copy all files from this [folder](https://github.com/DISHDevEx/iot/tree/main/aws/terragrunt_template) to your local directory as per following directory structure,
 ```
-terragrunt_template
-    ├── data-sources.tf
-    ├── main.tf
-    ├── outputs.tf
-    ├── set-env-vars.sh
-    ├── terragrunt.hcl
-    └── variables.tf
+terragrunt_template/
+├── data-sources.tf
+├── .gitignore
+├── main.tf
+├── outputs.tf
+├── README.md
+├── set-env-vars.sh
+├── terragrunt.hcl
+└── variables.tf
 ```
 4. Create a 'terraform.tfvars' file in the same directory with following inputs - This helps the Terragrunt to pickup the input values directly from the 'terraform.tfvars' file
 
@@ -31,7 +33,8 @@ terragrunt_template
 
 Note: 
 Please DONT commit this 'terraform.tfvars' file into any repository or in any publicly accessible location.
-If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets - iam_role, key_pair_name, subnet_id, vpc_security_group_ids.
+
+If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets.
 
 Please ensure to create the secrets as per the respective data type defined in 'variables.tf' file.
 
