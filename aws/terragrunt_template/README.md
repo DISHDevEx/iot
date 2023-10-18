@@ -32,6 +32,7 @@ terragrunt_template/
    vault_secrets_path = "xxxxxx"
 
 Note: 
+
 Please DONT commit this 'terraform.tfvars' file into any repository or in any publicly accessible location.
 
 If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets.
