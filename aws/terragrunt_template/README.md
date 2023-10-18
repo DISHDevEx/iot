@@ -47,8 +47,7 @@ Please ensure to create the secrets as per the respective data type defined in t
    
       #Command:
 
-       Linux OS: source ./set-env-vars.sh 
-       mac OS: Use 'export' command to set the environment variables
+       Linux and mac OS: source ./set-env-vars.sh 
        Windows OS: Use 'SET' command to set the environment variables
 
 ## Module Inputs
