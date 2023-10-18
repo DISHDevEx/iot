@@ -14,5 +14,9 @@ To deploy the resources in cloud environment as per the configuration in 'terrag
 ## Destruction
 To destroy the resources in cloud environment, use the following Terragrunt CLI commands:
 1. terragrunt destroy
+# Terragrunt Template
+## Introduction
+We have developed a 'Terragrunt Template' to create different types of AWS resources with desired configuration.
 
+If you are interested to create the AWS resources using this template then please refer the instructions in this file - [README.md](https://github.com/DISHDevEx/iot/blob/main/aws/terragrunt_template/README.md)
 
