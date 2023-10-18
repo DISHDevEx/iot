@@ -40,6 +40,7 @@ If you are interested in using HashiCorp Vault for secrets management, then plea
 Please ensure to create the secrets as per the respective data type defined in the respective module - 'variables.tf' file.
 
 5. Set environment variables required for S3 backend initialization in Terragrunt by following below steps:
+
    a) Update the respective values for the environment variables in 'set-env-vars.sh' file.
 
    b) To set these environment variables, you can run the following command:
