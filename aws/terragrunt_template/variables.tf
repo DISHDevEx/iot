@@ -65,3 +65,8 @@ variable "backend_dynamodb_table_name" {
   default     = null
   sensitive   = true
 }
+variable "_comment_1" {
+  description = "Comment variable required for 's3_backend.tfvars.json' file"
+  type        = string
+  default     = null
+}

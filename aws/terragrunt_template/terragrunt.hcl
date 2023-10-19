@@ -69,6 +69,7 @@ remote_state {
     region         = local.aws_region
     bucket         = local.backend_bucket_name
     key            = local.backend_bucket_key
+    encrypt        = true
     dynamodb_table = local.backend_dynamodb_table_name
   }
 }
