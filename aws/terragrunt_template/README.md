@@ -60,9 +60,9 @@ Please ensure to create the secrets as per the respective data type defined in t
    
    #CLI command:
    
-   Linux and mac OS CLI: export TG_VAR_FILE=s3_backend.tfvars.json
+   Linux and mac OS CLI: export TG_VAR_BACKEND_TFVARS_FILE=s3_backend.tfvars.json
 
-   Windows CMD: SET TG_VAR_FILE=s3_backend.tfvars.json
+   Windows CMD: SET TG_VAR_BACKEND_TFVARS_FILE=s3_backend.tfvars.json
 
 ## Module Inputs
 If you are interested in using HashiCorp Vault for secrets management, then please follow below steps:
