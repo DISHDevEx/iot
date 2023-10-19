@@ -41,18 +41,27 @@ Please ensure to create the secrets as per the respective data type defined in t
 5. Create a 's3_backend.tfvars.json' file in the same directory with following data - This helps the Terragrunt to pickup the backend variable values directly from this file.
 
    {
+
      "_comment_1": "Below values are used to set the configuration for S3 backend defined in 'terragrunt.hcl' file",
+
      "aws_region": "xxxxxxxx",
+
      "profile": "xxxxxxxxxxxx",
+
      "backend_bucket_name": "xxxxxxxxxxxxx",
+
      "backend_bucket_key": "xxxxxxxxxxx",
+
      "backend_dynamodb_table_name": "xxxxxxxxxxxx"
+
    }
 
    To pass these variables values from the json file to Terragrunt, please execute below command.
    
    #CLI command:
+   
    Linux and mac OS CLI: export TG_VAR_FILE=s3_backend.tfvars.json
+
    Windows CMD: SET TG_VAR_FILE=s3_backend.tfvars.json
 
 ## Module Inputs
