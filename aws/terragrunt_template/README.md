@@ -56,7 +56,7 @@ Please ensure to create the secrets as per the respective data type defined in t
 
    }
 
-   To pass these variables values from the json file to Terragrunt, please execute below command.
+   To pass these variables values from the json file to Terragrunt, please execute below command to set the file path as environment variable.
    
    #CLI command:
    
