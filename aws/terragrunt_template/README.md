@@ -13,11 +13,10 @@ terragrunt_template/
 ├── main.tf
 ├── outputs.tf
 ├── README.md
-├── set-env-vars.sh
 ├── terragrunt.hcl
 └── variables.tf
 ```
-4. Create a 'terraform.tfvars' file in the same directory with following inputs - This helps the Terragrunt to pickup the input values directly from the 'terraform.tfvars' file
+4. Create a 'provider.tfvars' file in the same directory with following data - This helps the Terragrunt to pickup the provider variable values directly from this file.
 
    aws_region         = "xxxxxx"
 
@@ -33,22 +32,28 @@ terragrunt_template/
 
 Note: 
 
-Please DONT commit this 'terraform.tfvars' file into any repository or in any publicly accessible location.
+Please DONT commit this 'provider.tfvars' file into any repository or in any publicly accessible location.
 
 If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets.
 
 Please ensure to create the secrets as per the respective data type defined in the respective module - 'variables.tf' file.
 
-5. Set environment variables required for S3 backend initialization in Terragrunt by following below steps:
+5. Create a 's3_backend.tfvars.json' file in the same directory with following data - This helps the Terragrunt to pickup the backend variable values directly from this file.
 
-   a) Update the respective values for the environment variables in 'set-env-vars.sh' file.
+   {
+     "_comment_1": "Below values are used to set the configuration for S3 backend defined in 'terragrunt.hcl' file",
+     "aws_region": "xxxxxxxx",
+     "profile": "xxxxxxxxxxxx",
+     "backend_bucket_name": "xxxxxxxxxxxxx",
+     "backend_bucket_key": "xxxxxxxxxxx",
+     "backend_dynamodb_table_name": "xxxxxxxxxxxx"
+   }
 
-   b) To set these environment variables, you can run the following command:
+   To pass these variables values from the json file to Terragrunt, please execute below command.
    
-      #Command:
-
-       Linux and mac OS: source ./set-env-vars.sh 
-       Windows OS: Use 'SET' command to set the environment variables
+   #CLI command:
+   Linux and mac OS CLI: export TG_VAR_FILE=s3_backend.tfvars.json
+   Windows CMD: SET TG_VAR_FILE=s3_backend.tfvars.json
 
 ## Module Inputs
 If you are interested in using HashiCorp Vault for secrets management, then please follow below steps:

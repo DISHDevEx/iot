@@ -46,3 +46,22 @@ variable "vault_secrets_path" {
   default     = null
   sensitive   = true
 }
+#Backend variables
+variable "backend_bucket_name" {
+  description = "Backend S3 bucket name to store the Terraform state file"
+  type        = string
+  default     = null
+  sensitive   = true
+}
+variable "backend_bucket_key" {
+  description = "Backend S3 file to store the Terraform state file"
+  type        = string
+  default     = null
+  sensitive   = true
+}
+variable "backend_dynamodb_table_name" {
+  description = "Backend Dynamodb table name to store the Terraform state lock"
+  type        = string
+  default     = null
+  sensitive   = true
+}
