@@ -7,15 +7,16 @@ Inorder to use the Terraform modules with Terragrunt, you need to configure your
 2. Install Terragrunt.
 3. Copy all files from this [folder](https://github.com/DISHDevEx/iot/tree/main/aws/terragrunt_template) to your local directory as per following directory structure,
 ```
-terragrunt_template
-    ├── data-sources.tf
-    ├── main.tf
-    ├── outputs.tf
-    ├── set-env-vars.sh
-    ├── terragrunt.hcl
-    └── variables.tf
+terragrunt_template/
+├── data-sources.tf
+├── .gitignore
+├── main.tf
+├── outputs.tf
+├── README.md
+├── terragrunt.hcl
+└── variables.tf
 ```
-4. Create a 'terraform.tfvars' file in the same directory with following inputs - This helps the Terragrunt to pickup the input values directly from the 'terraform.tfvars' file
+4. Create a 'provider.tfvars' file in the same directory with following data - This helps the Terragrunt to pickup the provider variable values directly from this file.
 
    aws_region         = "xxxxxx"
 
@@ -30,14 +31,38 @@ terragrunt_template
    vault_secrets_path = "xxxxxx"
 
 Note: 
-Please DONT commit this 'terraform.tfvars' file into any repository or in any publicly accessible location.
-If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets - iam_role, key_pair_name, subnet_id, vpc_security_group_ids.
 
-Please ensure to create the secrets as per the respective data type defined in 'variables.tf' file.
+Please DONT commit this 'provider.tfvars' file into any repository or in any publicly accessible location.
 
-5. Set environment variables required for S3 backend initialization in Terragrunt. To set these environment variables, you can run the following command in a linux CLI.
+If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets.
+
+Please ensure to create the secrets as per the respective data type defined in the respective module - 'variables.tf' file.
+
+5. Create a 's3_backend.tfvars.json' file in the same directory with following data - This helps the Terragrunt to pickup the backend variable values directly from this file.
+
+   {
+
+     "_comment_1": "Below values are used to set the configuration for S3 backend defined in 'terragrunt.hcl' file",
+
+     "aws_region": "xxxxxxxx",
+
+     "profile": "xxxxxxxxxxxx",
+
+     "backend_bucket_name": "xxxxxxxxxxxxx",
+
+     "backend_bucket_key": "xxxxxxxxxxx",
+
+     "backend_dynamodb_table_name": "xxxxxxxxxxxx"
+
+   }
+
+   To pass these variables values from the json file to Terragrunt, please execute below command to set the file path as environment variable.
    
-   #Command: source ./set-env-vars.sh 
+   #CLI command:
+   
+   Linux and mac OS CLI: export TG_VAR_BACKEND_TFVARS_FILE=s3_backend.tfvars.json
+
+   Windows CMD: SET TG_VAR_BACKEND_TFVARS_FILE=s3_backend.tfvars.json
 
 ## Module Inputs
 If you are interested in using HashiCorp Vault for secrets management, then please follow below steps:

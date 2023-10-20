@@ -2,23 +2,38 @@
 Terraform configuration for all modules.
 */
 #Locals
-# locals {
-#   #To create a EC2 resource with different configurations
-#   ec2_configurations = [
-#     {
-#       instance_count = 2
-#       ami_id         = "ami-0a89b4f85b0b6f49c"
-#       instance_type  = "t2.micro"
-#       instance_names = ["Linux_Env1", "Linux_Env2"]
-#     },
-#     {
-#       instance_count = 2
-#       ami_id         = "ami-024c3652b28842b66"
-#       instance_type  = "t3.micro"
-#       instance_names = ["Ubuntu_Env1", "Ubuntu_Env2"]
-#     }
-#   ]
-# }
+locals {
+  #   #To create a EC2 resource with different configurations
+  #   ec2_configurations = [
+  #     {
+  #       instance_count = 2
+  #       ami_id         = "ami-0a89b4f85b0b6f49c"
+  #       instance_type  = "t2.micro"
+  #       instance_names = ["Linux_Env1", "Linux_Env2"]
+  #     },
+  #     {
+  #       instance_count = 2
+  #       ami_id         = "ami-024c3652b28842b66"
+  #       instance_type  = "t3.micro"
+  #       instance_names = ["Ubuntu_Env1", "Ubuntu_Env2"]
+  #     }
+  #   ]
+  #To create a S3 bucket resource with different configurations
+  s3_configurations = [
+    {
+      bucket_name             = "tg-test-bucket1"
+      bucket_versioning       = "Enabled"
+      pass_bucket_policy_file = true
+      bucket_policy_file_path = "./s3-policy-bucket1.json"
+    },
+    {
+      bucket_name             = "tg-test-bucket2"
+      bucket_versioning       = "Disabled"
+      pass_bucket_policy_file = false
+      bucket_policy_file_path = null
+    }
+  ]
+}
 
 #EC2 module with HashiCorp Vault
 # module "ec2_instance" {
@@ -46,13 +61,23 @@ Terraform configuration for all modules.
 #   vpc_security_group_ids = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 # }
 
-#Glue module without HashiCorp Vault
-module "glue_job" {
-  source          = "git@github.com:DISHDevEx/iot.git//aws/modules/glue"
-  job_names       = ["xxxxxx"]
-  role_arn        = "xxxxxxxx"
-  script_location = "xxxxxxxx"
+#S3 module without HashiCorp Vault
+module "s3_bucket" {
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3?ref=sriharsha/s3"
+  for_each                = { for index, config in local.s3_configurations : index => config }
+  bucket_name             = each.value.bucket_name
+  bucket_versioning       = each.value.bucket_versioning
+  pass_bucket_policy_file = each.value.pass_bucket_policy_file
+  bucket_policy_file_path = each.value.bucket_policy_file_path
 }
+
+#Glue module without HashiCorp Vault
+# module "glue_job" {
+#   source          = "git@github.com:DISHDevEx/iot.git//aws/modules/glue"
+#   job_names       = ["xxxxxx"]
+#   role_arn        = "xxxxxxxx"
+#   script_location = "xxxxxxxx"
+# }
 
 #Lambda Function module without HashiCorp Vault
 # module "lambda_function" {

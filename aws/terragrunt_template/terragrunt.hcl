@@ -1,9 +1,24 @@
 /*
 Terragrunt configuration for all modules.
 */
+#Locals
+locals {
+  varfile                     = get_env("TG_VAR_BACKEND_TFVARS_FILE")
+  vardata                     = jsondecode(file(local.varfile))
+  profile                     = local.vardata.profile
+  aws_region                  = local.vardata.aws_region
+  backend_bucket_name         = local.vardata.backend_bucket_name
+  backend_bucket_key          = local.vardata.backend_bucket_key
+  backend_dynamodb_table_name = local.vardata.backend_dynamodb_table_name
+}
+
 #Terraform source
 terraform {
   source = "./main.tf"
+  extra_arguments "s3_backend_vars" {
+    commands  = get_terraform_commands_that_need_vars()
+    arguments = local.varfile != null ? ["-var-file=${local.varfile}"] : []
+  }
 }
 
 #Providers
@@ -11,12 +26,12 @@ terraform {
 For the following provider variables, values can be assigned through 'terraform.tfvars' file or they can be via Hashicorp Vault data source.
 #Via 'terraform.tfvars' file: 
 Example:
-Declare the variable in the provider block as 'access_key= var.aws_access_key' and,
-provide input as 'aws_access_key="xxxxxx"' in 'terraform.tfvars' file which should be available in same directory.
+aws_region = "us-east-1"
+profile    = "xxxxxxxxx"
 #Assignment via Vault:
-Example: access_key = data.vault_generic_secret.getsecrets.data["access_key"] #This works only if you had pre-configured this value in your vault instance.
+Example: profile = data.vault_generic_secret.getsecrets.data["profile"] #This works only if you had pre-configured this secret value in your vault instance.
 #Passing AWS account credentails using profile 
-The profile is used to pass the aws credentials from the 'credentials' file located in this path - '~/.aws/credentials'.
+The variable value of 'profile' is used to pass the respective aws credentials from the 'credentials' file located in this path - '~/.aws/credentials'.
 Before running this script, please ensure to configure your aws account credentails in above mentioned file accordingly.
 Note: Please don't commit any file with sensitive information to code repository or publicly accessible location.
 */
@@ -33,6 +48,7 @@ provider "vault" {
   address         = var.vault_address
   skip_tls_verify = true
   token           = var.vault_token
+} 
 */
 EOF
 }
@@ -46,19 +62,14 @@ remote_state {
   }
   config = {
     /*
-    As we can't assign the variable values directly in this 'config' block, the 'get_env()' function is used to assign the values.
-    Before using the 'get_env()' function, we should ensure to set the environment variables in the CLI as shown below
-    Example:
-    export TF_VAR_profile=xxxxxxxxxx
-    export TF_VAR_bucket_name=xxxxxxxxxx
-    export TF_VAR_bucket_key=xxxxxxxxxxx
-    export TF_VAR_dynamodb_table_name=xxxxxxxxx
+    For the following provider variables, values can be assigned through 's3_backend.tfvars.json' file only.
+    As per the instructions in the README.md file, please ensure to create the 's3_backend.tfvars.json' file and set the respective file path as environment variable.
     */
-    bucket         = get_env("TF_VAR_bucket_name")
-    key            = get_env("TF_VAR_bucket_key")
-    region         = "us-east-1"
+    profile        = local.profile
+    region         = local.aws_region
+    bucket         = local.backend_bucket_name
+    key            = local.backend_bucket_key
     encrypt        = true
-    dynamodb_table = get_env("TF_VAR_dynamodb_table_name")
-    profile        = get_env("TF_VAR_profile")
+    dynamodb_table = local.backend_dynamodb_table_name
   }
 }
