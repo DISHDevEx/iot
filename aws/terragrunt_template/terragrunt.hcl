@@ -63,7 +63,7 @@ remote_state {
   config = {
     /*
     For the following provider variables, values can be assigned through 's3_backend.tfvars.json' file only.
-    As per the instructions in the README.md file, please ensure to create the 's3_backend.tfvars.json' file and set the respective file path as environment variable.
+    As per the instructions in the README.md file, please ensure to create the 's3_backend.tfvars.json' file and set this file name as environment variable.
     */
     profile        = local.profile
     region         = local.aws_region
