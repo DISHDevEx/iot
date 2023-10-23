@@ -63,7 +63,7 @@ locals {
 
 #S3 module without HashiCorp Vault
 module "s3_bucket" {
-  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3?ref=sriharsha/s3"
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3"
   for_each                = { for index, config in local.s3_configurations : index => config }
   bucket_name             = each.value.bucket_name
   bucket_versioning       = each.value.bucket_versioning
