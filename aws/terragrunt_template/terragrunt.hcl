@@ -27,7 +27,7 @@ For the following provider variables, values can be assigned through 'terraform.
 #Via 'terraform.tfvars' file: 
 Example:
 aws_region = "us-east-1"
-profile    = "xxxxxxxxx"
+profile    = "########"
 #Assignment via Vault:
 Example: profile = data.vault_generic_secret.getsecrets.data["profile"] #This works only if you had pre-configured this secret value in your vault instance.
 #Passing AWS account credentails using profile 
@@ -65,7 +65,7 @@ remote_state {
     For the following provider variables, values can be assigned through 's3_backend.tfvars.json' file only.
     As per the instructions in the README.md file, please ensure to create the 's3_backend.tfvars.json' file and set this file name as environment variable.
     */
-    profile        = local.profile
+    # profile        = local.profile
     region         = local.aws_region
     bucket         = local.backend_bucket_name
     key            = local.backend_bucket_key
