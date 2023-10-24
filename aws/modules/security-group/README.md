@@ -22,3 +22,18 @@ The user needs to pass few parameters to customize the Security group as per req
 
 Note: It is not mandatory to pass all the parameters. 
 If any parameter value is not passed by the developer, default parameter value is applied.
+
+### **Example:**
+
+module "security-group" {
+   source                               = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group""
+   security_group_name                  = "Enter security group name"
+   security_group_description           = "Enter description for the security group"
+   ingress_port                         = xxxx
+   ingress_cidr_blocks                  = ["xxxxxxxxx"]
+   ingress_source_security_group_id     = ["xxxxxxxxx"]
+   egress_port                          = xxxx
+   egress_protocol                      = "xxxx"
+   egress_cidr_blocks                   = ["xxxxxxxxx"]
+   egress_destination_security_group_id = ["xxxxxxxxx"]
+}
