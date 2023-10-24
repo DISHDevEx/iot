@@ -99,7 +99,7 @@ locals {
 # }
 
 module "apigateway" {
-  source = "../modules/apigateway"
+  source = "git@github.com:DISHDevEx/iot.git//aws/modules/apigateway?ref=jing/modules"
   name = "test-jing"
   protocol_type = "HTTP"
   integrations = {
