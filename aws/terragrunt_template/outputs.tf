@@ -5,7 +5,7 @@
 #   value       = module.ec2_instance[*]
 # }
 #s3_bucket - module output
-output "s3_bucket" {
-  description = "S3 bucket name and other properties"
-  value       = module.s3_bucket[*]
-}
+# output "s3_bucket" {
+#   description = "S3 bucket name and other properties"
+#   value       = module.s3_bucket[*]
+# }

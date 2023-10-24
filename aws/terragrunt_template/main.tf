@@ -62,14 +62,14 @@ locals {
 # }
 
 #S3 module without HashiCorp Vault
-# module "s3_bucket" {
-#   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3"
-#   for_each                = { for index, config in local.s3_configurations : index => config }
-#   bucket_name             = each.value.bucket_name
-#   bucket_versioning       = each.value.bucket_versioning
-#   pass_bucket_policy_file = each.value.pass_bucket_policy_file
-#   bucket_policy_file_path = each.value.bucket_policy_file_path
-# }
+module "s3_bucket" {
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3"
+  for_each                = { for index, config in local.s3_configurations : index => config }
+  bucket_name             = each.value.bucket_name
+  bucket_versioning       = each.value.bucket_versioning
+  pass_bucket_policy_file = each.value.pass_bucket_policy_file
+  bucket_policy_file_path = each.value.bucket_policy_file_path
+}
 
 #Glue module without HashiCorp Vault
 # module "glue_job" {
@@ -97,20 +97,3 @@ locals {
 #   ingress_port               = xxxx
 #   ingress_cidr_blocks        = ["xxxxxxxxx"]
 # }
-
-module "apigateway" {
-  source = "git@github.com:DISHDevEx/iot.git//aws/modules/apigateway?ref=jing/modules"
-  name = "test-jing"
-  protocol_type = "HTTP"
-  integrations = {
-    "ANY /" = {
-      lambda_arn             = "arn:aws:lambda:us-east-1:827704904976:function:test"
-      payload_format_version = "2.0"
-      timeout_milliseconds   = 12000
-    }
-
-    "$default" = {
-      lambda_arn = "arn:aws:lambda:us-east-1:827704904976:function:test"
-    }
-  }
-}
