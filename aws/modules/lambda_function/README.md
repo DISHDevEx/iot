@@ -24,3 +24,34 @@ The user needs to pass few parameters to customize the Lambda function as per re
 
 Note: If the file is not in the current working directory you will need to include a
 path.module in the filename.
+
+### **Example:**
+
+** If the user wants to attach an existing IAM role **
+
+module "lambda_function" {
+   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+   function_name           = "iot_sample_lambda"
+   filepath                = "Enter zip file path"
+   handler                 = "index.handler"
+   runtime                 = "python3.8"
+   existing_role_arn       = "xxxxxxxxxxxx"
+   flag_use_existing_role  = true
+   policy_count            = 0
+
+ }
+ 
+** If the user wants to create a new IAM role **
+
+module "lambda_function" {
+    source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+    function_name           = "iot_sample_lambda"
+    filepath                = "Enter zip file path"
+    handler                 = "index.handler"
+    runtime                 = "python3.8"
+    lambda_role_name        = "iot_sample_iam_role"
+    flag_use_existing_role  = false
+    policy_count            = 2
+    existing_iam_policy_arns= ["xxxxxxxxxxxx", "xxxxxxxxxxxx"]
+
+}
