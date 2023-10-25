@@ -5,13 +5,19 @@
 #   value       = module.ec2_instance[*]
 # }
 #s3_bucket - module output
-output "s3_bucket" {
-  description = "S3 bucket name and other properties"
-  value       = module.s3_bucket[*]
-}
+# output "s3_bucket" {
+#   description = "S3 bucket name and other properties"
+#   value       = module.s3_bucket[*]
+# }
 
-# iamrole - module output
-output "iam" {
-  description = "iam role name and other properties"
-  value       = module.iam[*]
-}
+# iam - module output
+# output "iam_role_arn" {
+#   description = "iam role arn"
+#   value       = module.iam[*]
+# }
+
+# lambda function - module output
+# output "lambda_function_arn_and_name" {
+#   description = "Lambda function name and arn"
+#   value       = module.lambda_function[*]
+# }
