@@ -118,6 +118,14 @@ module "iam" {
   iam_policy_name = "GlueAndEC2InlinePolicy"
   iam_policy_description = "Inline policy for Glue job and EC2 instances"
 
+#S3 module without HashiCorp Vault
+module "s3_bucket" {
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3"
+  for_each                = { for index, config in local.s3_configurations : index => config }
+  bucket_name             = each.value.bucket_name
+  bucket_versioning       = each.value.bucket_versioning
+  pass_bucket_policy_file = each.value.pass_bucket_policy_file
+  bucket_policy_file_path = each.value.bucket_policy_file_path
 }
 
 #Glue module without HashiCorp Vault
