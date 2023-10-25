@@ -61,12 +61,22 @@ locals {
 #   vpc_security_group_ids = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 # }
 
+#S3 module without HashiCorp Vault
+module "s3_bucket" {
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3"
+  for_each                = { for index, config in local.s3_configurations : index => config }
+  bucket_name             = each.value.bucket_name
+  bucket_versioning       = each.value.bucket_versioning
+  pass_bucket_policy_file = each.value.pass_bucket_policy_file
+  bucket_policy_file_path = each.value.bucket_policy_file_path
+}
+
 #IAM Module without HashiCorp Vault
 module "iam" {
   source = "git@github.com:DISHDevEx/iot.git//aws/modules/iam"
   aws_region = "us-east-1"
-  iam_role_name = "IOTrole"
-  assume_role_policy = <<EOF
+  iam_role_name = "iamrole"
+  assume_role_policy = <<-EOT
   {
     "Version" : "2012-10-17",
     "Statement" : [
@@ -84,7 +94,7 @@ module "iam" {
       }
     ]
   }
-  EOF
+  EOT
 
   iam_policy = <<-EOT
       {
@@ -116,7 +126,7 @@ module "glue_job" {
   job_names = ["Gluejob1","Gluejob2"]
   connections = []
   create_role = false
-  role_arn = "arn:aws:iam::064047601590:role/dpi-radcom-be-glue-prometheus-us-east-1-role"
+  role_arn = "arn:aws:iam::064047601590:role/dpi-radcom-be-glue-prometheus-us-east-1-role"#data.terraform_remote_state.iam.outputs.resources.instances.arn 
   description = "IOT Glue job"
   glue_version = "3.0"
   max_retries = 0

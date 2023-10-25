@@ -9,3 +9,9 @@ output "s3_bucket" {
   description = "S3 bucket name and other properties"
   value       = module.s3_bucket[*]
 }
+
+# iamrole - module output
+output "iam" {
+  description = "iam role name and other properties"
+  value       = module.iam[*]
+}
