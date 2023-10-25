@@ -34,11 +34,6 @@ variable "iam_policy_name"{
   default = "GlueAndEC2InlinePolicy"
 }
 
-variable "iam_policy_description"{
-  type    = string
-  default = "Inline policy for Glue job and EC2 instances"
-}
-
 variable "iam_policy" {
   type = string
   default = <<-EOT

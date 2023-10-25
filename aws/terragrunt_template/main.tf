@@ -117,6 +117,9 @@ module "iam" {
 
   iam_policy_name = "GlueAndEC2InlinePolicy"
   iam_policy_description = "Inline policy for Glue job and EC2 instances"
+  permission_boundary = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
+
+}
 
 #S3 module without HashiCorp Vault
 module "s3_bucket" {
