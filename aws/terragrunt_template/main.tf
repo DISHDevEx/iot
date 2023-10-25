@@ -35,6 +35,8 @@ Terraform configuration for all modules.
 #   ]
 # }
 
+#Modules with HashiCorp Vault
+
 #EC2 module with HashiCorp Vault
 # module "ec2_instance" {
 #   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2"
@@ -61,7 +63,9 @@ Terraform configuration for all modules.
 #   vpc_security_group_ids = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 # }
 
-#S3 module without HashiCorp Vault
+#Modules without HashiCorp Vault
+
+#S3 module
 # module "s3_bucket" {
 #   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3"
 #   for_each                = { for index, config in local.s3_configurations : index => config }
@@ -71,7 +75,7 @@ Terraform configuration for all modules.
 #   bucket_policy_file_path = each.value.bucket_policy_file_path
 # }
 
-#IAM Module without HashiCorp Vault
+#IAM module 
 # module "iam" {
 #   source             = "git@github.com:DISHDevEx/iot.git//aws/modules/iam"
 #   aws_region         = "us-east-1"
@@ -124,17 +128,7 @@ Terraform configuration for all modules.
 #   permission_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
 # }
 
-#S3 module without HashiCorp Vault
-# module "s3_bucket" {
-#   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3"
-#   for_each                = { for index, config in local.s3_configurations : index => config }
-#   bucket_name             = each.value.bucket_name
-#   bucket_versioning       = each.value.bucket_versioning
-#   pass_bucket_policy_file = each.value.pass_bucket_policy_file
-#   bucket_policy_file_path = each.value.bucket_policy_file_path
-# }
-
-#Glue module without HashiCorp Vault
+#Glue module
 # module "glue_job" {
 #   source          = "git@github.com:DISHDevEx/iot.git//aws/modules/glue"
 #   job_names = ["Gluejob1","Gluejob2"]
@@ -173,7 +167,7 @@ Terraform configuration for all modules.
 #   max_concurrent_runs = 1
 # }
 
-#VPC module without HashiCorp Vault
+#VPC module
 # module "vpc" {
 #   source          = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc"
 #   vpc_name = "vpc"
@@ -195,7 +189,7 @@ Terraform configuration for all modules.
 
 # }
 
-#Lambda Function module with existing IAM role and without HashiCorp Vault
+#Lambda Function module with existing IAM role
 # module "lambda_function" {
 #   source                 = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
 #   lambda_function_name   = "tg_test_lambda"
@@ -208,7 +202,7 @@ Terraform configuration for all modules.
 #   policy_count           = 0
 # }
 
-#Lambda Function module without existing IAM role and HashiCorp Vault
+#Lambda Function module without existing IAM role
 # module "lambda_function" {
 #   source                 = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function?ref=sriharsha/tg-template-test"
 #   lambda_function_name   = "tg_test_lambda"
@@ -220,7 +214,7 @@ Terraform configuration for all modules.
 #   policy_count           = 0
 # }
 
-#Security Group module without HashiCorp Vault
+#Security Group module
 # module "security-group" {
 #   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group"
 #   security_group_name        = "Enter security group name"
