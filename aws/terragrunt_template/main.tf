@@ -213,3 +213,34 @@ module "glue_job" {
 #   ingress_port               = xxxx
 #   ingress_cidr_blocks        = ["xxxxxxxxx"]
 # }
+
+#Sqs
+ # source                                    = "git@github.com:DISHDevEx/iot.git//aws/modules/sqs”
+ # count                                        = “No of counts”
+ # name                                        = “Name of the queue”
+ # delay_seconds                        = “delay in seconds”
+ # max_message_size                = ”Message Size”
+ # message_retention_seconds = “Retention Seconds”
+ # receive_wait_time_seconds   = “Wait Time”
+
+#Eventbridge
+ # source                                    = "git@github.com:DISHDevEx/iot.git//aws/modules/eventbridge”
+#eventbus_name = "Name of the EventBridge event bus"
+
+#role_permissions_boundary = "role_permissions_boundary"
+
+#locals {
+ # eb_configurations = [
+ #   {
+ #   role_name = “Name of the role”
+ #   rule_description = “No of the rule in EB”
+ #  rule_schedule_expression = “Scheduling”
+ #      target_arn = “arn”
+ #   },
+ #    {
+ #   role_name = "Name of the role"
+ #  rule_description = "No of the rule in EB"
+ # rule_schedule_expression = "Scheduling"
+ #      target_arn = "arn"
+#    }
+
