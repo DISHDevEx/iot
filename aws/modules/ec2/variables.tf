@@ -34,8 +34,8 @@ variable "root_volume_termination" {
   type        = bool
   default     = true
 }
-variable "iam_role" {
-  description = "IAM role for EC2 instance"
+variable "iam_instance_profile_name" {
+  description = "IAM instance profile name for EC2 instance"
   type        = string
   default     = null
   sensitive   = true
