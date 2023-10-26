@@ -2,6 +2,7 @@
 resource "aws_security_group" "iot_security_group_template" {
   name        = "${var.security_group_prefix}${var.security_group_name}"
   description = var.security_group_description
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port                = var.ingress_port

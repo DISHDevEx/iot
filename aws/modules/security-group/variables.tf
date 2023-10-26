@@ -20,6 +20,11 @@ variable "security_group_description" {
   default     = "Sample Security Group"
 }
 
+variable "vpc_id" {
+  description = "Id of the VPC to which the security group needs to be attached"
+  type        = string
+}
+
 ###########
 ## Ingress
 ###########
