@@ -1,7 +1,13 @@
+variable "count_val" {
+  description = "Count for instances"
+  type = number
+  default = "1"
+}
+
 variable "name" {
   description = "Name for the SQS Queue"
-  type = string
-  default = "iot_sqs_queue_template"
+  type = list # string
+  default = ["iot_sqs_queue_template", "iot_sqs_queue_template2","iot_sqs_queue_template3"]
 }
 
 variable "delay_seconds" {
