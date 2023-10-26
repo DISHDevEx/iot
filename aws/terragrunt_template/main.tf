@@ -204,15 +204,16 @@ module "lambda_function" {
 
 #Security Group module
 module "security-group" {
- source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group"
- security_group_name        = "sample-security-group"
- security_group_description = "security group for IOT Boat"
- ingress_port               = 443
- ingress_protocol           = "tcp"
- ingress_cidr_blocks        = ["0.0.0.0/32"]
- egress_port                = 0
- egress_protocol            = "-1"
- egress_cidr_blocks         = ["0.0.0.0/0"]
+  source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group"
+  security_group_name        = "sample-security-group"
+  security_group_description = "security group for IOT Boat"
+  ingress_port               = 443
+  ingress_protocol           = "tcp"
+  ingress_cidr_blocks        = ["0.0.0.0/32"]
+  egress_port                = 0
+  egress_protocol            = "-1"
+  egress_cidr_blocks         = ["0.0.0.0/0"]
+  vpc_id                     = "vpc-0eb0f6cc5c4f183c0"
 }
 #
 /*
