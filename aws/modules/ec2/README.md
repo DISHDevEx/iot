@@ -11,7 +11,7 @@
 6. root_volume_encrypted   = true
 7. root_volume_termination = true
 8. instance_names          = ["Dev1_Env","Dev2_Env"]
-9. iam_role_arn            = data.vault_generic_secret.getsecrets.data["iam_role_arn"]
+9. iam_role_name           = data.vault_generic_secret.getsecrets.data["iam_role_name"]
 10. key_pair_name          = data.vault_generic_secret.getsecrets.data["key_pair_name"]
 11. subnet_id              = data.vault_generic_secret.getsecrets.data["subnet_id"]
 12. vpc_security_group_ids = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
@@ -32,7 +32,7 @@ b) Please ensure that count of 'instance_count' and 'instance_names' variable va
 6. root_volume_encrypted    = true
 7. root_volume_termination  = true
 8. instance_names           = ["Dev1_Env","Dev2_Env"]
-9. iam_role_arn             = "xxxxxxxxxx"
+9. iam_role_name            = "xxxxxxxxxx"
 10. key_pair_name           = "xxxxxxxxxx"
 11. subnet_id               = "xxxxxxxxxx"
 12. vpc_security_group_ids  = ["xxxxxxxxxx"]

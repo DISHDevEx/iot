@@ -7,7 +7,7 @@ resource "aws_instance" "ec2" {
   ami                  = var.ami_id
   instance_type        = var.instance_type
   monitoring           = true
-  iam_instance_profile = var.iam_role_arn
+  iam_instance_profile = var.iam_role_name
   key_name             = var.key_pair_name
   subnet_id            = var.subnet_id
   #We can assign multiple security groups to the instance by passing multiple values in the inputs like ["first secrurity group id", "second secrurity group id"]
