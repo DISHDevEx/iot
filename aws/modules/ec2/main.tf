@@ -2,14 +2,19 @@
 #Resources
 #EC2 resouce configuration
 */
+resource "aws_iam_instance_profile" "iam_instance_profile" {
+  name = "ec2_instance_profile"
+  role = var.iam_role_name
+}
+
 resource "aws_instance" "ec2" {
   count                = var.instance_count
   ami                  = var.ami_id
   instance_type        = var.instance_type
   monitoring           = true
-  iam_instance_profile = var.iam_role_name
   key_name             = var.key_pair_name
   subnet_id            = var.subnet_id
+  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
   #We can assign multiple security groups to the instance by passing multiple values in the inputs like ["first secrurity group id", "second secrurity group id"]
   vpc_security_group_ids = var.vpc_security_group_ids
   #Root Block Device configuration
