@@ -1,9 +1,6 @@
 /*
 #Resources
 #EC2 resouce configuration
-Example: For 'ec2' module, please ensure that count of 'instance_count' and 'instance_names' variable values are matching.
-instance_count = 2
-instance_name = ["First instance name","Second instance name"]
 */
 resource "aws_instance" "ec2" {
   count                = var.instance_count
