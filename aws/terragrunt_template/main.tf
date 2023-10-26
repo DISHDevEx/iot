@@ -117,7 +117,7 @@ module "iam" {
 
   iam_policy_name = "GlueAndEC2InlinePolicy"
   iam_policy_description = "Inline policy for Glue job and EC2 instances"
-  permission_boundary = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
+  permission_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
 
 }
 
