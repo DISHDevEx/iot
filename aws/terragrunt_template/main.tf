@@ -274,7 +274,7 @@ inputs = {
 #   Example: iam_instance_profile_name = data.vault_generic_secret.getsecrets.data["iam_instance_profile_name"] #This works only if you had pre-configured this value in your vault instance.
 #   Note: Please don't commit any file with sensitive information to code repository or publicly accessible location.
 #   */
-#   iam_instance_profile_name             = data.vault_generic_secret.getsecrets.data["iam_instance_profile_name"]
+#   iam_instance_profile_name = data.vault_generic_secret.getsecrets.data["iam_instance_profile_name"]
 #   key_pair_name             = data.vault_generic_secret.getsecrets.data["key_pair_name"]
 #   subnet_id                 = data.vault_generic_secret.getsecrets.data["subnet_id"]
 #   vpc_security_group_ids    = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
