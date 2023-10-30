@@ -6,7 +6,7 @@ variable "count_val" {
 
 variable "name" {
   description = "Name for the SQS Queue"
-  type = list # string
+  type = list(string)
   default = ["iot_sqs_queue_template", "iot_sqs_queue_template2","iot_sqs_queue_template3"]
 }
 
