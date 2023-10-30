@@ -11,7 +11,7 @@ data "aws_caller_identity" "current" {
 resource "aws_lambda_function" "iot_lambda_template" {
   filename         = var.filepath
   function_name    = "${var.resource_prefix}${var.lambda_function_name}"
-  role             = var.flag_use_existing_role ? var.existing_role_arn : aws_iam_role.lambda_execution_role[0].arn
+  role             = var.flag_use_existing_role ? var.existing_role_arn : module.iam[0].iam_role_arn
   handler          = var.handler
 
 #  source_code_hash = filebase64sha256(var.filepath)
@@ -21,7 +21,7 @@ resource "aws_lambda_function" "iot_lambda_template" {
   environment {
     variables = {
       "local_region" = data.aws_region.current.name,
-      "account_id" = data.aws_caller_identity.current.account_id
+      "account_id"   = data.aws_caller_identity.current.account_id
     }
   }
 
@@ -30,12 +30,13 @@ resource "aws_lambda_function" "iot_lambda_template" {
   }
 }
 
-# If the developer chooses to create a new IAM role, define it here
-resource "aws_iam_role" "lambda_execution_role" {
-  count = var.flag_use_existing_role ? 0 : 1
-  name = "${var.resource_prefix}${var.lambda_role_name}"
 
-  assume_role_policy = <<EOF
+module "iam" {
+  count                    = var.flag_use_existing_role ? 0 : 1
+  source                   = "git@github.com:DISHDevEx/iot.git//aws/modules/iam"
+  aws_region               = data.aws_region.current.name
+  iam_role_name            = var.lambda_role_name
+  assume_role_policy       = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -50,12 +51,10 @@ resource "aws_iam_role" "lambda_execution_role" {
   ]
 }
 EOF
+  iam_policy_name          = var.flag_use_existing_policy ? null : var.iam_policy_name
+  iam_policy_description   = var.flag_use_existing_policy ? null : var.iam_policy_description
+  iam_policy               = var.flag_use_existing_policy ? null : var.new_iam_policy
+  flag_use_existing_policy = var.flag_use_existing_policy
+  policy_count             = var.policy_count
+  existing_iam_policy_arns = var.existing_iam_policy_arns
 }
-
-#Attach IAM Policy to IAM role
-resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
-  count       = var.policy_count * (var.flag_use_existing_role ? 0 : 1)
-  role        = aws_iam_role.lambda_execution_role[0].name
-  policy_arn  = var.existing_iam_policy_arns[count.index]
-}
-
