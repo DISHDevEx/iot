@@ -14,6 +14,6 @@ resource "aws_iam_role_policy" "iam_inline_policy" {
 }
 
 resource "aws_iam_instance_profile" "instance_profile" {
-  name = var.iam_role_name
+  name = aws_iam_role.IOT_role.name
   role = aws_iam_role.IOT_role.name
 }
