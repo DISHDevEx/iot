@@ -1,6 +1,9 @@
 /*
 Terraform configuration for all modules.
 */
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Modules without HashiCorp Vault
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Locals
 locals {
   #To create a EC2 resource with different configurations
@@ -34,8 +37,6 @@ locals {
     }
   ]
 }
-
-#Modules without HashiCorp Vault
 
 #IAM module 
 module "iam_role" {
@@ -89,7 +90,7 @@ module "iam_role" {
   permission_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
 }
 
-#EC2 module 
+# #EC2 module 
 module "ec2_instance" {
   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2?ref=sriharsha/test-tg-template"
   depends_on              = [module.iam_role]
@@ -180,10 +181,10 @@ module "lambda_function" {
   policy_count           = 0
 }
 
-#VPC module
+# VPC module
 # module "vpc" {
-#   source          = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc"
-#   vpc_name = "vpc"
+#   source          = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc?ref=sriharsha/test-tg-template"
+#   vpc_name = "tg-test-vpc"
 #   vpc_cidr_block = "10.5.128.0/18"
 #   vpc_instance_tenancy = "default"
 #   vpc_enable_dns_support = true
@@ -214,6 +215,17 @@ module "security-group" {
   egress_protocol            = "-1"
   egress_cidr_blocks         = ["0.0.0.0/0"]
   vpc_id                     = "vpc-0eb0f6cc5c4f183c0"
+}
+
+# SQS module
+module "sqs" {
+  source                    = "git@github.com:DISHDevEx/iot.git//aws/modules/sqs?ref=sriharsha/test-tg-template"
+  count                     = 1
+  name                      = ["iot-tg-test-sqs"]
+  delay_seconds             = 0
+  max_message_size          = 262144
+  message_retention_seconds = 1440
+  receive_wait_time_seconds = 0  
 }
 #
 /*
@@ -251,10 +263,8 @@ inputs = {
 }
 */
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------
-#Optional
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Modules with HashiCorp Vault
-#-----------------------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 #EC2 module with HashiCorp Vault
 # module "ec2_instance" {
 #   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2"
@@ -279,16 +289,4 @@ inputs = {
 #   key_pair_name             = data.vault_generic_secret.getsecrets.data["key_pair_name"]
 #   subnet_id                 = data.vault_generic_secret.getsecrets.data["subnet_id"]
 #   vpc_security_group_ids    = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
-# }
-#-------------------------------------------------------------------------------------------------------------------------------
-#Lambda Function module without existing IAM role
-# module "lambda_function" {
-#   source                 = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function?ref=sriharsha/test-tg-template"
-#   lambda_function_name   = "tg_test_lambda"
-#   flag_use_existing_role = false
-#   filepath               = "./index.py.zip"
-#   handler                = "index.handler"
-#   runtime                = "python3.8"
-#   lambda_role_name       = "lambda-iam-role"
-#   policy_count           = 0
 # }

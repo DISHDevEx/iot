@@ -1,5 +1,5 @@
 #Outputs
-# iam_role - module output
+#iam_role - module output
 output "iam_role_outputs" {
   description = "iam role name and arn"
   value       = module.iam_role[*]
@@ -29,8 +29,21 @@ output "lambda_function_outputs" {
   value       = module.lambda_function[*]
 }
 
+# vpc - module output
+# output "vpc_outputs" {
+#   description = "VPC name"
+#   value       = module.vpc[*]
+# }
+
 # security-group - module output
 output "security-group_outputs" {
   description = "Lambda function name and arn"
   value       = module.security-group[*]
 }
+
+# sqs - module output
+output "sqs_outputs" {
+  description = "ID of the SQS queue"
+  value       = module.sqs[*]
+}
+
