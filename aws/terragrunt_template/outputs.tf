@@ -46,4 +46,3 @@ output "sqs_outputs" {
   description = "ID of the SQS queue"
   value       = module.sqs[*]
 }
-
