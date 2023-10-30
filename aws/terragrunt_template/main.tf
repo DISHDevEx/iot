@@ -203,90 +203,24 @@ module "lambda_function" {
 
 # }
 
-#Security Group module
-module "security-group" {
-  source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group"
-  security_group_name        = "sample-security-group"
-  security_group_description = "security group for IOT Boat"
-  ingress_port               = 443
-  ingress_protocol           = "tcp"
-  ingress_cidr_blocks        = ["0.0.0.0/32"]
-  egress_port                = 0
-  egress_protocol            = "-1"
-  egress_cidr_blocks         = ["0.0.0.0/0"]
-  vpc_id                     = "vpc-0eb0f6cc5c4f183c0"
-}
 
-# SQS module
-module "sqs" {
-  source                    = "git@github.com:DISHDevEx/iot.git//aws/modules/sqs?ref=sriharsha/test-tg-template"
-  count                     = 1
-  name                      = ["iot-tg-test-sqs"]
-  delay_seconds             = 0
-  max_message_size          = 262144
-  message_retention_seconds = 1440
-  receive_wait_time_seconds = 0  
-}
-#
-/*
-#-----------
-#EKS Inputs
-#-----------
-inputs = {
-  flag_use_existing_vpc                        = true
-  existing_vpc_id                              = "vpc-0008ab497981ab238"
-  flag_use_existing_internet_gateway           = true
-  existing_internet_gateway_id                 = "igw-0c4f027b670ca5a20"
-  flag_use_existing_subnet                     = true
-  existing_private_subnet_ids                  = ["subnet-02ab758b4befd2ce7", "subnet-0a55963a1c93564e6"]
-  existing_public_subnet_ids                   = ["subnet-085f1229f0b4adc98", "subnet-09d1de6f2a3e91ea1"]
-  flag_use_existing_eip                        = true
-  existing_eip_id                              = "eipalloc-03b35452a7ba3c182"
-  flag_use_existing_nat_gateway                = true
-  existing_nat_gateway_id                      = "nat-0b9cf1112243356a8"
-  flag_use_existing_private_subnet_route_table = true
-  existing_private_subnet_route_table_id       = "rtb-025c46c5a32b3c3e2"
-  flag_use_existing_public_subnet_route_table  = true
-  existing_public_subnet_route_table_id        = "rtb-07d20cfcb778facfa"
-  flag_use_existing_eks_execution_role         = true
-  existing_eks_iam_role_arn                    = "arn:aws:iam::018300759195:role/cntf-open5gs-cluster-cluster-20230802184244723700000006"
-  flag_use_existing_node_group_role            = true
-  existing_node_group_iam_role_arn            = "arn:aws:iam::018300759195:role/default_node_group-eks-node-group-20230802184244449300000001"
-  eks_cluster_name                             = "eks_cluster"
-  eks_node_group_name                          = "eks_node"
-  eks_node_capacity_type                       = "ON_DEMAND"
-  eks_node_instance_types                      = ["t3.small"]
-  eks_node_desired_size                        = 1
-  eks_node_max_size                            = 5
-  eks_node_min_size                            = 0
-  eks_node_max_unavailable                     = 1
-}
-*/
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------
-#Modules with HashiCorp Vault
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------
-#EC2 module with HashiCorp Vault
-# module "ec2_instance" {
-#   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2"
-#   for_each                = { for index, config in local.ec2_configurations : index => config }
-#   instance_count          = each.value.instance_count
-#   ami_id                  = each.value.ami_id
-#   instance_type           = each.value.instance_type
-#   root_volume_type        = "gp3"
-#   root_volume_size        = 20
-#   root_volume_encrypted   = true
-#   root_volume_termination = true
-#   instance_names          = each.value.instance_names
-#   /*
-#   For the following variables, values can be assigned directly or they can be assigned via HashiCorp Vault data source.
-#   #Direct assignment:
-#   Example: iam_instance_profile_name = "xxxxxxxxxxx" #Provide respective IAM role name.
-#   #Assignment via Vault:
-#   Example: iam_instance_profile_name = data.vault_generic_secret.getsecrets.data["iam_instance_profile_name"] #This works only if you had pre-configured this value in your vault instance.
-#   Note: Please don't commit any file with sensitive information to code repository or publicly accessible location.
-#   */
-#   iam_instance_profile_name = data.vault_generic_secret.getsecrets.data["iam_instance_profile_name"]
-#   key_pair_name             = data.vault_generic_secret.getsecrets.data["key_pair_name"]
-#   subnet_id                 = data.vault_generic_secret.getsecrets.data["subnet_id"]
-#   vpc_security_group_ids    = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
+
+
+#Lambda Function module without HashiCorp Vault
+# module "lambda_function" {
+#   source        = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#   function_name = "iot_sample_lambda"
+#   filepath      = "Enter zip file path"
+#   handler       = "index.handler"
+#   runtime       = "python3.8"
+#   role_arn      = "xxxxxxxxxxxx"
+# }
+
+#Security Group module without HashiCorp Vault
+# module "security-group" {
+#   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group""
+#   security_group_name        = "Enter security group name"
+#   security_group_description = "Enter description for the security group"
+#   ingress_port               = xxxx
+#   ingress_cidr_blocks        = ["xxxxxxxxx"]
 # }
