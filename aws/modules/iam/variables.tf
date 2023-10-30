@@ -31,12 +31,12 @@ EOF
 
 variable "iam_policy_name"{
   type    = string
-  default = "GlueAndEC2InlinePolicy"
+  default = null
 }
 
 variable "iam_policy_description"{
   type    = string
-  default = "Inline policy for Glue job and EC2 instances"
+  default = null
 }
 
 variable "iam_policy" {
@@ -58,4 +58,28 @@ variable "iam_policy" {
       ]
     }
   EOT
+}
+
+variable "flag_use_existing_policy" {
+  description = "Specify 'true' if you want to use an existing IAM role, or 'false' to create a new role."
+  type        = bool
+  default     = false
+}
+
+variable "existing_role_arn" {
+  description = "The ARN of an existing IAM role."
+  type        = string
+  default     = null
+}
+
+variable "policy_count" {
+  description = "Number of policies to attach to the IAM role"
+  type        = number
+  default     = 0
+}
+
+variable "existing_iam_policy_arns" {
+  description = "The ARN of an existing IAM policy to be attached to the IAM role."
+  type        = list(string)
+  default     = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"]
 }
