@@ -27,7 +27,7 @@ locals {
       bucket_name             = "tg-test-bucket1"
       bucket_versioning       = "Enabled"
       pass_bucket_policy_file = true
-      bucket_policy_file_path = "./s3-policy-bucket1.json"
+      bucket_policy_file_path = "./sample-s3-bucket-policy.json"
     },
     {
       bucket_name             = "tg-test-bucket2"
@@ -90,7 +90,7 @@ module "iam_role" {
   permission_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
 }
 
-# #EC2 module 
+#EC2 module 
 module "ec2_instance" {
   source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2?ref=sriharsha/test-tg-template"
   depends_on              = [module.iam_role]
@@ -228,40 +228,39 @@ module "sqs" {
   receive_wait_time_seconds = 0  
 }
 #
-/*
-#-----------
-#EKS Inputs
-#-----------
-inputs = {
-  flag_use_existing_vpc                        = true
-  existing_vpc_id                              = "vpc-0008ab497981ab238"
-  flag_use_existing_internet_gateway           = true
-  existing_internet_gateway_id                 = "igw-0c4f027b670ca5a20"
-  flag_use_existing_subnet                     = true
-  existing_private_subnet_ids                  = ["subnet-02ab758b4befd2ce7", "subnet-0a55963a1c93564e6"]
-  existing_public_subnet_ids                   = ["subnet-085f1229f0b4adc98", "subnet-09d1de6f2a3e91ea1"]
-  flag_use_existing_eip                        = true
-  existing_eip_id                              = "eipalloc-03b35452a7ba3c182"
-  flag_use_existing_nat_gateway                = true
-  existing_nat_gateway_id                      = "nat-0b9cf1112243356a8"
-  flag_use_existing_private_subnet_route_table = true
-  existing_private_subnet_route_table_id       = "rtb-025c46c5a32b3c3e2"
-  flag_use_existing_public_subnet_route_table  = true
-  existing_public_subnet_route_table_id        = "rtb-07d20cfcb778facfa"
-  flag_use_existing_eks_execution_role         = true
-  existing_eks_iam_role_arn                    = "arn:aws:iam::018300759195:role/cntf-open5gs-cluster-cluster-20230802184244723700000006"
-  flag_use_existing_node_group_role            = true
-  existing_node_group_iam_role_arn            = "arn:aws:iam::018300759195:role/default_node_group-eks-node-group-20230802184244449300000001"
-  eks_cluster_name                             = "eks_cluster"
-  eks_node_group_name                          = "eks_node"
-  eks_node_capacity_type                       = "ON_DEMAND"
-  eks_node_instance_types                      = ["t3.small"]
-  eks_node_desired_size                        = 1
-  eks_node_max_size                            = 5
-  eks_node_min_size                            = 0
-  eks_node_max_unavailable                     = 1
-}
-*/
+
+# EKS module
+# module "eks_cluster" {
+#   source                                       = "git@github.com:DISHDevEx/iot.git//aws/modules/eks_cluster"
+#   flag_use_existing_vpc                        = true
+#   existing_vpc_id                              = "vpc-0008ab497981ab238"
+#   flag_use_existing_internet_gateway           = true
+#   existing_internet_gateway_id                 = "igw-0c4f027b670ca5a20"
+#   flag_use_existing_subnet                     = true
+#   existing_private_subnet_ids                  = ["subnet-02ab758b4befd2ce7", "subnet-0a55963a1c93564e6"]
+#   existing_public_subnet_ids                   = ["subnet-085f1229f0b4adc98", "subnet-09d1de6f2a3e91ea1"]
+#   flag_use_existing_eip                        = true
+#   existing_eip_id                              = "eipalloc-03b35452a7ba3c182"
+#   flag_use_existing_nat_gateway                = true
+#   existing_nat_gateway_id                      = "nat-0b9cf1112243356a8"
+#   flag_use_existing_private_subnet_route_table = true
+#   existing_private_subnet_route_table_id       = "rtb-025c46c5a32b3c3e2"
+#   flag_use_existing_public_subnet_route_table  = true
+#   existing_public_subnet_route_table_id        = "rtb-07d20cfcb778facfa"
+#   flag_use_existing_eks_execution_role         = true
+#   existing_eks_iam_role_arn                    = "arn:aws:iam::018300759195:role/cntf-open5gs-cluster-cluster-20230802184244723700000006"
+#   flag_use_existing_node_group_role            = true
+#   existing_node_group_iam_role_arn             = "arn:aws:iam::018300759195:role/default_node_group-eks-node-group-20230802184244449300000001"
+#   eks_cluster_name                             = "eks_cluster"
+#   eks_node_group_name                          = "eks_node"
+#   eks_node_capacity_type                       = "ON_DEMAND"
+#   eks_node_instance_types                      = ["t3.small"]
+#   eks_node_desired_size                        = 1
+#   eks_node_max_size                            = 5
+#   eks_node_min_size                            = 0
+#   eks_node_max_unavailable                     = 1
+# }
+
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Modules with HashiCorp Vault
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------
