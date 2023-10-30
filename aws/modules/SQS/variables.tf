@@ -7,25 +7,25 @@ variable "name" {
 variable "delay_seconds" {
   description = "Time the delivery of messages delayed in queue"
   type = number
-  default = "0"
+  default = 0
 }
 
 variable "message_retention_seconds" {
   description = "Seconds SQS retains a message"
   type = number
-  default = "345600"
+  default = 345600
 }
 
 variable "receive_wait_time_seconds" {
   description = "Seconds ReceiveMessage call will wait for message to arrive"
   type = number
-  default = "0"
+  default = 0
 }
 
 variable "max_message_size" {
   description = "Byte limit of the message"
   type = number
-  default = "262144"
+  default = 262144
 }
 
 variable "deadLetterTargetArn" {
