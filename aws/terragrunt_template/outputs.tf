@@ -26,7 +26,17 @@ output "glue_job_outputs" {
 # lambda_function - module output
 output "lambda_function_outputs" {
   description = "Lambda function name and arn"
-  value       = module.lambda_function[*]
+  value       = module.lambda_function1[*]
+}
+
+output "lambda_function_outputs2" {
+  description = "Lambda function name and arn"
+  value       = module.lambda_function2[*]
+}
+
+output "lambda_function_outputs3" {
+  description = "Lambda function name and arn"
+  value       = module.lambda_function3[*]
 }
 
 # vpc - module output
@@ -45,4 +55,10 @@ output "security-group_outputs" {
 output "sqs_outputs" {
   description = "ID of the SQS queue"
   value       = module.sqs[*]
+}
+
+# sagemaker - module output
+output "sagemaker_outputs" {
+  description = "Sagemaker instance name"
+  value       = module.sagemaker[*]
 }

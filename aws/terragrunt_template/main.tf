@@ -40,7 +40,7 @@ locals {
 
 #IAM module 
 module "iam_role" {
-  source             = "git@github.com:DISHDevEx/iot.git//aws/modules/iam?ref=sriharsha/test-tg-template"
+  source             = "git@github.com:DISHDevEx/iot.git//aws/modules/iam"
   aws_region         = "us-east-1"
   iam_role_name      = "tg-test-role"
   assume_role_policy = <<-EOT
@@ -92,7 +92,7 @@ module "iam_role" {
 
 #EC2 module 
 module "ec2_instance" {
-  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2?ref=sriharsha/test-tg-template"
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/ec2"
   depends_on              = [module.iam_role]
   for_each                = { for index, config in local.ec2_configurations : index => config }
   instance_count          = each.value.instance_count
@@ -119,7 +119,7 @@ module "ec2_instance" {
 
 #S3 module
 module "s3_bucket" {
-  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3?ref=sriharsha/test-tg-template"
+  source                  = "git@github.com:DISHDevEx/iot.git//aws/modules/s3"
   for_each                = { for index, config in local.s3_configurations : index => config }
   bucket_name             = each.value.bucket_name
   bucket_versioning       = each.value.bucket_versioning
@@ -129,7 +129,7 @@ module "s3_bucket" {
 
 #Glue Job module
 module "glue_job" {
-  source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/glue?ref=sriharsha/test-tg-template"
+  source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/glue"
   depends_on                            = [module.iam_role]
   job_names                             = ["GluejobA", "GluejobB"]
   connections                           = []
@@ -167,18 +167,75 @@ module "glue_job" {
   max_concurrent_runs                   = 1
 }
 
-#Lambda Function module with existing IAM role
-module "lambda_function" {
+#Lambda Function using existing IAM role
+module "lambda_function1" {
   source                 = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
-  depends_on             = [module.iam_role]
-  lambda_function_name   = "tg_test_lambda"
-  flag_use_existing_role = true
+  depends_on             = [module.iam_role] #This line is not required, if you are passing the 'existing_role_arn' variable value directly
+  lambda_function_name   = "tg_test_lambda1"
   filepath               = "./index.py.zip"
   handler                = "index.handler"
   runtime                = "python3.8"
-  lambda_role_name       = module.iam_role.iam_role_name
-  existing_role_arn      = module.iam_role.iam_role_arn
-  policy_count           = 0
+  flag_use_existing_role = true
+  existing_role_arn      = module.iam_role.iam_role_arn #You can also pass existing role arn as "arn:aws:iam::064047601590:role/aws-controltower-CloudWatchLogsRole"
+}
+
+##Lambda Function using new role with new policies
+module "lambda_function2" {
+source                    = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+ lambda_function_name     = "tg_test_lambda2"
+ filepath                 = "./index.py.zip"
+ handler                  = "index.handler"
+ runtime                  = "python3.8"
+ flag_use_existing_role   = false
+ lambda_role_name         = "test-role2"
+ flag_use_existing_policy = false
+ iam_policy_name          = "test-policy2"
+ new_iam_policy           = <<-EOT
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Action": [
+             "lambda:Get*",
+             "lambda:List*",
+             "cloudwatch:GetMetricData",
+             "cloudwatch:ListMetrics"
+         ],
+         "Effect": "Allow",
+         "Resource": "*"
+       },
+       {
+           "Effect": "Allow",
+           "Action": [
+               "logs:DescribeLogStreams",
+               "logs:GetLogEvents",
+               "logs:FilterLogEvents",
+               "logs:StartQuery",
+               "logs:StopQuery",
+               "logs:DescribeQueries",
+               "logs:GetLogGroupFields",
+               "logs:GetLogRecord",
+               "logs:GetQueryResults"
+           ],
+           "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*"
+       }
+     ]
+   }
+ EOT
+}
+
+##Lambda Function using new role with existing policies
+module "lambda_function3" {
+ source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+ lambda_function_name                  = "tg_test_lambda3"
+ filepath                              = "./index.py.zip"
+ handler                               = "index.handler"
+ runtime                               = "python3.8"
+ flag_use_existing_role                = false
+ lambda_role_name                      = "test-role3"
+ flag_use_existing_policy              = true
+ policy_count                          = 2
+ existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
 }
 
 # VPC module
@@ -219,7 +276,7 @@ module "security-group" {
 
 # SQS module
 module "sqs" {
-  source                    = "git@github.com:DISHDevEx/iot.git//aws/modules/sqs?ref=sriharsha/test-tg-template"
+  source                    = "git@github.com:DISHDevEx/iot.git//aws/modules/sqs"
   count                     = 1
   name                      = ["iot-tg-test-sqs"]
   delay_seconds             = 0
@@ -227,8 +284,23 @@ module "sqs" {
   message_retention_seconds = 1440
   receive_wait_time_seconds = 0  
 }
-#
 
+#Sagemaker module
+module "sagemaker" {
+  source                                                     = "git@github.com:DISHDevEx/iot.git//aws/modules/sagemaker?ref=sriharsha/test-tg-template"
+  enable_sagemaker_notebook_instance                         =  true
+  sagemaker_notebook_instance_name                           =  "iot-sagemaker"
+  sagemaker_notebook_instance_role_arn                       =  "arn:aws:iam::064047601590:role/SagemakerEMRNoAuthProductWi-SageMakerExecutionRole-1KF4KOLT4YA6A"
+  sagemaker_notebook_instance_instance_type                  =  "ml.t2.medium"
+  sagemaker_notebook_instance_subnet_id                      =  null
+  sagemaker_notebook_instance_security_groups                =  null
+  sagemaker_notebook_instance_kms_key_id                     =  null
+  sagemaker_notebook_instance_lifecycle_config_name          =  null
+  sagemaker_notebook_instance_direct_internet_access         =  null
+  sagemaker_notebook_volume-size                             =  5
+  enable_sagemaker_notebook_instance_lifecycle_configuration =  false
+  tags                                                       =  {}
+}
 # EKS module
 # module "eks_cluster" {
 #   source                                       = "git@github.com:DISHDevEx/iot.git//aws/modules/eks_cluster"
