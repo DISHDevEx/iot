@@ -24,7 +24,8 @@ locals {
   #To create a S3 bucket resource with different configurations
   s3_configurations = [
     {
-      bucket_name             = "tg-test-bucket1"
+      #Note that a prefix 'iot-' will be added to the bucket name in the background automatically. Example: "tg-test-bucket1" will be converted to "iot-tg-test-bucket1"
+      bucket_name             = "tg-test-bucket1" 
       bucket_versioning       = "Enabled"
       pass_bucket_policy_file = true
       bucket_policy_file_path = "./sample-s3-bucket-policy.json"
@@ -168,10 +169,10 @@ module "glue_job" {
 }
 
 #Lambda Function using existing IAM role
-module "lambda_function1" {
+module "lambda_function" {
   source                 = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
   depends_on             = [module.iam_role] #This line is not required, if you are passing the 'existing_role_arn' variable value directly
-  lambda_function_name   = "tg_test_lambda1"
+  lambda_function_name   = "tg_test_lambda"
   filepath               = "./index.py.zip"
   handler                = "index.handler"
   runtime                = "python3.8"
@@ -180,67 +181,69 @@ module "lambda_function1" {
 }
 
 ##Lambda Function using new role with new policies
-module "lambda_function2" {
-source                    = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
- lambda_function_name     = "tg_test_lambda2"
- filepath                 = "./index.py.zip"
- handler                  = "index.handler"
- runtime                  = "python3.8"
- flag_use_existing_role   = false
- lambda_role_name         = "test-role2"
- flag_use_existing_policy = false
- iam_policy_name          = "test-policy2"
- new_iam_policy           = <<-EOT
-   {
-     "Version": "2012-10-17",
-     "Statement": [
-       {
-         "Action": [
-             "lambda:Get*",
-             "lambda:List*",
-             "cloudwatch:GetMetricData",
-             "cloudwatch:ListMetrics"
-         ],
-         "Effect": "Allow",
-         "Resource": "*"
-       },
-       {
-           "Effect": "Allow",
-           "Action": [
-               "logs:DescribeLogStreams",
-               "logs:GetLogEvents",
-               "logs:FilterLogEvents",
-               "logs:StartQuery",
-               "logs:StopQuery",
-               "logs:DescribeQueries",
-               "logs:GetLogGroupFields",
-               "logs:GetLogRecord",
-               "logs:GetQueryResults"
-           ],
-           "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*"
-       }
-     ]
-   }
- EOT
-}
+# module "lambda_function" {
+#  source                    = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#  lambda_function_name     = "tg_test_lambda"
+#  filepath                 = "./index.py.zip"
+#  handler                  = "index.handler"
+#  runtime                  = "python3.8"
+#  flag_use_existing_role   = false
+#  lambda_role_name         = "test-role"
+#  flag_use_existing_policy = false
+#  iam_policy_name          = "test-policy"
+#  new_iam_policy           = <<-EOT
+#    {
+#      "Version": "2012-10-17",
+#      "Statement": [
+#        {
+#          "Action": [
+#              "lambda:Get*",
+#              "lambda:List*",
+#              "cloudwatch:GetMetricData",
+#              "cloudwatch:ListMetrics"
+#          ],
+#          "Effect": "Allow",
+#          "Resource": "*"
+#        },
+#        {
+#            "Effect": "Allow",
+#            "Action": [
+#                "logs:DescribeLogStreams",
+#                "logs:GetLogEvents",
+#                "logs:FilterLogEvents",
+#                "logs:StartQuery",
+#                "logs:StopQuery",
+#                "logs:DescribeQueries",
+#                "logs:GetLogGroupFields",
+#                "logs:GetLogRecord",
+#                "logs:GetQueryResults"
+#            ],
+#            "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*"
+#        }
+#      ]
+#    }
+#  EOT
+#  permission_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
+# }
 
 ##Lambda Function using new role with existing policies
-module "lambda_function3" {
- source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
- lambda_function_name                  = "tg_test_lambda3"
- filepath                              = "./index.py.zip"
- handler                               = "index.handler"
- runtime                               = "python3.8"
- flag_use_existing_role                = false
- lambda_role_name                      = "test-role3"
- flag_use_existing_policy              = true
- policy_count                          = 2
- existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
-}
+# module "lambda_function" {
+#  source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#  lambda_function_name                  = "tg_test_lambda"
+#  filepath                              = "./index.py.zip"
+#  handler                               = "index.handler"
+#  runtime                               = "python3.8"
+#  flag_use_existing_role                = false
+#  lambda_role_name                      = "test-role"
+#  flag_use_existing_policy              = true
+#  policy_count                          = 2
+#  existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
+#  permission_boundary                   = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
+# }
 
 # VPC module
 # module "vpc" {
-#   source          = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc?ref=sriharsha/test-tg-template"
+#   source          = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc"
 #   vpc_name = "tg-test-vpc"
 #   vpc_cidr_block = "10.5.128.0/18"
 #   vpc_instance_tenancy = "default"
@@ -287,7 +290,7 @@ module "sqs" {
 
 #Sagemaker module
 module "sagemaker" {
-  source                                                     = "git@github.com:DISHDevEx/iot.git//aws/modules/sagemaker?ref=sriharsha/test-tg-template"
+  source                                                     = "git@github.com:DISHDevEx/iot.git//aws/modules/sagemaker"
   enable_sagemaker_notebook_instance                         =  true
   sagemaker_notebook_instance_name                           =  "iot-sagemaker"
   sagemaker_notebook_instance_role_arn                       =  "arn:aws:iam::064047601590:role/SagemakerEMRNoAuthProductWi-SageMakerExecutionRole-1KF4KOLT4YA6A"
@@ -301,6 +304,7 @@ module "sagemaker" {
   enable_sagemaker_notebook_instance_lifecycle_configuration =  false
   tags                                                       =  {}
 }
+
 # EKS module
 # module "eks_cluster" {
 #   source                                       = "git@github.com:DISHDevEx/iot.git//aws/modules/eks_cluster"

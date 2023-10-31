@@ -59,6 +59,6 @@ output "sqs_outputs" {
 
 # sagemaker - module output
 output "sagemaker_outputs" {
-  description = "Sagemaker instance name"
+  description = "Sagemaker notebook instance name"
   value       = module.sagemaker[*]
 }
