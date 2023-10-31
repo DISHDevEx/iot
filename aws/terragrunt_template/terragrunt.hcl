@@ -27,7 +27,7 @@ For the following provider variables, values can be assigned through 'terraform.
 #Via 'terraform.tfvars' file: 
 Example:
 aws_region = "us-east-1"
-profile    = "xxxxxxxxx"
+profile    = "########"
 #Assignment via Vault:
 Example: profile = data.vault_generic_secret.getsecrets.data["profile"] #This works only if you had pre-configured this secret value in your vault instance.
 #Passing AWS account credentails using profile 

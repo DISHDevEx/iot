@@ -2,11 +2,11 @@ variable "aws_region" {
   type    = string
   default = "us-east-1"
 }
-variable "iam_role_name"{
+variable "iam_role_name" {
   type    = string
   default = "IOTrole"
 }
-variable "assume_role_policy"{
+variable "assume_role_policy" {
   type    = string
   default = <<EOF
 {
@@ -29,18 +29,13 @@ variable "assume_role_policy"{
 EOF
 }
 
-variable "iam_policy_name"{
+variable "iam_policy_name" {
   type    = string
-  default = null
-}
-
-variable "iam_policy_description"{
-  type    = string
-  default = null
+  default = "GlueAndEC2InlinePolicy"
 }
 
 variable "iam_policy" {
-  type = string
+  type    = string
   default = <<-EOT
     {
       "Version": "2012-10-17",
@@ -60,26 +55,7 @@ variable "iam_policy" {
   EOT
 }
 
-variable "flag_use_existing_policy" {
-  description = "Specify 'true' if you want to use an existing IAM role, or 'false' to create a new role."
-  type        = bool
-  default     = false
-}
-
-variable "existing_role_arn" {
-  description = "The ARN of an existing IAM role."
-  type        = string
-  default     = null
-}
-
-variable "policy_count" {
-  description = "Number of policies to attach to the IAM role"
-  type        = number
-  default     = 0
-}
-
-variable "existing_iam_policy_arns" {
-  description = "The ARN of an existing IAM policy to be attached to the IAM role."
-  type        = list(string)
-  default     = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"]
+variable "permission_boundary" {
+  type    = string
+  default = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
 }
