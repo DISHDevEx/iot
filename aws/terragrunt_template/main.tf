@@ -167,19 +167,89 @@ module "glue_job" {
   max_concurrent_runs                   = 1
 }
 
-#Lambda Function module with existing IAM role
+##Lambda Function module with existing IAM role
+#module "lambda_function" {
+#  source                 = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#  depends_on             = [module.iam_role]
+#  lambda_function_name   = "tg_test_lambda"
+#  flag_use_existing_role = true
+#  filepath               = "./index.py.zip"
+#  handler                = "index.handler"
+#  runtime                = "python3.8"
+#  lambda_role_name       = module.iam_role.iam_role_name
+#  existing_role_arn      = module.iam_role.iam_role_arn
+#  policy_count           = 0
+#}
+
+#Lambda Function using existing role
 module "lambda_function" {
-  source                 = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
-  depends_on             = [module.iam_role]
-  lambda_function_name   = "tg_test_lambda"
-  flag_use_existing_role = true
-  filepath               = "./index.py.zip"
-  handler                = "index.handler"
-  runtime                = "python3.8"
-  lambda_role_name       = module.iam_role.iam_role_name
-  existing_role_arn      = module.iam_role.iam_role_arn
-  policy_count           = 0
+  source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+  lambda_function_name                  = "tg_test_lambda"
+  filepath                              = "./index.py.zip"
+  handler                               = "index.handler"
+  runtime                               = "python3.8"
+  flag_use_existing_role                = true
+  existing_role_arn                     = "arn:aws:iam::064047601590:role/aws-controltower-CloudWatchLogsRole"
 }
+
+##Lambda Function using new role with new policies
+#module "lambda_function" {
+source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#  lambda_function_name                  = "tg_test_lambda"
+#  filepath                              = "./index.py.zip"
+#  handler                               = "index.handler"
+#  runtime                               = "python3.8"
+#  flag_use_existing_role                = false
+#  lambda_role_name                      = "test-role"
+#  flag_use_existing_policy              = false
+#  iam_policy_name                       = "test-policy"
+#  new_iam_policy                            = <<-EOT
+#    {
+#      "Version": "2012-10-17",
+#      "Statement": [
+#        {
+#          "Action": [
+#              "lambda:Get*",
+#              "lambda:List*",
+#              "cloudwatch:GetMetricData",
+#              "cloudwatch:ListMetrics"
+#          ],
+#          "Effect": "Allow",
+#          "Resource": "*"
+#        },
+#        {
+#            "Effect": "Allow",
+#            "Action": [
+#                "logs:DescribeLogStreams",
+#                "logs:GetLogEvents",
+#                "logs:FilterLogEvents",
+#                "logs:StartQuery",
+#                "logs:StopQuery",
+#                "logs:DescribeQueries",
+#                "logs:GetLogGroupFields",
+#                "logs:GetLogRecord",
+#                "logs:GetQueryResults"
+#            ],
+#            "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*"
+#        }
+#      ]
+#    }
+#  EOT
+#}
+
+##Lambda Function using new role with existing policies
+#module "lambda_function" {
+#  source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#  lambda_function_name                  = "tg_test_lambda"
+#  filepath                              = "./index.py.zip"
+#  handler                               = "index.handler"
+#  runtime                               = "python3.8"
+#  flag_use_existing_role                = false
+#  lambda_role_name                      = "test-role"
+#  flag_use_existing_policy              = true
+#  policy_count                          = 2
+#  existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
+#}
 
 # VPC module
 # module "vpc" {
