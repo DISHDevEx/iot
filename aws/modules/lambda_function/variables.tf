@@ -66,7 +66,7 @@ variable "iam_policy_description"{
 variable "flag_use_existing_policy" {
   description = "Specify 'true' if you want to use an existing IAM policy, or 'false' to create a new policy."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "existing_iam_policy_arns" {
