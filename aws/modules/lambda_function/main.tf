@@ -56,4 +56,5 @@ EOF
   flag_use_existing_policy = var.flag_use_existing_policy
   policy_count             = var.policy_count
   existing_iam_policy_arns = var.existing_iam_policy_arns
+  permission_boundary      = var.permission_boundary
 }

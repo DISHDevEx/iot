@@ -194,7 +194,7 @@ module "lambda_function" {
 
 ##Lambda Function using new role with new policies
 #module "lambda_function" {
-source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#  source                                = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
 #  lambda_function_name                  = "tg_test_lambda"
 #  filepath                              = "./index.py.zip"
 #  handler                               = "index.handler"
@@ -203,7 +203,7 @@ source                                = "git@github.com:DISHDevEx/iot.git//aws/m
 #  lambda_role_name                      = "test-role"
 #  flag_use_existing_policy              = false
 #  iam_policy_name                       = "test-policy"
-#  new_iam_policy                            = <<-EOT
+#  new_iam_policy                        = <<-EOT
 #    {
 #      "Version": "2012-10-17",
 #      "Statement": [
@@ -235,6 +235,7 @@ source                                = "git@github.com:DISHDevEx/iot.git//aws/m
 #      ]
 #    }
 #  EOT
+#  permission_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
 #}
 
 ##Lambda Function using new role with existing policies
@@ -249,6 +250,7 @@ source                                = "git@github.com:DISHDevEx/iot.git//aws/m
 #  flag_use_existing_policy              = true
 #  policy_count                          = 2
 #  existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
+#  permission_boundary                   = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
 #}
 
 # VPC module
