@@ -51,22 +51,16 @@ variable "iam_policy_name"{
   default     = null
 }
 
-variable "iam_policy_description"{
-  description = "The description explaining the action of the policy"
+variable "permission_boundary"{
+  description = "ARN of the policy that is used to set the permissions boundary for the role."
   type        = string
-  default     = null
+  default     = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
 }
-
-#variable "no_policies_attached"{
-#  description = "The description explaining the action of the policy"
-#  type        = bool
-#  default = true
-#}
 
 variable "flag_use_existing_policy" {
   description = "Specify 'true' if you want to use an existing IAM policy, or 'false' to create a new policy."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "existing_iam_policy_arns" {

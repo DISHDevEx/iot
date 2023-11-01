@@ -7,6 +7,7 @@ resource "aws_iam_role" "IOT_role" {
 }
 
 resource "aws_iam_role_policy" "iam_inline_policy" {
+  count= var.flag_use_existing_policy ? 0 : 1
   name = var.iam_policy_name
   role = aws_iam_role.IOT_role.name
 

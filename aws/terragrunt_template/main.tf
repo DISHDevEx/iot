@@ -358,3 +358,4 @@ Terraform configuration for all modules.
 #   subnet_id                 = data.vault_generic_secret.getsecrets.data["subnet_id"]
 #   vpc_security_group_ids    = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 # }
+

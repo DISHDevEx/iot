@@ -57,4 +57,26 @@ output "eks_cluster_outputs" {
 # output "vpc_outputs" {
 #   description = "VPC name"
 #   value       = module.vpc[*]
+<<<<<<< HEAD
 # }
+=======
+# }
+
+# security-group - module output
+output "security-group_outputs" {
+  description = "Lambda function name and arn"
+  value       = module.security-group[*]
+}
+
+# sqs - module output
+output "sqs_outputs" {
+  description = "ID of the SQS queue"
+  value       = module.sqs[*]
+}
+
+# eks - module output
+output "eks_outputs" {
+  description = "EKS Cluster name and arn"
+  value       = module.eks_cluster[*]
+}
+>>>>>>> main

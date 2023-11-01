@@ -52,9 +52,9 @@ module "iam" {
 }
 EOF
   iam_policy_name          = var.flag_use_existing_policy ? null : var.iam_policy_name
-  iam_policy_description   = var.flag_use_existing_policy ? null : var.iam_policy_description
   iam_policy               = var.flag_use_existing_policy ? null : var.new_iam_policy
   flag_use_existing_policy = var.flag_use_existing_policy
   policy_count             = var.policy_count
   existing_iam_policy_arns = var.existing_iam_policy_arns
+  permission_boundary      = var.permission_boundary
 }
