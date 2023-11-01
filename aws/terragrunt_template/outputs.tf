@@ -46,3 +46,9 @@ output "sqs_outputs" {
   description = "ID of the SQS queue"
   value       = module.sqs[*]
 }
+
+# eks - module output
+output "eks_outputs" {
+  description = "EKS Cluster name and arn"
+  value       = module.eks_cluster[*]
+}
