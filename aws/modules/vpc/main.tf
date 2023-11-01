@@ -1,10 +1,10 @@
 # Create a VPC
 resource "aws_vpc" "iot_vpc" {
   # count = length(var.vpc_name)
-  cidr_block          = var.vpc_cidr_block
-  instance_tenancy    = var.vpc_instance_tenancy
-  enable_dns_support  = var.vpc_enable_dns_support
-  enable_dns_hostnames = var.vpc_enable_dns_hostnames
+  cidr_block                       = var.vpc_cidr_block
+  instance_tenancy                 = var.vpc_instance_tenancy
+  enable_dns_support               = var.vpc_enable_dns_support
+  enable_dns_hostnames             = var.vpc_enable_dns_hostnames
   assign_generated_ipv6_cidr_block = var.vpc_assign_generated_ipv6_cidr_block
   
   tags = {
@@ -14,11 +14,12 @@ resource "aws_vpc" "iot_vpc" {
 
 # Create a subnet
 resource "aws_subnet" "iot_subnet" {
-  count = length(var.subnet_name)
-  vpc_id                  = aws_vpc.iot_vpc.id
-  cidr_block              = var.subnet_cidr_block[count.index]
-  availability_zone       = var.subnet_availability_zone[count.index]
-  map_public_ip_on_launch = var.subnet_map_public_ip_on_launch
+  creation_flag                   = var.flag_use_existing_subnet ? 0 : 1
+  count                           = length(var.subnet_name)
+  vpc_id                          = aws_vpc.iot_vpc.id
+  cidr_block                      = var.subnet_cidr_block[count.index]
+  availability_zone               = var.subnet_availability_zone[count.index]
+  map_public_ip_on_launch         = var.subnet_map_public_ip_on_launch
   assign_ipv6_address_on_creation = var.subnet_assign_ipv6_address_on_creation
 
   tags = {
@@ -28,14 +29,15 @@ resource "aws_subnet" "iot_subnet" {
 
 # Create a default route table
 resource "aws_route_table" "iot_route_table" {
-  vpc_id = aws_vpc.iot_vpc.id
+  vpc_id            = aws_vpc.iot_vpc.id
   route {
     cidr_block = var.route_table_cidr_block
-    gateway_id = 	var.route_table_gateway_id
+    gateway_id = var.route_table_gateway_id
   }
   tags = {
     Name = format("iot_%s", var.route_table_name)
   }
+  depends_on = [aws_subnet.iot_subnet]
 }
 
 # Associate the route table with the subnet
@@ -43,5 +45,6 @@ resource "aws_route_table_association" "my_subnet_association" {
   count          = length(var.subnet_name)
   subnet_id      = aws_subnet.iot_subnet[count.index].id
   route_table_id = aws_route_table.iot_route_table.id
+  depends_on     = [aws_route_table.iot_route_table]
 }
 
