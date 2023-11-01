@@ -14,7 +14,6 @@ resource "aws_vpc" "iot_vpc" {
 
 # Create a subnet
 resource "aws_subnet" "iot_subnet" {
-  creation_flag                   = var.flag_use_existing_subnet ? 0 : 1
   count                           = length(var.subnet_name)
   vpc_id                          = aws_vpc.iot_vpc.id
   cidr_block                      = var.subnet_cidr_block[count.index]
