@@ -9,7 +9,7 @@ data "aws_caller_identity" "current" {
 # VPC module
 module "vpc" {
   count                                  = var.flag_use_existing_vpc ? 0 : 1
-  source                                 = "/Users/mariamanisha.miranda/Desktop/iot/aws/modules/vpc"
+  source                                 = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc"
   vpc_name                               = var.vpc_name
   vpc_cidr_block                         = var.vpc_cidr
   vpc_instance_tenancy                   = var.vpc_instance_tenancy
