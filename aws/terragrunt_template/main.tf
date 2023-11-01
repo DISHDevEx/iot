@@ -78,27 +78,27 @@ Terraform configuration for all modules.
 # }
 
 ##EKS module
-module "eks_cluster" {
-  source                                       = "git@github.com:DISHDevEx/iot.git//aws/modules/eks_cluster"
-  flag_use_existing_vpc                        = true
-  existing_vpc_id                              = "vpc-0eb0f6cc5c4f183c0"
-  flag_use_existing_subnet                     = true
-  existing_subnet_ids                          = ["subnet-057c4020b8d00ac2d", "subnet-03bf51decd06148fc"]
-  flag_use_existing_subnet_route_table         = true
-  existing_subnet_route_table_id               = "rtb-09332b21e5feb567a"
-  flag_use_existing_eks_execution_role         = true
-  existing_eks_iam_role_arn                    = "arn:aws:iam::064047601590:role/mss-eks-cluster-role"
-  flag_use_existing_node_group_role            = true
-  existing_node_group_iam_role_arn             = "arn:aws:iam::064047601590:role/test_node_group_role"
-  eks_cluster_name                             = "eks_cluster"
-  eks_node_group_name                          = "eks_node"
-  eks_node_capacity_type                       = "ON_DEMAND"
-  eks_node_instance_types                      = ["t3.small"]
-  eks_node_desired_size                        = 1
-  eks_node_max_size                            = 5
-  eks_node_min_size                            = 0
-  eks_node_max_unavailable                     = 1
-}
+# module "eks_cluster" {
+#   source                                       = "git@github.com:DISHDevEx/iot.git//aws/modules/eks_cluster"
+#   flag_use_existing_vpc                        = true
+#   existing_vpc_id                              = "vpc-0eb0f6cc5c4f183c0"
+#   flag_use_existing_subnet                     = true
+#   existing_subnet_ids                          = ["subnet-057c4020b8d00ac2d", "subnet-03bf51decd06148fc"]
+#   flag_use_existing_subnet_route_table         = true
+#   existing_subnet_route_table_id               = "rtb-09332b21e5feb567a"
+#   flag_use_existing_eks_execution_role         = true
+#   existing_eks_iam_role_arn                    = "arn:aws:iam::064047601590:role/mss-eks-cluster-role"
+#   flag_use_existing_node_group_role            = true
+#   existing_node_group_iam_role_arn             = "arn:aws:iam::064047601590:role/test_node_group_role"
+#   eks_cluster_name                             = "eks_cluster"
+#   eks_node_group_name                          = "eks_node"
+#   eks_node_capacity_type                       = "ON_DEMAND"
+#   eks_node_instance_types                      = ["t3.small"]
+#   eks_node_desired_size                        = 1
+#   eks_node_max_size                            = 5
+#   eks_node_min_size                            = 0
+#   eks_node_max_unavailable                     = 1
+# }
 
 ##Lambda Function using existing IAM role
 # module "lambda_function" {
