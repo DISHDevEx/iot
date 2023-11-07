@@ -109,8 +109,8 @@ Terraform configuration for all modules.
 #   handler                = "index.handler"
 #   runtime                = "python3.8"
 #   flag_use_existing_role = true
-#   #You can either pass existing role arn as "arn:aws:iam::064047601590:role/aws-controltower-CloudWatchLogsRole" or use the 'iam' module output as module.iam_role.iam_role_arn
-#   existing_role_arn      = "arn:aws:iam::064047601590:role/aws-controltower-CloudWatchLogsRole" 
+#   #You can either pass existing role arn as "arn:aws:iam::064047601590:role/iot-test-lambda-role" or use the 'iam' module output as module.iam_role.iam_role_arn
+#   existing_role_arn      = "arn:aws:iam::064047601590:role/iot-test-lambda-role" 
 # }
 
 ##Lambda Function using new role with new policies
