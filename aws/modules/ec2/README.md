@@ -22,6 +22,10 @@ a) Here the variable vaules of iam_role, key_pair_name, subnet_id, vpc_security_
 
 b) Please ensure that count of 'instance_count' and 'instance_names' variable values are matching. For example, if the instance_count = 2 then mention instance_name = ["First instance name","Second instance name"]
 
+c) In order to identify the instances created with the template, we are appending ‘iot_’ string to the instance name in the background. 
+
+Example: If the input for the instance name is "Dev1_Env" then the actual instance name post creation would be "iot_Dev1_Env"
+
 ## 'ec2' Module Inputs - Without HashiCorp Vault:
 #Example for 'ec2' module - You need to configure these values in the terragrunt_template/main.tf file
 1. instance_count            = 2
@@ -40,3 +44,7 @@ b) Please ensure that count of 'instance_count' and 'instance_names' variable va
 **Note:** 
 
 a) Please ensure that count of 'instance_count' and 'instance_names' variable values are matching. For example, if the instance_count = 2 then mention instance_name = ["First instance name","Second instance name"]
+
+b) In order to identify the instances created with the template, we are appending ‘iot_’ string to the instance name in the background. 
+
+Example: If the input for the instance_names is "Dev1_Env" then the actual instance name post creation would be "iot_Dev1_Env"

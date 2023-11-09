@@ -3,22 +3,12 @@ Terragrunt configuration for all modules.
 */
 #Locals
 locals {
-  varfile                     = get_env("TG_VAR_BACKEND_TFVARS_FILE")
-  vardata                     = jsondecode(file(local.varfile))
-  profile                     = local.vardata.profile
-  aws_region                  = local.vardata.aws_region
-  backend_bucket_name         = local.vardata.backend_bucket_name
-  backend_bucket_key          = local.vardata.backend_bucket_key
-  backend_dynamodb_table_name = local.vardata.backend_dynamodb_table_name
+  backend_vars = jsondecode(read_tfvars_file("./terraform.tfvars"))
 }
 
 #Terraform source
 terraform {
   source = "./main.tf"
-  extra_arguments "s3_backend_vars" {
-    commands  = get_terraform_commands_that_need_vars()
-    arguments = local.varfile != null ? ["-var-file=${local.varfile}"] : []
-  }
 }
 
 #Providers
@@ -65,11 +55,11 @@ remote_state {
     For the following provider variables, values can be assigned through 's3_backend.tfvars.json' file only.
     As per the instructions in the README.md file, please ensure to create the 's3_backend.tfvars.json' file and set this file name as environment variable.
     */
-    profile        = local.profile
-    region         = local.aws_region
-    bucket         = local.backend_bucket_name
-    key            = local.backend_bucket_key
+    profile        = local.backend_vars.profile
+    region         = local.backend_vars.aws_region
+    bucket         = local.backend_vars.backend_bucket_name
+    key            = local.backend_vars.backend_bucket_key
     encrypt        = true
-    dynamodb_table = local.backend_dynamodb_table_name
+    dynamodb_table = local.backend_vars.backend_dynamodb_table_name
   }
 }
