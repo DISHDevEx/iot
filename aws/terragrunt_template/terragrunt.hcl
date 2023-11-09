@@ -52,8 +52,8 @@ remote_state {
   }
   config = {
     /*
-    For the following provider variables, values can be assigned through 's3_backend.tfvars.json' file only.
-    As per the instructions in the README.md file, please ensure to create the 's3_backend.tfvars.json' file and set this file name as environment variable.
+    For the following provider variables, values can be assigned through 'terraform.tfvars' file only.
+    As per the instructions in the README.md file, please ensure to add the variable values in the 'terraform.tfvars' file.
     */
     profile        = local.backend_vars.profile
     region         = local.backend_vars.aws_region
