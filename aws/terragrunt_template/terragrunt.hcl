@@ -52,7 +52,7 @@ remote_state {
   }
   config = {
     /*
-    For the following provider variables, values can be assigned through 'terraform.tfvars' file only.
+    For the following provider variables, values can be assigned through 'terraform.tfvars' file.
     As per the instructions in the README.md file, please ensure to add the variable values in the 'terraform.tfvars' file.
     */
     profile        = local.backend_vars.profile
