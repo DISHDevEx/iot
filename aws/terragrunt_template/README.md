@@ -2,21 +2,17 @@
 ## Introduction
 This template can be used to create different types of AWS resources with desired configuration.
 ## Prerequisites
-Inorder to use the Terraform modules with Terragrunt, you need to configure your system with following prerequisites.
-1. Install Terraform.
-2. Install Terragrunt.
-3. Copy all files from this [folder](https://github.com/DISHDevEx/iot/tree/main/aws/terragrunt_template) to your local directory as per following directory structure,
-```
-terragrunt_template/
-├── data-sources.tf
-├── index.py.zip #This is a sample code file for 'lambda_function' module.
-├── main.tf
-├── outputs.tf
-├── README.md
-├── terragrunt.hcl
-└── variables.tf
-```
-4. Create a 'terraform.tfvars' file in the 'terragrunt_template/' directory with following data - This helps the Terragrunt to pickup the provider and backend variable values directly from this file.
+In order to use the Terraform modules with Terragrunt, you need to configure your system with following prerequisites.
+
+1. Based on your Operating System, install Terraform by following the instructions mentioned on this [page](https://developer.hashicorp.com/terraform/install)
+
+2. Based on your Operating System, install Terraform by following the instructions mentioned on this [page](https://terragrunt.gruntwork.io/docs/getting-started/install/)  
+
+3. As the [iot](https://github.com/DISHDevEx/iot) is a private repository in [DISHDevEx](https://github.com/DISHDevEx), ensure you have access to this and add your local system SSH key to your GitHub account by following the instructions on below pages as per your Operation System: a) [Generate new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) b) [Add SSH key to GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) c) [Test SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+
+4. Clone the iot repository into your local system using this git command: git clone git@github.com:DISHDevEx/iot.git
+
+5. Create a 'terraform.tfvars' file in the 'iot/aws/terragrunt_template/' directory with following data - This helps the Terragrunt to pick up the provider and backend variable values directly from this file.
 
    aws_region                  = "xxxxxxxx" #AWS region name. Example: "us-east-1"
 
