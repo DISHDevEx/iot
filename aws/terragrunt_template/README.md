@@ -41,7 +41,7 @@ If you are interested in using HashiCorp Vault for secrets management, then plea
 Please ensure to create the secrets as per the data type defined in the respective module - 'variables.tf' file.
 
 ## Module Inputs
-If you are interested in using HashiCorp Vault for secrets management, then please follow below steps:
+If you are interested in using HashiCorp Vault for secrets management, then please follow below steps in the 'iot/aws/terragrunt_template/' directory:
 1. Uncomment the vault datasource defined in 'data-sources.tf' file
 2. Uncomment the vault provider defined in 'terragrunt.hcl' file
 3. Update the outputs as required in 'outputs.tf' file
