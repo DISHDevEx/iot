@@ -10,7 +10,13 @@ In order to use the Terraform modules with Terragrunt, you need to configure you
 
 3. Based on your Operating System, install AWS CLI by following the instructions mentioned on this [page](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and ensure to configure the respective account credentials by following the instructions mentioned on this [page](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 
-4. As the [iot](https://github.com/DISHDevEx/iot) is a private repository in [DISHDevEx](https://github.com/DISHDevEx), ensure you have access to this and add your local system SSH key to your GitHub account by following the instructions on the below pages as per your Operation System: a) [Generate new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) b) [Add SSH key to GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) c) [Test SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+4. As the [iot](https://github.com/DISHDevEx/iot) is a private repository in [DISHDevEx](https://github.com/DISHDevEx), ensure you have access to this and add your local system SSH key to your GitHub account by following the instructions on the below pages as per your Operation System:
+
+ a) [Generate new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) 
+ 
+ b) [Add SSH key to GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) 
+ 
+ c) [Test SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
 
 5. Clone the iot repository into your local system using this git command: git clone git@github.com:DISHDevEx/iot.git
 
