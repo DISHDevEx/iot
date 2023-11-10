@@ -53,11 +53,11 @@ If you are NOT interested in using HashiCorp Vault for secrets management, then 
 3. Update the 'main.tf' file with required modules and respective inputs
 
 ## Execution
-To deploy the resources in cloud environment as per the configuration in 'terragrunt.hcl' file, use the following Terragrunt CLI commands:
+To deploy the resources in cloud environment as per the configuration in 'terragrunt.hcl' file, run the following Terragrunt CLI commands in the 'iot/aws/terragrunt_template/' directory:
 1. terragrunt init
 2. terragrunt plan 
 3. terragrunt apply
 4. terragrunt output
 ## Destruction
-To destroy the resources in cloud environment, use the following Terragrunt CLI command:
+To destroy the resources in cloud environment, run the following Terragrunt CLI commandin the 'iot/aws/terragrunt_template/' directory:
 1. terragrunt destroy
