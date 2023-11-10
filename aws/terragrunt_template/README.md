@@ -38,7 +38,7 @@ Please DONT commit this 'terraform.tfvars' file into any repository or in any pu
 
 If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets.
 
-Please ensure to create the secrets as per the respective data type defined in the respective module - 'variables.tf' file.
+Please ensure to create the secrets as per the data type defined in the respective module - 'variables.tf' file.
 
 ## Module Inputs
 If you are interested in using HashiCorp Vault for secrets management, then please follow below steps:
