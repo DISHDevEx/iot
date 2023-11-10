@@ -9,7 +9,7 @@ Inorder to use the Terraform modules with Terragrunt, you need to configure your
 ```
 terragrunt_template/
 ├── data-sources.tf
-├── .gitignore
+├── index.py.zip
 ├── main.tf
 ├── outputs.tf
 ├── README.md
@@ -18,7 +18,7 @@ terragrunt_template/
 ```
 4. Create a 'terraform.tfvars' file in the 'terragrunt_template/' directory with following data - This helps the Terragrunt to pickup the provider and backend variable values directly from this file.
 
-   aws_region                  = "xxxxxxxx" # AWS region name. Example: "us-east-1"
+   aws_region                  = "xxxxxxxx" #AWS region name. Example: "us-east-1"
 
    profile                     = "xxxxxxxx" #Profile name as defined in '~/.aws/credentials' file
 
@@ -59,7 +59,7 @@ If you are NOT interested in using HashiCorp Vault for secrets management, then 
 ## Execution
 To deploy the resources in cloud environment as per the configuration in 'terragrunt.hcl' file, use the following Terragrunt CLI commands:
 1. terragrunt init
-2. terragrunt plan
+2. terragrunt plan 
 3. terragrunt apply
 4. terragrunt output
 ## Destruction
