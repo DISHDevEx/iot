@@ -13,7 +13,7 @@ To deploy the resources in cloud environment as per the configuration in 'terrag
 3. terragrunt apply
 4. terragrunt output
 ## Destruction
-To destroy the resources in cloud environment, use the following Terragrunt CLI commands:
+To destroy the resources in cloud environment, use the following Terragrunt CLI command:
 1. terragrunt destroy
 # Terragrunt Template
 ## Introduction

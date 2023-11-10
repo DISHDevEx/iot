@@ -9,7 +9,7 @@ Inorder to use the Terraform modules with Terragrunt, you need to configure your
 ```
 terragrunt_template/
 ├── data-sources.tf
-├── index.py.zip
+├── index.py.zip #This is a sample code file for 'lambda_function' module.
 ├── main.tf
 ├── outputs.tf
 ├── README.md
@@ -63,5 +63,5 @@ To deploy the resources in cloud environment as per the configuration in 'terrag
 3. terragrunt apply
 4. terragrunt output
 ## Destruction
-To destroy the resources in cloud environment, use the following Terragrunt CLI commands:
+To destroy the resources in cloud environment, use the following Terragrunt CLI command:
 1. terragrunt destroy
