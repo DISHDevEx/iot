@@ -2,70 +2,46 @@
 ## Introduction
 This template can be used to create different types of AWS resources with desired configuration.
 ## Prerequisites
-Inorder to use the Terraform modules with Terragrunt, you need to configure your system with following prerequisites.
-1. Install Terraform.
-2. Install Terragrunt.
-3. Copy all files from this [folder](https://github.com/DISHDevEx/iot/tree/main/aws/terragrunt_template) to your local directory as per following directory structure,
-```
-terragrunt_template/
-├── data-sources.tf
-├── .gitignore
-├── main.tf
-├── outputs.tf
-├── README.md
-├── terragrunt.hcl
-└── variables.tf
-```
-4. Create a 'provider.tfvars' file in the same directory with following data - This helps the Terragrunt to pickup the provider variable values directly from this file.
+In order to use the Terraform modules with Terragrunt, you need to configure your system with following prerequisites.
 
-   aws_region         = "xxxxxx"
+1. Based on your Operating System, install Terraform by following the instructions mentioned on this [page](https://developer.hashicorp.com/terraform/install)
 
-   profile            = "xxxxxx" #Profile name as defined in '~/.aws/credentials' file
+2. Based on your Operating System, install Terraform by following the instructions mentioned on this [page](https://terragrunt.gruntwork.io/docs/getting-started/install/)  
+
+3. As the [iot](https://github.com/DISHDevEx/iot) is a private repository in [DISHDevEx](https://github.com/DISHDevEx), ensure you have access to this and add your local system SSH key to your GitHub account by following the instructions on below pages as per your Operation System: a) [Generate new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) b) [Add SSH key to GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) c) [Test SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+
+4. Clone the iot repository into your local system using this git command: git clone git@github.com:DISHDevEx/iot.git
+
+5. Create a 'terraform.tfvars' file in the 'iot/aws/terragrunt_template/' directory with following data - This helps the Terragrunt to pick up the provider and backend variable values directly from this file.
+
+   aws_region                  = "xxxxxxxx" #AWS region name. Example: "us-east-1"
+
+   profile                     = "xxxxxxxx" #Profile name as defined in '~/.aws/credentials' file
+
+   backend_bucket_name         = "xxxxxxxx" #S3 bucket name to store the 'terraform.tfstate' file
+
+   backend_bucket_key          = "xxxxxxxx" #File path to store the 'terraform.tfstate' file
+
+   backend_dynamodb_table_name = "xxxxxxxx" #Dynamodb table name to lock the 'terraform.tfstate' file 
 
    #Below vault inputs are required only if you want to pass the input values from the HashiCorp Vault
 
-   vault_address      = "xxxxxx" 
+   vault_address      = "xxxxxx" #HashiCorp Vault http/https address
 
-   vault_token        = "xxxxxx"
+   vault_token        = "xxxxxx" #HashiCorp Vault access token
 
-   vault_secrets_path = "xxxxxx"
+   vault_secrets_path = "xxxxxx" #Secrets path in the HashiCorp Vault instance
 
 Note: 
 
-Please DONT commit this 'provider.tfvars' file into any repository or in any publicly accessible location.
+Please DONT commit this 'terraform.tfvars' file into any repository or in any publicly accessible location.
 
 If you are interested in using HashiCorp Vault for secrets management, then please ensure to have a running HashiCorp Vault system with valid 'address', authentication 'token' and 'secrets path' with required secrets.
 
-Please ensure to create the secrets as per the respective data type defined in the respective module - 'variables.tf' file.
-
-5. Create a 's3_backend.tfvars.json' file in the same directory with following data - This helps the Terragrunt to pickup the backend variable values directly from this file.
-
-   {
-
-     "_comment_1": "Below values are used to set the configuration for S3 backend defined in 'terragrunt.hcl' file",
-
-     "aws_region": "xxxxxxxx",
-
-     "profile": "xxxxxxxxxxxx",
-
-     "backend_bucket_name": "xxxxxxxxxxxxx",
-
-     "backend_bucket_key": "xxxxxxxxxxx",
-
-     "backend_dynamodb_table_name": "xxxxxxxxxxxx"
-
-   }
-
-   To pass these variables values from the json file to Terragrunt, please execute below command to set the file path as environment variable.
-   
-   #CLI command:
-   
-   Linux and mac OS CLI: export TG_VAR_BACKEND_TFVARS_FILE=s3_backend.tfvars.json
-
-   Windows CMD: SET TG_VAR_BACKEND_TFVARS_FILE=s3_backend.tfvars.json
+Please ensure to create the secrets as per the data type defined in the respective module - 'variables.tf' file.
 
 ## Module Inputs
-If you are interested in using HashiCorp Vault for secrets management, then please follow below steps:
+If you are interested in using HashiCorp Vault for secrets management, then please follow below steps in the 'iot/aws/terragrunt_template/' directory:
 1. Uncomment the vault datasource defined in 'data-sources.tf' file
 2. Uncomment the vault provider defined in 'terragrunt.hcl' file
 3. Update the outputs as required in 'outputs.tf' file
@@ -77,11 +53,11 @@ If you are NOT interested in using HashiCorp Vault for secrets management, then 
 3. Update the 'main.tf' file with required modules and respective inputs
 
 ## Execution
-To deploy the resources in cloud environment as per the configuration in 'terragrunt.hcl' file, use the following Terragrunt CLI commands:
+To deploy the resources in cloud environment as per the configuration in 'terragrunt.hcl' file, run the following Terragrunt CLI commands in the 'iot/aws/terragrunt_template/' directory:
 1. terragrunt init
-2. terragrunt plan
+2. terragrunt plan 
 3. terragrunt apply
 4. terragrunt output
 ## Destruction
-To destroy the resources in cloud environment, use the following Terragrunt CLI commands:
+To destroy the resources in cloud environment, run the following Terragrunt CLI commandin the 'iot/aws/terragrunt_template/' directory:
 1. terragrunt destroy

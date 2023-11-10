@@ -17,6 +17,10 @@ a) Here the variable vaules of bucket_name, bucket_versioning, pass_bucket_polic
 b) While the versioning_configuration.status parameter supports Disabled, this value is only intended for creating or importing resources that correspond to unversioned S3 buckets.
    Updating the value from Enabled or Suspended to Disabled will result in errors as the AWS S3 API does not support returning buckets to an unversioned state.
 
+c) In order to identify the buckets created with the template, we are appending ‘iot-’ string to the bucket name in the background. 
+
+Example: If the input for the bucket_name is "tg-test-bucket" then the actual instance name post creation would be "iot-tg-test-bucket"
+
 ### 's3' Module Inputs - Without HashiCorp Vault:
 #Example for 's3' module
 1. bucket_name = "xxxxxxxxx"
@@ -30,3 +34,7 @@ b) While the versioning_configuration.status parameter supports Disabled, this v
 
 a) While the versioning_configuration.status parameter supports Disabled, this value is only intended for creating or importing resources that correspond to unversioned S3 buckets.
    Updating the value from Enabled or Suspended to Disabled will result in errors as the AWS S3 API does not support returning buckets to an unversioned state.
+
+b) In order to identify the buckets created with the template, we are appending ‘iot-’ string to the bucket name in the background. 
+
+Example: If the input for the bucket_name is "tg-test-bucket" then the actual instance name post creation would be "iot-tg-test-bucket"
