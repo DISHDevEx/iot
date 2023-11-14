@@ -89,7 +89,6 @@ variable "tags" {
   default     = {}
 }
 
-#####
 # default stage
 variable "default_stage_access_log_destination_arn" {
   description = "Default stage's ARN of the CloudWatch Logs log group to receive access logs. Any trailing :* is trimmed from the ARN."
@@ -103,10 +102,6 @@ variable "default_stage_access_log_format" {
   default     = null
 }
 
-#####
-# default stage API mapping
-
-####
 # routes and integrations
 variable "integrations" {
   description = "Map of API gateway routes with integrations"

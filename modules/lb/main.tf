@@ -1,5 +1,5 @@
 resource "aws_lb" "this" {
-  name        = var.name
+  name        =  format("iot-%s", var.name)
 
   load_balancer_type = var.load_balancer_type
   internal           = var.internal
