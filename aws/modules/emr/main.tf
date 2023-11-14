@@ -89,7 +89,7 @@ resource "aws_emr_cluster" "this" {
     }
   }
 
-  name                   = var.name
+  name                   = format("iot-%s", var.name)
   release_label          = var.release_label
   scale_down_behavior    = var.scale_down_behavior
   service_role           = var.service_iam_role_arn
