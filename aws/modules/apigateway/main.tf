@@ -1,5 +1,5 @@
 resource "aws_apigatewayv2_api" "this" {
-  name          = var.name
+  name          =  format("iot-%s", var.name)
   description   = var.description
   protocol_type = var.protocol_type
   version       = var.api_version
