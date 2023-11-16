@@ -64,3 +64,8 @@
 #  value       = module.step_function[*]
 #}
 
+#output "sns_outputs" {
+#  description = "SNS Topic ARN"
+#  value       = module.sns[*]
+#}
+
