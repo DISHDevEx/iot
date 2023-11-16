@@ -59,3 +59,8 @@
 #   value       = module.vpc[*]
 # }
 
+#output "sfn_outputs" {
+#  description = "EKS Cluster name and arn"
+#  value       = module.step_function[*]
+#}
+

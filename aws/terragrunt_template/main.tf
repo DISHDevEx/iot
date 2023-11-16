@@ -359,3 +359,32 @@ Terraform configuration for all modules.
 #   vpc_security_group_ids    = [data.vault_generic_secret.getsecrets.data["vpc_security_group_ids"]]
 # }
 
+#Step Function
+#module "step_function" {
+#  source = "/Users/mariamanisha.miranda/Desktop/iot/aws/modules/step_function"
+#  step_function_name                    = "iot-MyStepFunction"
+#  flag_use_existing_role                = false
+#  step_function_cloudwatch_log          = "test-log-group"
+#  state_machine_type                    = "EXPRESS"
+#  logging_config_level                  = "ALL"
+#  include_execution_data_status         = true
+#  sfn_role_name                         = "step_function_test"
+#  flag_use_existing_policy              = true
+#  policy_count                          = 2
+#  existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
+#  permission_boundary                   = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
+#  start_task = "task1"
+#  state_object_list = [
+#    {
+#      name     = "task1",
+#      type     = "Task",
+#      resource = "arn:aws:lambda:us-east-1:064047601590:function:iot-test",
+#    },
+#    {
+#      name     = "task2",
+#      type     = "Task",
+#      resource = "arn:aws:lambda:us-east-1:064047601590:function:iot-test2",
+#    }
+#  ]
+#
+#}
