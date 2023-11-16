@@ -388,3 +388,32 @@ Terraform configuration for all modules.
 #  ]
 #
 #}
+
+##SNS module
+#module "sns" {
+#  source                            = "/Users/mariamanisha.miranda/Desktop/iot/aws/modules/sns"
+#  sns_topic_name                    = "test-sns"
+#  display_name                      = "test-sns"
+#  delivery_policy               = jsonencode({
+#    "http" : {
+#      "defaultHealthyRetryPolicy" : {
+#        "minDelayTarget" : 20,
+#        "maxDelayTarget" : 20,
+#        "numRetries" : 3,
+#        "numMaxDelayRetries" : 0,
+#        "numNoDelayRetries" : 0,
+#        "numMinDelayRetries" : 0,
+#        "backoffFunction" : "linear"
+#      },
+#      "disableSubscriptionOverrides" : false,
+#      "defaultThrottlePolicy" : {
+#        "maxReceivesPerSecond" : 1
+#      }
+#    }
+#  })
+#  topic_arn                         = null
+#  fifo_topic                        = false
+#  content_based_deduplication       = false
+#  protocol                          = "email"
+#  endpoint                          = "mariamanisha.miranda@dish.com"
+#}
