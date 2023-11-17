@@ -306,3 +306,59 @@ variable "map_public_ip_on_launch_public" {
   default     = true
 }
 
+##Helm-chart
+
+variable "helm_chart_deploy" {
+  description = "Flag to determine whether to deploy Helm chart"
+  type        = bool
+  default     = false
+}
+
+variable "namespace" {
+  description = "namespace where to deploy an application"
+  type        = string
+  default     = null
+}
+
+variable "app" {
+  description = "an application to deploy"
+  type        = map(any)
+  default     = null
+}
+
+variable "repository_config" {
+  description = "repository configuration"
+  type        = map(any)
+  default     = {}
+}
+
+variable "values" {
+  description = "Extra values"
+  type        = list(string)
+  default     = []
+}
+
+variable "set" {
+  description = "Value block with custom STRING values to be merged with the values yaml."
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = null
+}
+
+variable "set_sensitive" {
+  description = "Value block with custom sensitive values to be merged with the values yaml that won't be exposed in the plan's diff."
+  type = list(object({
+    path  = string
+    value = string
+  }))
+  default = null
+}
+
+variable "repository" {
+  description = "Helm repository"
+  type        = string
+  default     = null
+}
+

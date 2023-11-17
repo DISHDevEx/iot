@@ -1,5 +1,5 @@
 resource "helm_release" "this" {
-  count                      = var.app["deploy"] ? 1 : 0
+#  count                      = var.app["deploy"] ? 1 : 0
   namespace                  = var.namespace
   repository                 = var.repository
   repository_key_file        = lookup(var.repository_config, "repository_key_file", null)

@@ -65,7 +65,19 @@ resource "aws_eks_cluster" "eks_cluster_template" {
   vpc_config {
     subnet_ids = var.flag_use_existing_subnet ? var.existing_subnet_ids : module.vpc[0].subnet_ids
   }
+}
 
+module "helm_chart" {
+  count             = var.helm_chart_deploy ? 1 : 0
+  source            = "git@github.com:DISHDevEx/iot.git//aws/modules/helm"
+  app               = var.app
+  repository_config = var.repository_config
+  namespace         = var.namespace
+  repository        = var.repository
+  set               = var.set
+  set_sensitive     = var.set_sensitive
+
+  depends_on = [aws_eks_cluster.eks_cluster_template]
 }
 
 module "node_group_role" {
