@@ -11,7 +11,7 @@
 #   value       = module.ec2_instance[*]
 # }
 
-#eks_cluster - module output
+##eks_cluster - module output
 # output "eks_cluster_outputs" {
 #   description = "EKS cluster arn"
 #   value       = module.eks_cluster[*]
@@ -64,8 +64,8 @@
 #  value       = module.step_function[*]
 #}
 
-#output "sns_outputs" {
-#  description = "SNS Topic ARN"
-#  value       = module.sns[*]
-#}
+output "sns_outputs" {
+  description = "SNS Topic ARN"
+  value       = module.sns[*]
+}
 
