@@ -10,13 +10,13 @@ Terraform configuration for all modules.
 #   ec2_configurations = [
 #     {
 #       instance_count = 1
-#       ami_id         = "ami-0a89b4f85b0b6f49c"
+#       ami_id         = "ami-04f767d954fe2d2d1"
 #       instance_type  = "t2.micro"
 #       instance_names = ["Linux_Env1"]
 #     },
 #     {
 #       instance_count = 1
-#       ami_id         = "ami-024c3652b28842b66"
+#       ami_id         = "ami-05fb0b8c1424f266b"
 #       instance_type  = "t3.micro"
 #       instance_names = ["Ubuntu_Env1"]
 #     }
@@ -70,26 +70,26 @@ Terraform configuration for all modules.
 #   Example: iam_instance_profile_name = data.vault_generic_secret.getsecrets.data["iam_instance_profile_name"] #This works only if you had pre-configured this value in your vault instance.
 #   Note: Please don't commit any file with sensitive information to code repository or publicly accessible location.
 #   */
-#   #You can either pass iam_instance_profile_name value directly as "ssm-role-5g-dp-dev" or use the 'iam' module output as module.iam_role.iam_instance_profile_name
-#   iam_instance_profile_name = "ssm-role-5g-dp-dev"
-#   key_pair_name             = "Leto_DishTaasAdminDev_EC2"
-#   subnet_id                 = "subnet-05b845545c737ac56"
-#   vpc_security_group_ids    = ["sg-09141b3415e566e1a"]
+#   #You can either pass iam_instance_profile_name value directly as per the format below or use the 'iam' module output as module.iam_role.iam_instance_profile_name
+#   iam_instance_profile_name = "xxxxxxxxxxx"
+#   key_pair_name             = "xxxxxxxxxxx"
+#   subnet_id                 = "xxxxxxxxxxx"
+#   vpc_security_group_ids    = ["xxxxxxxxxx"]
 # }
 
 ##EKS module
 # module "eks_cluster" {
 #   source                                       = "git@github.com:DISHDevEx/iot.git//aws/modules/eks_cluster"
 #   flag_use_existing_vpc                        = true
-#   existing_vpc_id                              = "vpc-0eb0f6cc5c4f183c0"
+#   existing_vpc_id                              = "xxxxxxxxxxxxxxxx"
 #   flag_use_existing_subnet                     = true
-#   existing_subnet_ids                          = ["subnet-057c4020b8d00ac2d", "subnet-03bf51decd06148fc"]
+#   existing_subnet_ids                          = ["xxxxxxxxxxxxxxx", "xxxxxxxxxxxxx"]
 #   flag_use_existing_subnet_route_table         = true
-#   existing_subnet_route_table_id               = "rtb-09332b21e5feb567a"
+#   existing_subnet_route_table_id               = "xxxxxxxxxxxxx"
 #   flag_use_existing_eks_execution_role         = true
-#   existing_eks_iam_role_arn                    = "arn:aws:iam::064047601590:role/mss-eks-cluster-role"
+#   existing_eks_iam_role_arn                    = "xxxxxxxxxxxxxxxxxxxxx"
 #   flag_use_existing_node_group_role            = true
-#   existing_node_group_iam_role_arn             = "arn:aws:iam::064047601590:role/test_node_group_role"
+#   existing_node_group_iam_role_arn             = "xxxxxxxxxxxxxxxxxxxxx"
 #   eks_cluster_name                             = "eks_cluster"
 #   eks_node_group_name                          = "eks_node"
 #   eks_node_capacity_type                       = "ON_DEMAND"
@@ -109,8 +109,8 @@ Terraform configuration for all modules.
 #   handler                = "index.handler"
 #   runtime                = "python3.8"
 #   flag_use_existing_role = true
-#   #You can either pass existing role arn as "arn:aws:iam::064047601590:role/iot-test-lambda-role" or use the 'iam' module output as module.iam_role.iam_role_arn
-#   existing_role_arn      = "arn:aws:iam::064047601590:role/iot-test-lambda-role" 
+#   #You can either pass existing role arn as "arn:aws:iam::xxxxxxxxxxxxxxxxx" or use the 'iam' module output as module.iam_role.iam_role_arn
+#   existing_role_arn      = "arn:aws:iam::xxxxxxxxxxxxxxxxxx" 
 # }
 
 ##Lambda Function using new role with new policies
@@ -156,7 +156,7 @@ Terraform configuration for all modules.
 #      ]
 #    }
 #  EOT
-#  permission_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
+#  permission_boundary = "arn:aws:iam::xxxxxxxxxxxxxxxxxxxxxx"
 # }
 
 ##Lambda Function using new role with existing policies
@@ -171,7 +171,7 @@ Terraform configuration for all modules.
 #  flag_use_existing_policy              = true
 #  policy_count                          = 2
 #  existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
-#  permission_boundary                   = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
+#  permission_boundary                   = "arn:aws:iam::xxxxxxxxxxxxxxxxx"
 # }
 
 ##Security Group module
@@ -185,7 +185,7 @@ Terraform configuration for all modules.
 #   egress_port                = 0
 #   egress_protocol            = "-1"
 #   egress_cidr_blocks         = ["0.0.0.0/0"]
-#   vpc_id                     = "vpc-0eb0f6cc5c4f183c0"
+#   vpc_id                     = "xxxxxxxxxxxx"
 # }
 
 ##IAM module 
@@ -237,7 +237,7 @@ Terraform configuration for all modules.
 #     EOT
 
 #   iam_policy_name     = "iamroleInlinePolicy"
-#   permission_boundary = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
+#   permission_boundary = "arn:aws:iam::xxxxxxxxxxxxxxxxxxxx"
 # }
 
 ##Glue Job module
@@ -247,8 +247,8 @@ Terraform configuration for all modules.
 #   job_names                             = ["GluejobA", "GluejobB"]
 #   connections                           = []
 #   create_role                           = false
-#   #You can either pass role_arn value directly as "arn:aws:iam::064047601590:role/dpi-radcom-be-glue-prometheus-us-east-1-role" or use the 'iam' module output as module.iam_role.iam_role_arn
-#   role_arn                              = "arn:aws:iam::064047601590:role/dpi-radcom-be-glue-prometheus-us-east-1-role"
+#   #You can either pass role_arn value directly as "arn:aws:iam::xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" or use the 'iam' module output as module.iam_role.iam_role_arn
+#   role_arn                              = "arn:aws:iam::xxxxxxxxxxxxxxxxxxxx"
 #   description                           = "IOT Glue job"
 #   glue_version                          = "3.0"
 #   max_retries                           = 0
@@ -256,7 +256,7 @@ Terraform configuration for all modules.
 #   security_configuration                = ""
 #   worker_type                           = "G.1X"
 #   number_of_workers                     = 2
-#   script_location                       = "s3://dish-dp-us-east-1-064047601590-sc-artifacts/prometheus-s3-template/products/prometheus-s3/v8/glue/script/dpi-prometheus-to-s3/dpi-prometheus-to-s3-job.py"
+#   script_location                       = "xxxxxxxxxxxxxxxxxxxxxxx"
 #   python_version                        = 3
 #   job_language                          = "python"
 #   class                                 = null
@@ -286,7 +286,7 @@ Terraform configuration for all modules.
 #   source                                                     = "git@github.com:DISHDevEx/iot.git//aws/modules/sagemaker"
 #   enable_sagemaker_notebook_instance                         =  true
 #   sagemaker_notebook_instance_name                           =  "iot-sagemaker"
-#   sagemaker_notebook_instance_role_arn                       =  "arn:aws:iam::064047601590:role/SagemakerEMRNoAuthProductWi-SageMakerExecutionRole-1KF4KOLT4YA6A"
+#   sagemaker_notebook_instance_role_arn                       =  "arn:aws:iam::xxxxxxxxxxxxxxxxxxx"
 #   sagemaker_notebook_instance_instance_type                  =  "ml.t2.medium"
 #   sagemaker_notebook_instance_subnet_id                      =  null
 #   sagemaker_notebook_instance_security_groups                =  null
@@ -313,20 +313,20 @@ Terraform configuration for all modules.
 # module "vpc" {
 #   source = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc"
 #   vpc_name = "tg-test-vpc"
-#   vpc_cidr_block = "10.5.128.0/18"
+#   vpc_cidr_block = "xxxxxxxxx"
 #   vpc_instance_tenancy = "default"
 #   vpc_enable_dns_support = true
 #   vpc_enable_dns_hostnames = true
 #   vpc_assign_generated_ipv6_cidr_block = false
 
 #   subnet_name = ["subnet1", "subnet2"]
-#   subnet_cidr_block = ["10.5.132.0/24", "10.5.133.0/24"]
+#   subnet_cidr_block = ["xxxxxxxxxxx", "xxxxxxxxxxxx"]
 #   subnet_availability_zone = ["us-east-1a", "us-east-1b"]
 #   subnet_map_public_ip_on_launch = false
 #   subnet_assign_ipv6_address_on_creation = false
 
 #   route_table_name = "route_table"
-#   route_table_cidr_block = "10.5.128.0/18"
+#   route_table_cidr_block = "xxxxxxxxx"
 #   route_table_gateway_id = "local"
 # }
 
@@ -372,18 +372,18 @@ Terraform configuration for all modules.
 #  flag_use_existing_policy              = true
 #  policy_count                          = 2
 #  existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
-#  permission_boundary                   = "arn:aws:iam::064047601590:policy/TaaSAdminDev_Permission_Boundary"
+#  permission_boundary                   = "arn:aws:iam::xxxxxxxxxxxxxxxx"
 #  start_task = "task1"
 #  state_object_list = [
 #    {
 #      name     = "task1",
 #      type     = "Task",
-#      resource = "arn:aws:lambda:us-east-1:064047601590:function:iot-test",
+#      resource = "arn:aws:lambda:xxxxxxxxxxxxxxxxxxx",
 #    },
 #    {
 #      name     = "task2",
 #      type     = "Task",
-#      resource = "arn:aws:lambda:us-east-1:064047601590:function:iot-test2",
+#      resource = "arn:aws:lambda:xxxxxxxxxxxxxxxxxxx",
 #    }
 #  ]
 #
@@ -415,5 +415,5 @@ Terraform configuration for all modules.
 #  fifo_topic                        = false
 #  content_based_deduplication       = false
 #  protocol                          = "email"
-#  endpoint                          = "mariamanisha.miranda@dish.com"
+#  endpoint                          = "xxxxxxxxxxxxxxxx"
 #}
