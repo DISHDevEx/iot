@@ -4,7 +4,7 @@
 ## 'ec2' Module Inputs - With HashiCorp Vault:
 #Example for 'ec2' module - You need to configure these values in the terragrunt_template/main.tf file
 1. instance_count            = 2
-2. ami_id                    = "ami-0a89b4f85b0b6f49c"
+2. ami_id                    = "ami-04f767d954fe2d2d1"
 3. instance_type             = "t2.micro"
 4. root_volume_type          = "gp3"
 5. root_volume_size          = 20
@@ -29,7 +29,7 @@ Example: If the input for the instance name is "Dev1_Env" then the actual instan
 ## 'ec2' Module Inputs - Without HashiCorp Vault:
 #Example for 'ec2' module - You need to configure these values in the terragrunt_template/main.tf file
 1. instance_count            = 2
-2. ami_id                    = "ami-0a89b4f85b0b6f49c"
+2. ami_id                    = "ami-04f767d954fe2d2d1"
 3. instance_type             = "t2.micro"
 4. root_volume_type          = "gp3"
 5. root_volume_size          = 20

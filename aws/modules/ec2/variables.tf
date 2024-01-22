@@ -7,7 +7,7 @@ variable "instance_count" {
 variable "ami_id" {
   description = "Amazon Machine Image(AMI) Id"
   type        = string
-  default     = "ami-0a89b4f85b0b6f49c"
+  default     = null
 }
 variable "instance_type" {
   description = "EC2 instance type"
