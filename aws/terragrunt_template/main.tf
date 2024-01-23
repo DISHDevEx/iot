@@ -109,13 +109,13 @@ Terraform configuration for all modules.
 #   handler                = "index.handler"
 #   runtime                = "python3.8"
 #   flag_use_existing_role = true
-#   #You can either pass existing role arn as "arn:aws:iam::xxxxxxxxxxxxxxxxx" or use the 'iam' module output as module.iam_role.iam_role_arn
-#   existing_role_arn      = "arn:aws:iam::xxxxxxxxxxxxxxxxxx" 
+#   #You can either pass existing role arn or use the 'iam' module output as module.iam_role.iam_role_arn
+#   existing_role_arn      = "xxxxxxxxxxxxxxxxxx" 
 # }
 
 ##Lambda Function using new role with new policies
 # module "lambda_function" {
-#  source                    = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
+#  source                   = "git@github.com:DISHDevEx/iot.git//aws/modules/lambda_function"
 #  lambda_function_name     = "tg_test_lambda"
 #  filepath                 = "./index.py.zip"
 #  handler                  = "index.handler"
@@ -156,7 +156,7 @@ Terraform configuration for all modules.
 #      ]
 #    }
 #  EOT
-#  permission_boundary = "arn:aws:iam::xxxxxxxxxxxxxxxxxxxxxx"
+#  permission_boundary = "xxxxxxxxxxxxxxxxxxxxxx"
 # }
 
 ##Lambda Function using new role with existing policies
@@ -170,8 +170,8 @@ Terraform configuration for all modules.
 #  lambda_role_name                      = "test-role"
 #  flag_use_existing_policy              = true
 #  policy_count                          = 2
-#  existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
-#  permission_boundary                   = "arn:aws:iam::xxxxxxxxxxxxxxxxx"
+#  existing_iam_policy_arns              = ["xxxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxxx"]
+#  permission_boundary                   = "xxxxxxxxxxxxxxxxx"
 # }
 
 ##Security Group module
@@ -181,10 +181,10 @@ Terraform configuration for all modules.
 #   security_group_description = "security group for IOT Boat"
 #   ingress_port               = 443
 #   ingress_protocol           = "tcp"
-#   ingress_cidr_blocks        = ["0.0.0.0/32"]
+#   ingress_cidr_blocks        = ["xxxxxxxxxx"]
 #   egress_port                = 0
 #   egress_protocol            = "-1"
-#   egress_cidr_blocks         = ["0.0.0.0/0"]
+#   egress_cidr_blocks         = ["xxxxxxxxxx"]
 #   vpc_id                     = "xxxxxxxxxxxx"
 # }
 
@@ -236,8 +236,8 @@ Terraform configuration for all modules.
 #       }
 #     EOT
 
-#   iam_policy_name     = "iamroleInlinePolicy"
-#   permission_boundary = "arn:aws:iam::xxxxxxxxxxxxxxxxxxxx"
+#   iam_policy_name     = "xxxxxxxxxxxxxxxxxxxx"
+#   permission_boundary = "xxxxxxxxxxxxxxxxxxxx"
 # }
 
 ##Glue Job module
@@ -247,8 +247,8 @@ Terraform configuration for all modules.
 #   job_names                             = ["GluejobA", "GluejobB"]
 #   connections                           = []
 #   create_role                           = false
-#   #You can either pass role_arn value directly as "arn:aws:iam::xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" or use the 'iam' module output as module.iam_role.iam_role_arn
-#   role_arn                              = "arn:aws:iam::xxxxxxxxxxxxxxxxxxxx"
+#   #You can either pass role_arn value directly as per the format below or use the 'iam' module output as module.iam_role.iam_role_arn
+#   role_arn                              = "xxxxxxxxxxxxxxxxxxxx"
 #   description                           = "IOT Glue job"
 #   glue_version                          = "3.0"
 #   max_retries                           = 0
@@ -286,7 +286,7 @@ Terraform configuration for all modules.
 #   source                                                     = "git@github.com:DISHDevEx/iot.git//aws/modules/sagemaker"
 #   enable_sagemaker_notebook_instance                         =  true
 #   sagemaker_notebook_instance_name                           =  "iot-sagemaker"
-#   sagemaker_notebook_instance_role_arn                       =  "arn:aws:iam::xxxxxxxxxxxxxxxxxxx"
+#   sagemaker_notebook_instance_role_arn                       =  "xxxxxxxxxxxxxxxxxxx"
 #   sagemaker_notebook_instance_instance_type                  =  "ml.t2.medium"
 #   sagemaker_notebook_instance_subnet_id                      =  null
 #   sagemaker_notebook_instance_security_groups                =  null
@@ -364,26 +364,26 @@ Terraform configuration for all modules.
 #  source = "/Users/mariamanisha.miranda/Desktop/iot/aws/modules/step_function"
 #  step_function_name                    = "iot-MyStepFunction"
 #  flag_use_existing_role                = false
-#  step_function_cloudwatch_log          = "test-log-group"
+#  step_function_cloudwatch_log          = "xxxxxxxxxxx"
 #  state_machine_type                    = "EXPRESS"
 #  logging_config_level                  = "ALL"
 #  include_execution_data_status         = true
-#  sfn_role_name                         = "step_function_test"
+#  sfn_role_name                         = "xxxxxxxxxxx"
 #  flag_use_existing_policy              = true
 #  policy_count                          = 2
-#  existing_iam_policy_arns              = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchFullAccess"]
-#  permission_boundary                   = "arn:aws:iam::xxxxxxxxxxxxxxxx"
+#  existing_iam_policy_arns              = ["xxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxx"]
+#  permission_boundary                   = "xxxxxxxxxxxxxxxx"
 #  start_task = "task1"
 #  state_object_list = [
 #    {
 #      name     = "task1",
 #      type     = "Task",
-#      resource = "arn:aws:lambda:xxxxxxxxxxxxxxxxxxx",
+#      resource = "xxxxxxxxxxxxxxxxxxx",
 #    },
 #    {
 #      name     = "task2",
 #      type     = "Task",
-#      resource = "arn:aws:lambda:xxxxxxxxxxxxxxxxxxx",
+#      resource = "xxxxxxxxxxxxxxxxxxx",
 #    }
 #  ]
 #
@@ -391,10 +391,10 @@ Terraform configuration for all modules.
 
 ##SNS module
 #module "sns" {
-#  source                            = "/Users/mariamanisha.miranda/Desktop/iot/aws/modules/sns"
+#  source                            = "xxxxxxxxxxxxxxxxxxxxxxxxx"
 #  sns_topic_name                    = "test-sns"
 #  display_name                      = "test-sns"
-#  delivery_policy               = jsonencode({
+#  delivery_policy                   = jsonencode({
 #    "http" : {
 #      "defaultHealthyRetryPolicy" : {
 #        "minDelayTarget" : 20,
