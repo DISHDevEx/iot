@@ -10,6 +10,7 @@ variable "sagemaker_notebook_instance_name" {
 
 variable "sagemaker_notebook_instance_role_arn" {
   description = "(Required) The ARN of the IAM role to be used by the notebook instance which allows SageMaker to call other services on your behalf."
+  default     = "arn:aws:iam::xxxxxx"
 }
 
 variable "sagemaker_notebook_instance_instance_type" {
