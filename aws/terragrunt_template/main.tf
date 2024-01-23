@@ -175,8 +175,8 @@ Terraform configuration for all modules.
 # }
 
 ##Security Group module
-# module "security-group" {
-#   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group"
+# module "security_group" {
+#   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security_group"
 #   security_group_name        = "sample-security-group"
 #   security_group_description = "security group for IOT Boat"
 #   ingress_port               = 443
@@ -187,6 +187,30 @@ Terraform configuration for all modules.
 #   egress_cidr_blocks         = ["xxxxxxxxxx"]
 #   vpc_id                     = "xxxxxxxxxxxx"
 # }
+
+##Event Bridge module
+# module "eventbridge" {
+#   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/eventbridge"
+#   eventbus_name              = "sample-event_bus"
+#   role_permissions_boundary  = "arn:aws:iam::xxxxxxxxxxxxxxxxx"
+#   eventbridge_configurations = [
+#     {
+#       role_name                = "eventbridge_role_1"
+#       rule_description         = "1"
+#       rule_schedule_expression = "cron(0 15 ? * MON-FRI *)"
+#       target_name              = "1"
+#       target_arn               = "arn:aws:lambda:xxxxx"
+#     },
+#     {
+#       role_name                = "eventbridge_role_2"
+#       rule_description         = "2"
+#       rule_schedule_expression = "cron(0 15 ? * MON-FRI *)"
+#       target_name              = "2"
+#       target_arn               = "arn:aws:lambda:xxxxx"
+#     }
+#   ]
+# }
+
 
 ##IAM module 
 # module "iam_role" {

@@ -38,15 +38,6 @@ variable "start_task" {
   type        = string
 }
 
-#variable "state_object_list" {
-#  description = "A list of dynamic states with their names and resources."
-#  type        = list(object({
-#    Type          = string
-#    Name          = string
-#    Resource      = string
-##    resource_type = string
-#  }))
-#}
 
 variable "definition_comment" {
   type = string
@@ -58,14 +49,10 @@ variable "state_object_list" {
     {
       name     = "task1",
       type     = "Task",
-      resource = "arn:aws:lambda:us-east-1:064047601590:function:iot-test",
-#      end      = false
     },
     {
       name     = "task2",
       type     = "Task",
-      resource = "arn:aws:lambda:us-east-1:064047601590:function:iot-test2",
-#      end      = true
     }
   ]
 }
@@ -109,7 +96,6 @@ variable "iam_policy_name"{
 variable "permission_boundary"{
   description = "ARN of the policy that is used to set the permissions boundary for the role."
   type        = string
-  default     = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
 }
 
 variable "flag_use_existing_policy" {
@@ -123,19 +109,7 @@ variable "existing_iam_policy_arns" {
   type        = list(string)
   default     = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"]
 }
-#
-#variable "handler" {
-#  description = "Lambda function handler."
-#  type        = string
-#  default     = "index.handler"
-#}
-#
-#variable "runtime" {
-#  description = "Lambda function runtime."
-#  type        = string
-#  default     = "python3.8"
-#}
-#
+
 variable "new_iam_policy" {
   type = string
   default = <<-EOT
