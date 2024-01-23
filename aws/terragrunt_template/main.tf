@@ -175,8 +175,8 @@ Terraform configuration for all modules.
 # }
 
 ##Security Group module
-# module "security-group" {
-#   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security-group"
+# module "security_group" {
+#   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/security_group"
 #   security_group_name        = "sample-security-group"
 #   security_group_description = "security group for IOT Boat"
 #   ingress_port               = 443
