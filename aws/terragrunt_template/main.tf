@@ -188,6 +188,30 @@ Terraform configuration for all modules.
 #   vpc_id                     = "xxxxxxxxxxxx"
 # }
 
+##Event Bridge module
+# module "eventbridge" {
+#   source                     = "git@github.com:DISHDevEx/iot.git//aws/modules/eventbridge"
+#   eventbus_name              = "sample-event_bus"
+#   role_permissions_boundary  = "arn:aws:iam::xxxxxxxxxxxxxxxxx"
+#   eventbridge_configurations = [
+#     {
+#       role_name                = "eventbridge_role_1"
+#       rule_description         = "1"
+#       rule_schedule_expression = "cron(0 15 ? * MON-FRI *)"
+#       target_name              = "1"
+#       target_arn               = "arn:aws:lambda:xxxxx"
+#     },
+#     {
+#       role_name                = "eventbridge_role_2"
+#       rule_description         = "2"
+#       rule_schedule_expression = "cron(0 15 ? * MON-FRI *)"
+#       target_name              = "2"
+#       target_arn               = "arn:aws:lambda:xxxxx"
+#     }
+#   ]
+# }
+
+
 ##IAM module 
 # module "iam_role" {
 #   source             = "git@github.com:DISHDevEx/iot.git//aws/modules/iam"

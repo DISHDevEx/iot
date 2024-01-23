@@ -102,7 +102,6 @@ variable "iam_policy_name"{
 variable "eks_role_permission_boundary"{
   description = "ARN of the policy that is used to set the permissions boundary for the role."
   type        = string
-  default     = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
 }
 
 variable "new_iam_policy" {
@@ -239,7 +238,6 @@ variable "existing_node_group_iam_role_arn" {
 variable "node_group_permission_boundary"{
   description = "ARN of the policy that is used to set the permissions boundary for the role."
   type        = string
-  default     = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
 }
 
 variable "resource_prefix" {

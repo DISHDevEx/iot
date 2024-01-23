@@ -54,7 +54,6 @@ variable "iam_policy_name"{
 variable "permission_boundary"{
   description = "ARN of the policy that is used to set the permissions boundary for the role."
   type        = string
-  default     = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
 }
 
 variable "flag_use_existing_policy" {
