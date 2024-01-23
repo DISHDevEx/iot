@@ -57,7 +57,7 @@ variable "iam_policy" {
 
 variable "permission_boundary" {
   type    = string
-  default = "arn:aws:iam::064047601590:role/aws-reserved/sso.amazonaws.com/us-west-2/AWSReservedSSO_DishTaasAdminDev_ea612f790bd52334"
+  default = null
 }
 
 variable "flag_use_existing_policy" {
@@ -81,5 +81,5 @@ variable "policy_count" {
 variable "existing_iam_policy_arns" {
   description = "The ARN of an existing IAM policy to be attached to the IAM role."
   type        = list(string)
-  default     = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"]
+  default     = ["xxxxxxx","xxxxxxxx"]
 }
