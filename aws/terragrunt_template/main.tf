@@ -29,12 +29,14 @@ Terraform configuration for all modules.
 #       bucket_versioning       = "Enabled"
 #       pass_bucket_policy_file = true
 #       bucket_policy_file_path = "./sample-s3-bucket-policy.json"
+#       log_bucket              = "name-of-s3-bucket-for-logs"
 #     },
 #     {
 #       bucket_name             = "tg-test-bucket2"
 #       bucket_versioning       = "Disabled"
 #       pass_bucket_policy_file = false
 #       bucket_policy_file_path = null
+#       log_bucket              = "name-of-s3-bucket-for-logs"
 #     }
 #   ]
 # }
@@ -47,6 +49,7 @@ Terraform configuration for all modules.
 #   bucket_versioning       = each.value.bucket_versioning
 #   pass_bucket_policy_file = each.value.pass_bucket_policy_file
 #   bucket_policy_file_path = each.value.bucket_policy_file_path
+#   log_bucket              = each.value.log_bucket
 # }
 
 ##EC2 module 
