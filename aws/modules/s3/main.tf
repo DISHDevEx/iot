@@ -42,3 +42,9 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
   policy     = file(var.bucket_policy_file_path)
 }
 
+resource "aws_s3_bucket_logging" "logging_bucket" {
+  bucket        = aws_s3_bucket.s3.id
+  target_bucket = var.log_bucket
+  target_prefix = "log/"
+}
+
