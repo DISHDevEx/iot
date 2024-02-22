@@ -16,7 +16,8 @@ resource "aws_lambda_function" "iot_lambda_template" {
 
 #  source_code_hash = filebase64sha256(var.filepath)
 
-  runtime          = var.runtime
+  runtime                 = var.runtime
+  code_signing_config_arn = aws_lambda_code_signing_config.code_signing_config.arn
 
   environment {
     variables = {
@@ -30,6 +31,13 @@ resource "aws_lambda_function" "iot_lambda_template" {
   }
 }
 
+resource "aws_lambda_code_signing_config" "code_signing_config" {
+  allowed_publishers {
+    signing_profile_version_arns = [var.signing_profile_arn]
+  }
+
+  policies = "Warn"
+}
 
 module "iam" {
   count                    = var.flag_use_existing_role ? 0 : 1
