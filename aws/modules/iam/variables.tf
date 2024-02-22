@@ -8,25 +8,6 @@ variable "iam_role_name" {
 }
 variable "assume_role_policy" {
   type    = string
-  default = <<EOF
-{
-  "Version" : "2012-10-17",
-  "Statement" : [
-    {
-      "Effect" : "Allow",
-      "Principal" : {
-        "Service" : [
-          "ssm.amazonaws.com",
-          "glue.amazonaws.com",
-          "ec2.amazonaws.com",
-          "lambda.amazonaws.com"
-        ]
-      },
-      "Action" : "sts:AssumeRole"
-    }
-  ]
-}
-EOF
 }
 
 variable "iam_policy_name" {
@@ -36,23 +17,6 @@ variable "iam_policy_name" {
 
 variable "iam_policy" {
   type    = string
-  default = <<-EOT
-    {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Action": "ec2:Describe*",
-          "Effect": "Allow",
-          "Resource": "*"
-        },
-        {
-          "Action": "glue:StartJobRun",
-          "Effect": "Allow",
-          "Resource": "*"
-        }
-      ]
-    }
-  EOT
 }
 
 variable "permission_boundary" {
