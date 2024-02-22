@@ -29,7 +29,7 @@ locals {
 
 module "sfn_iam" {
   count                    = var.flag_use_existing_role ? 0 : 1
-  source                   = "git@github.com:DISHDevEx/iot.git//aws/modules/iam"
+  source                   = "git@github.com:DISHDevEx/iot.git//aws/modules/iam?ref=main"
   aws_region               = data.aws_region.current.name
   iam_role_name            = var.sfn_role_name
   assume_role_policy       = <<EOF

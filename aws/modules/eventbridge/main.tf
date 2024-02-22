@@ -1,5 +1,5 @@
 module "eventbridge" {
-  source  = "terraform-aws-modules/eventbridge/aws"
+  source  = "terraform-aws-modules/eventbridge/aws?ref=master"
   for_each = { for index, config in var.eventbridge_configurations : index => config }
   version = "v1.17.1"
 

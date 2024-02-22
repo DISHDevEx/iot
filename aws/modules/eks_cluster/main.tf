@@ -9,7 +9,7 @@ data "aws_caller_identity" "current" {
 # VPC module
 module "vpc" {
   count                                  = var.flag_use_existing_vpc ? 0 : 1
-  source                                 = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc"
+  source                                 = "git@github.com:DISHDevEx/iot.git//aws/modules/vpc?ref=main"
   vpc_name                               = var.vpc_name
   vpc_cidr_block                         = var.vpc_cidr
   vpc_instance_tenancy                   = var.vpc_instance_tenancy
@@ -31,7 +31,7 @@ module "vpc" {
 
 module "eks_execution_role" {
   count                    = var.flag_use_existing_eks_execution_role ? 0 : 1
-  source                   = "git@github.com:DISHDevEx/iot.git//aws/modules/iam"
+  source                   = "git@github.com:DISHDevEx/iot.git//aws/modules/iam?ref=main"
   aws_region               = data.aws_region.current.name
   iam_role_name            = var.eks_role_name
   assume_role_policy       = <<POLICY
@@ -70,7 +70,7 @@ resource "aws_eks_cluster" "eks_cluster_template" {
 
 module "node_group_role" {
   count                    = var.flag_use_existing_node_group_role ? 0 : 1
-  source                   = "git@github.com:DISHDevEx/iot.git//aws/modules/iam"
+  source                   = "git@github.com:DISHDevEx/iot.git//aws/modules/iam?ref=main"
   aws_region               = data.aws_region.current.name
   iam_role_name            = var.existing_node_group_iam_role_arn
   assume_role_policy       = jsonencode({
