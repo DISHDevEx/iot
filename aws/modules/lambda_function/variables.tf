@@ -115,3 +115,8 @@ variable "new_iam_policy" {
     }
   EOT
 }
+
+variable "signing_profile_arn" {
+  description = "The ARN of the existing AWS Signer signing profile"
+  type        = string
+}
