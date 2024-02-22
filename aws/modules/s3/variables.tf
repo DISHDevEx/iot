@@ -20,3 +20,7 @@ variable "bucket_policy_file_path" {
   default     = null
   sensitive   = true
 }
+variable "log_bucket" {
+  description = "The name of the S3 bucket where logs will be stored"
+  type        = string
+}
